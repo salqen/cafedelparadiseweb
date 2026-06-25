@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Café del Paradise – Prievidza</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --or1:#ff6a00;
+  --or2:#ff9e1b;
+  --or3:#ffce00;
+  --red:#cc3300;
+  --dark:#3d0e00;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:#fff;font-family:'Outfit',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:rgba(255,106,0,.4);border-radius:3px}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:-60px;right:-60px;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 calc(52px + 60px);height:62px;
+  background:rgba(20,4,0,.3);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,106,0,.06);
+  transition:background .35s,border-color .35s,backdrop-filter .35s;
+}
+#nav.solid{
+  background:rgba(20,4,0,.6);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,106,0,.18);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:23px;font-weight:700;
+  background:linear-gradient(120deg,var(--or2),var(--or3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  cursor:pointer;letter-spacing:.03em;
+  filter:drop-shadow(0 0 10px rgba(255,158,27,.5));
+}
+.nav-links{display:flex;gap:30px}
+.nav-links a{
+  color:rgba(255,220,160,.65);text-decoration:none;cursor:pointer;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--or2)}
+
+/* ── HERO ── */
+#hero{
+  position:relative;height:100vh;min-height:600px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+
+/* bg foto */
+#l-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('assets/back.webp');
+  background-size:cover;background-position:center center;
+  transform:scale(1.14);transform-origin:center 40%;
+  will-change:transform;
+}
+/* tint + prechod do oranžovej */
+#l-bg-tint{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,2,0,.68)  0%,
+    rgba(10,2,0,.08)  22%,
+    rgba(10,2,0,.02)  48%,
+    rgba(160,55,0,.55) 70%,
+    rgba(130,38,0,.88) 83%,
+    #3d0e00           100%
+  );
+}
+/* hviezdy */
+#l-stars{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+/* logo – centrovane, screen blend zruší čierne pozadie */
+#l-logo{
+  position:absolute;z-index:8;
+  left:50%;top:calc(46% - 35px);
+  width:clamp(820px,96vw,1400px);
+  transform:translate(-50%,-50%);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  isolation:auto;
+}
+#l-logo img{width:100%;height:auto;display:block}
+
+/* text – tesne pod logom */
+#l-text{
+  position:absolute;z-index:20;text-align:center;
+  width:100%;padding:0 24px;
+  top:calc(46% + clamp(220px,28vw,420px));
+  will-change:transform;
+}
+.h-eyebrow{
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--or2);margin-bottom:16px;opacity:.7;
+}
+.h-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;max-width:700px;margin-left:auto;margin-right:auto}
+.hb{
+  position:relative;display:flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:12px;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  background:linear-gradient(145deg,rgba(20,4,0,.38),rgba(60,12,0,.52));
+  border:1px solid rgba(255,140,0,.22);
+  cursor:pointer;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+  backdrop-filter:blur(8px);
+  background-clip:unset;
+}
+.hb span.hb-label{
+  background:linear-gradient(120deg,var(--or2),var(--or3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-family:'Playfair Display',serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+}
+.hb svg{flex-shrink:0;opacity:.8;transition:opacity .3s}
+.hb:hover{border-color:rgba(255,180,0,.5);box-shadow:0 4px 20px rgba(255,100,0,.15);background:linear-gradient(145deg,rgba(255,120,0,.12),rgba(60,10,0,.35))}
+.hb:hover svg{opacity:1}
+.h-addr{font-size:15px;color:rgba(255,200,120,.7);margin-bottom:28px;letter-spacing:.05em;text-shadow:0 2px 12px rgba(0,0,0,.7),0 0 30px rgba(180,60,0,.4)}
+.h-cta{
+  display:inline-flex;flex-direction:column;align-items:center;gap:4px;
+  padding:10px 24px;border-radius:12px;cursor:pointer;
+  background:none;
+  border:none;
+  font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  text-decoration:none;
+  transition:opacity .3s;
+}
+.h-cta-label{
+  background:linear-gradient(120deg,var(--or2),var(--or3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.h-cta-arrow{
+  display:flex;align-items:center;justify-content:center;
+  animation:arrow-bounce 1.6s ease-in-out infinite;
+}
+.h-cta-arrow svg{display:block}
+@keyframes arrow-bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(6px)}
+}
+.h-cta:hover{opacity:.75}
+/* ikony emoji v kartách */
+.card-ico{display:none}
+.kico{display:flex;align-items:center;justify-content:center;width:32px;height:32px;flex-shrink:0;margin-top:2px}
+
+
+/* listy – praralax02.PNG z oboch strán */
+#l-leaf-left,#l-leaf-right{
+  position:fixed;top:0;z-index:50;pointer-events:none;
+  height:100vh;width:auto;will-change:transform;
+}
+#l-leaf-left{left:calc(min(0px,(100vw - 1100px) * 0.18) - 10px)}
+#l-leaf-right{right:calc(min(0px,(100vw - 1100px) * 0.18) - 10px);transform:scaleX(-1)}
+#l-leaf-left img,#l-leaf-right img{height:100%;width:auto;display:block;mix-blend-mode:screen}
+
+/* spodná hmla */
+#l-fog{
+  position:absolute;bottom:0;left:0;right:0;height:180px;z-index:25;pointer-events:none;
+  background:linear-gradient(to top,#3d0e00 0%,transparent 100%);
+}
+
+/* scroll indikátor – skrytý */
+#scrollind{display:none}
+
+/* ── SEKCIE ── */
+.sec{position:relative;padding:60px 52px;overflow:hidden}
+.sec-alt{background:linear-gradient(180deg,#3d0e00 0%,#5a1800 50%,#3d0e00 100%)}
+.sec-glow-or::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:440px;height:440px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,100,0,.07) 0%,transparent 70%);
+}
+.sec-glow-yw::before{
+  content:'';position:absolute;bottom:-80px;left:-80px;width:440px;height:440px;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,200,0,.05) 0%,transparent 70%);
+}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--or2);margin-bottom:14px}
+.sec-title{
+  font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:700;margin-bottom:16px;
+  background:linear-gradient(135deg,#fff8ee,rgba(255,180,80,.85));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sec-sub{font-size:15px;color:rgba(255,200,120,.5);max-width:540px;line-height:1.8;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,120,0,.07) 0%,rgba(60,10,0,.25) 100%);
+  border:1px solid rgba(255,140,0,.18);
+  border-radius:20px;padding:22px 22px 18px;
+  transition:border-color .4s,transform .4s,box-shadow .4s;
+  backdrop-filter:blur(4px);
+}
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,180,0,.08) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.card:hover{border-color:rgba(255,180,0,.45);transform:translateY(-6px);box-shadow:0 12px 48px rgba(255,100,0,.18)}
+.card:hover::before{opacity:1}
+.card-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.card-img{
+  width:38px;height:38px;flex-shrink:0;
+  opacity:.8;transition:opacity .4s;
+}
+.card:hover .card-img{opacity:1}
+.card-img svg{width:100%;height:100%}
+.card-ttl{
+  font-family:'Playfair Display',serif;font-size:15px;font-weight:700;
+  background:linear-gradient(120deg,var(--or2),var(--or3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.05em;text-transform:uppercase;
+}
+.card-txt{font-size:13px;color:rgba(255,200,120,.55);line-height:1.75}
+/* luxusný nadpis odkazu na sekciu */
+.card-link{
+  display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.12em;
+  color:rgba(255,180,80,.5);text-transform:uppercase;cursor:pointer;
+  transition:color .3s;
+}
+.card:hover .card-link{color:rgba(255,200,100,.9)}
+.mtabs{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.mtab{
+  padding:9px 22px;border-radius:30px;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  border:1px solid rgba(255,106,0,.22);background:transparent;
+  color:rgba(255,200,100,.5);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;
+}
+.mtab.on,.mtab:hover{border-color:var(--or1);color:var(--or2);background:rgba(255,106,0,.1);box-shadow:0 0 16px rgba(255,106,0,.18)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:44px}
+.mgroup{margin-bottom:28px}
+.mcat{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--or2);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(255,106,0,.18)}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mn{font-size:13px;color:rgba(255,235,190,.8);line-height:1.4;flex:1}
+.mv{font-size:11px;color:rgba(255,120,0,.4);margin:0 10px;flex-shrink:0}
+.mp{font-size:14px;font-weight:700;color:var(--or2);flex-shrink:0}
+.mpanel{display:none}.mpanel.on{display:block}
+/* collapse – zobrazia sa len 2 riadky */
+.scroll-menu .mpanel.on{overflow:hidden;max-height:88px;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.scroll-menu .mpanel.on.expanded{max-height:2400px}
+/* tlačidlo rozbalenia – divider štýl */
+.menu-toggle{
+  display:flex;align-items:center;gap:0;
+  width:100%;margin-top:18px;
+  background:none;border:none;cursor:pointer;padding:0;
+  font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,180,80,.55);transition:color .25s;
+}
+.menu-toggle:hover{color:rgba(255,210,100,.9)}
+.menu-toggle:hover .menu-toggle-line{background:rgba(255,180,80,.5)}
+.menu-toggle-line{
+  flex:1;height:1px;
+  background:rgba(255,140,0,.22);
+  transition:background .25s;
+}
+.menu-toggle-label{
+  padding:0 16px;white-space:nowrap;flex-shrink:0;
+}
+.menu-toggle-arrow{flex-shrink:0;transition:transform .4s}
+.menu-toggle.open .menu-toggle-arrow{transform:rotate(180deg)}
+/* Rezervácia stolov mockup */
+.res-wrap{padding:28px 0 8px}
+.res-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:20px}
+.res-field{display:flex;flex-direction:column;gap:6px}
+.res-field label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,180,80,.55)}
+.res-field input,.res-field select{
+  background:rgba(255,120,0,.06);border:1px solid rgba(255,140,0,.22);border-radius:10px;
+  padding:10px 14px;color:rgba(255,235,190,.85);font-family:'Outfit',sans-serif;font-size:13px;
+  outline:none;transition:border-color .25s;
+  -webkit-appearance:none;appearance:none;
+}
+.res-field input:focus,.res-field select:focus{border-color:rgba(255,180,0,.5)}
+.res-field select option{background:#3d0e00}
+.res-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:4px;
+  padding:12px 32px;border-radius:10px;cursor:pointer;
+  background:linear-gradient(135deg,rgba(255,120,0,.18),rgba(255,180,0,.1));
+  border:1px solid rgba(255,140,0,.35);
+  font-family:'Playfair Display',serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:rgba(255,200,100,.85);transition:border-color .25s,box-shadow .25s;
+}
+.res-btn:hover{border-color:rgba(255,180,0,.6);box-shadow:0 4px 20px rgba(255,100,0,.15)}
+.res-note{font-size:11px;color:rgba(255,180,80,.35);margin-top:10px;letter-spacing:.04em}
+/* Eventy list */
+.ev-list{padding:24px 0 8px;display:flex;flex-direction:column;gap:14px}
+.ev-item{
+  display:flex;align-items:center;gap:20px;
+  padding:16px 20px;border-radius:14px;
+  background:rgba(255,120,0,.05);border:1px solid rgba(255,140,0,.14);
+  transition:border-color .25s,transform .25s;cursor:default;
+}
+.ev-item:hover{border-color:rgba(255,180,0,.3);transform:translateX(4px)}
+.ev-date{display:flex;flex-direction:column;align-items:center;min-width:46px;
+  background:rgba(255,120,0,.1);border:1px solid rgba(255,140,0,.2);border-radius:10px;padding:8px 10px}
+.ev-day{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.ev-mon{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,180,80,.55);margin-top:2px}
+.ev-info{flex:1}
+.ev-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.ev-desc{font-size:12px;color:rgba(255,220,160,.5);line-height:1.5}
+.ev-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;
+  border-radius:20px;border:1px solid rgba(255,140,0,.25);color:rgba(255,180,80,.6);white-space:nowrap}
+.wcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.wcard{background:rgba(255,160,0,.05);border:1px solid rgba(255,160,0,.15);border-radius:16px;padding:24px 20px;transition:border-color .3s,transform .3s}
+.wcard:hover{border-color:rgba(255,180,0,.35);transform:translateY(-4px)}
+.wcard .card-ttl{color:#ffcc60}
+.kbox{max-width:620px;margin:0 auto;background:rgba(255,120,0,.06);border:1px solid rgba(255,120,0,.22);border-radius:20px;padding:40px 38px}
+.krow{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,120,0,.12)}
+.krow:last-child{border-bottom:none}
+.kico{font-size:20px;flex-shrink:0;margin-top:2px}
+.klbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,150,0,.6);margin-bottom:4px}
+.kval{font-size:14px;color:rgba(255,220,160,.8);line-height:1.55;white-space:pre-line}
+footer{background:#2d0900;border-top:1px solid rgba(255,106,0,.14);padding:32px 52px;text-align:center}
+footer .flogo{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+footer p{font-size:11px;color:rgba(255,106,0,.35);letter-spacing:.1em}
+
+/* ── SOCIAL ICONS ── */
+.nav-social{display:flex;align-items:center;gap:14px;margin-right:24px}
+.nav-soc{display:flex;align-items:center;opacity:.55;transition:opacity .2s,transform .2s}
+.nav-soc:hover{opacity:1;transform:translateY(-2px)}
+
+/* ── HAMBURGER ── */
+#nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:400;padding:4px}
+#nav-toggle span{display:block;width:24px;height:2px;background:var(--or2);border-radius:2px;transition:all .3s}
+#nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav-toggle.open span:nth-child(2){opacity:0}
+#nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:350;
+  background:rgba(20,3,0,.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:stretch;justify-content:flex-start;
+  padding:72px 16px 24px;overflow-y:auto;
+}
+#mobile-menu.open{display:flex}
+#mm-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  width:100%;
+}
+.mm-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,120,0,.07) 0%,rgba(60,10,0,.25) 100%);
+  border:1px solid rgba(255,140,0,.18);
+  border-radius:18px;padding:18px 16px 16px;
+  cursor:pointer;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  backdrop-filter:blur(4px);
+  -webkit-tap-highlight-color:transparent;
+}
+.mm-card:active{border-color:rgba(255,180,0,.5);transform:scale(.97)}
+.mm-card-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.mm-card-ico{width:28px;height:28px;flex-shrink:0;opacity:.75}
+.mm-card-ico svg{width:100%;height:100%}
+.mm-card-ttl{
+  font-family:'Playfair Display',serif;font-size:13px;font-weight:700;
+  background:linear-gradient(120deg,var(--or2),var(--or3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.03em;line-height:1.2;
+}
+.mm-card-lnk{
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,180,80,.45);margin-top:4px;
+}
+#mobile-menu .m-close{
+  position:absolute;top:18px;right:22px;font-size:28px;cursor:pointer;
+  color:rgba(255,180,80,.6);line-height:1;z-index:10;
+}
+
+/* ══ TABLET – 1024px ══ */
+@media(max-width:1024px){
+  #nav{padding:0 28px}
+  .nav-links{gap:18px}
+  .nav-links a{font-size:10px}
+  .nav-logo{font-size:19px}
+  .sec{padding:48px 32px}
+  #l-logo{width:clamp(480px,72vw,900px)}
+  #l-text{top:calc(46% + clamp(160px,22vw,320px))}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+  .wcards{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .mgrid{grid-template-columns:1fr;gap:0}
+  .kbox{padding:28px 24px}
+  #l-leaf-left,#l-leaf-right{height:100vh}
+  #l-leaf-left img,#l-leaf-right img{height:100%;width:auto}
+  #l-leaf-left{left:min(0px,(100vw - 900px)*.15)}
+  #l-leaf-right{right:min(0px,(100vw - 900px)*.15)}
+}
+
+/* ══ MOBIL – 767px ══ */
+@media(max-width:767px){
+  /* nav – logo vycentrované, hamburger vpravo */
+  .nav-links{display:none}
+  #nav-toggle{display:flex}
+  .nav-social{display:none}
+  #nav{
+    left:0;right:0;
+    padding:0;height:54px;
+    display:grid;grid-template-columns:54px 1fr 54px;
+    align-items:center;
+  }
+  .nav-logo{font-size:16px;text-align:center;grid-column:2}
+  #nav-toggle{justify-self:center;grid-column:3}
+
+  /* hero */
+  #l-logo{width:min(92vw,480px);top:calc(84px + min(92vw,480px) * 0.365)}
+  #l-text{top:calc(64px + min(92vw,480px) * 0.73 + 6px);padding:0 12px}
+  .h-badges{gap:6px}
+  .hb{padding:5px 12px;font-size:9px}
+  .h-addr{font-size:11px;margin-bottom:14px}
+  /* Čoskoro otvárame — jeden riadok na mobile */
+  #hero .h-coskoro{font-size:18px !important;white-space:nowrap;letter-spacing:.1em !important}
+  .h-cta{font-size:10px}
+  /* listy na mobile – menšie, menej vyčnievajúce */
+  #l-leaf-left,#l-leaf-right{display:block;height:55vh}
+  #l-leaf-left img,#l-leaf-right img{height:100%;width:auto}
+  #l-leaf-left{left:-10vw}
+  #l-leaf-right{right:-10vw}
+
+  /* sekcie */
+  .sec{padding:36px 18px}
+  .sec-title{font-size:clamp(24px,6vw,36px)}
+  .sec-sub{font-size:14px;margin-bottom:32px}
+
+  /* karty O nás – 2 stĺpce */
+  .cards{grid-template-columns:repeat(2,1fr);gap:8px}
+  .card{padding:10px 10px 8px;border-radius:14px}
+  .card-head{gap:6px;margin-bottom:0}
+  .card-img{width:22px;height:22px}
+  .card-ttl{font-size:11px}
+  .card-txt{display:none}
+  .card-link{font-size:9px;margin-top:6px;letter-spacing:.08em}
+
+  /* menu záložky */
+  .mtabs{gap:7px;margin-bottom:28px}
+  .mtab{padding:7px 14px;font-size:10px}
+  .mgrid{grid-template-columns:1fr;gap:0}
+  .mn{font-size:12px}
+  .mv{display:none}
+  .mp{font-size:13px}
+
+  /* wellness karty */
+  .wcards{grid-template-columns:repeat(2,1fr);gap:12px}
+  .wcard{padding:18px 14px}
+
+  /* kontakt */
+  .kbox{padding:22px 16px}
+  .kval{font-size:13px}
+
+  /* footer */
+  footer{padding:24px 18px}
+  footer .flogo{font-size:18px}
+}
+
+/* ══ MALÝ MOBIL – 400px ══ */
+@media(max-width:400px){
+  .cards{grid-template-columns:1fr}
+  .wcards{grid-template-columns:1fr}
+  #l-logo{width:94vw}
+}
+/* ── BACK TO TOP ── */
+#back-top{
+  position:fixed;bottom:28px;right:24px;z-index:500;
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,120,0,.18),rgba(255,180,0,.1));
+  border:1px solid rgba(255,140,0,.35);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s,transform .3s,border-color .25s;
+  backdrop-filter:blur(8px);
+}
+#back-top.visible{opacity:1;pointer-events:auto}
+#back-top:hover{border-color:rgba(255,180,0,.65);transform:translateY(-3px)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo" onclick="goTo('top')">Café del Paradise</div>
+  <div class="nav-links">
+    <a onclick="goTo('onas')">O nás</a>
+    <a onclick="goTo('napoje')">Nápoje</a>
+    <a onclick="goTo('jedlo')">Jedlo</a>
+    <a onclick="goTo('zmrzlina')">Zmrzlina</a>
+    <a onclick="goTo('shisha')">Shisha</a>
+    <a onclick="goTo('terasa')">Terasa</a>
+    <a onclick="goTo('eventy')">Eventy</a>
+    <a onclick="goTo('wellness')">Wellness</a>
+    <a onclick="goTo('ubytovanie')">Ubytovanie</a>
+    <a onclick="goTo('kontakt')">Kontakt</a>
+  </div>
+  <div class="nav-social">
+    <a class="nav-soc" href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="url(#sg1)" stroke-width="1.6" fill="none" stroke-linejoin="round"/></svg></a>
+    <a class="nav-soc" href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#sg2)" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="5" stroke="url(#sg2)" stroke-width="1.6" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="url(#sg2)"/></svg></a>
+    <a class="nav-soc" href="#" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="sg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="url(#sg3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+    <a class="nav-soc" href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="sg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="url(#sg4)" stroke-width="1.6" fill="none"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="url(#sg4)" stroke-width="1.6" fill="none" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div id="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div id="mobile-menu">
+  <div class="m-close" onclick="toggleMenu()">✕</div>
+  <div id="mm-grid">
+
+    <!-- O nás -->
+    <div class="mm-card" onclick="toggleMenu();goTo('onas')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><circle cx="19" cy="13" r="6" stroke="url(#mm1)" stroke-width="1.8" fill="none"/><path d="M8 32 C8 24 30 24 30 32" stroke="url(#mm1)" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
+        <div class="mm-card-ttl">O nás</div>
+      </div>
+      <div class="mm-card-lnk">Spoznajte nás →</div>
+    </div>
+
+    <!-- Coffee & Bar -->
+    <div class="mm-card" onclick="toggleMenu();goTo('napoje')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm2" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 12 L10 28 Q10 32 14 32 L24 32 Q28 32 28 28 L28 12 Z" stroke="url(#mm2)" stroke-width="1.8" fill="none"/><path d="M28 16 Q34 16 34 22 Q34 28 28 28" stroke="url(#mm2)" stroke-width="1.8" fill="none"/><line x1="8" y1="12" x2="30" y2="12" stroke="url(#mm2)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="mm-card-ttl">Coffee &amp; Bar</div>
+      </div>
+      <div class="mm-card-lnk">Zobraziť menu →</div>
+    </div>
+
+    <!-- Jedlo -->
+    <div class="mm-card" onclick="toggleMenu();goTo('jedlo')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm3" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><circle cx="19" cy="19" r="11" stroke="url(#mm3)" stroke-width="1.8" fill="none"/><path d="M12 19 Q19 14 26 19" stroke="url(#mm3)" stroke-width="1.5" fill="none"/><line x1="19" y1="8" x2="19" y2="12" stroke="url(#mm3)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="mm-card-ttl">Jedlo</div>
+      </div>
+      <div class="mm-card-lnk">Zobraziť menu →</div>
+    </div>
+
+    <!-- Zmrzlina -->
+    <div class="mm-card" onclick="toggleMenu();goTo('zmrzlina')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm4" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M14 18 L19 32 L24 18" stroke="url(#mm4)" stroke-width="1.8" stroke-linejoin="round" fill="none"/><circle cx="19" cy="13" r="7" stroke="url(#mm4)" stroke-width="1.8" fill="none"/></svg></div>
+        <div class="mm-card-ttl">Zmrzlina &amp; Smoothie</div>
+      </div>
+      <div class="mm-card-lnk">Zobraziť ponuku →</div>
+    </div>
+
+    <!-- Shisha -->
+    <div class="mm-card" onclick="toggleMenu();goTo('shisha')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm5" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="19" cy="26" rx="8" ry="4" stroke="url(#mm5)" stroke-width="1.6" fill="none"/><line x1="19" y1="22" x2="19" y2="14" stroke="url(#mm5)" stroke-width="2" stroke-linecap="round"/><path d="M13 14 Q13 8 19 8 Q25 8 25 14" stroke="url(#mm5)" stroke-width="1.6" fill="none"/><path d="M16 8 Q16 4 19 4 Q22 4 22 8" stroke="url(#mm5)" stroke-width="1.2" fill="none" opacity=".6"/></svg></div>
+        <div class="mm-card-ttl">Shisha</div>
+      </div>
+      <div class="mm-card-lnk">Zobraziť príchute →</div>
+    </div>
+
+    <!-- Letná Terasa -->
+    <div class="mm-card" onclick="toggleMenu();goTo('terasa')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm6" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M6 18 Q19 6 32 18" stroke="url(#mm6)" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="19" y1="18" x2="19" y2="30" stroke="url(#mm6)" stroke-width="1.8" stroke-linecap="round"/><line x1="10" y1="30" x2="28" y2="30" stroke="url(#mm6)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="mm-card-ttl">Letná Terasa</div>
+      </div>
+      <div class="mm-card-lnk">Viac o terase →</div>
+    </div>
+
+    <!-- Eventy -->
+    <div class="mm-card" onclick="toggleMenu();goTo('eventy')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm7" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 20 L10 30 Q10 33 13 33 L25 33 Q28 33 28 30 L28 20 L10 20Z" stroke="url(#mm7)" stroke-width="1.8" fill="none"/><path d="M8 20 L30 20" stroke="url(#mm7)" stroke-width="1.8" stroke-linecap="round"/><path d="M14 20 L14 12 Q14 8 19 8 Q24 8 24 12 L24 20" stroke="url(#mm7)" stroke-width="1.5" fill="none"/></svg></div>
+        <div class="mm-card-ttl">Eventy</div>
+      </div>
+      <div class="mm-card-lnk">Rezervovať akciu →</div>
+    </div>
+
+    <!-- Wellness -->
+    <div class="mm-card" onclick="toggleMenu();goTo('wellness')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm8" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="19" cy="24" rx="12" ry="6" stroke="url(#mm8)" stroke-width="1.8" fill="none"/><path d="M7 24 Q7 16 19 16 Q31 16 31 24" stroke="url(#mm8)" stroke-width="1.5" fill="none"/><path d="M12 20 Q14 18 16 20 Q18 18 20 20 Q22 18 24 20 Q26 18 28 20" stroke="url(#mm8)" stroke-width="1.1" fill="none"/></svg></div>
+        <div class="mm-card-ttl">Wellness</div>
+      </div>
+      <div class="mm-card-lnk">Rezervovať →</div>
+    </div>
+
+    <!-- Ubytovanie -->
+    <div class="mm-card" onclick="toggleMenu();goTo('ubytovanie')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm9" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="4" y="20" width="30" height="12" rx="2" stroke="url(#mm9)" stroke-width="1.8" fill="none"/><rect x="4" y="16" width="30" height="5" rx="2" stroke="url(#mm9)" stroke-width="1.8" fill="none"/><rect x="8" y="21" width="9" height="5" rx="2" stroke="url(#mm9)" stroke-width="1.4" fill="none"/><rect x="21" y="21" width="9" height="5" rx="2" stroke="url(#mm9)" stroke-width="1.4" fill="none"/></svg></div>
+        <div class="mm-card-ttl">Ubytovanie</div>
+      </div>
+      <div class="mm-card-lnk">Zobraziť izby →</div>
+    </div>
+
+    <!-- Kontakt -->
+    <div class="mm-card" onclick="toggleMenu();goTo('kontakt')">
+      <div class="mm-card-head">
+        <div class="mm-card-ico"><svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="mm10" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M19 6 C12 6 7 11 7 17 C7 26 19 32 19 32 C19 32 31 26 31 17 C31 11 26 6 19 6Z" stroke="url(#mm10)" stroke-width="1.8" fill="none"/><circle cx="19" cy="17" r="4" stroke="url(#mm10)" stroke-width="1.8" fill="none"/></svg></div>
+        <div class="mm-card-ttl">Kontakt</div>
+      </div>
+      <div class="mm-card-lnk">Nájdite nás →</div>
+    </div>
+
+  </div>
+</div>
+
+<section id="hero">
+  <div id="l-bg"></div>
+  <div id="l-bg-tint"></div>
+  <canvas id="l-stars"></canvas>
+
+  <div id="l-logo">
+    <img src="assets/logo2.webp" alt="Caffe Paradise"/>
+  </div>
+
+  <div id="l-text">
+    <div class="h-addr" style="margin-bottom:16px"><svg width="13" height="13" viewBox="0 0 80 80" fill="none" style="display:inline-block;vertical-align:middle;margin-right:6px;margin-top:-2px"><defs><linearGradient id="ping" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 8 C26 8 16 18 16 31 C16 50 40 72 40 72 C40 72 64 50 64 31 C64 18 54 8 40 8Z" stroke="url(#ping)" stroke-width="2.5" fill="none"/><circle cx="40" cy="31" r="8" stroke="url(#ping)" stroke-width="2.5" fill="none"/></svg>J. Murgaša 46 – Prievidza &nbsp;·&nbsp; čínsky múr (bývalé Kuppe Coffee)</div>
+    <div class="h-badges">
+      <span class="hb" onclick="goTo('napoje',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M14 8 L40 44 L66 8Z" stroke="url(#hg1)" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="40" y1="44" x2="40" y2="62" stroke="url(#hg1)" stroke-width="2"/><line x1="26" y1="70" x2="54" y2="70" stroke="url(#hg1)" stroke-width="2"/><line x1="28" y1="62" x2="52" y2="62" stroke="url(#hg1)" stroke-width="2"/></svg><span class="hb-label">Coffee &amp; Bar</span></span>
+      <span class="hb" onclick="goTo('jedlo',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="46" rx="26" ry="26" stroke="url(#hg2)" stroke-width="2" fill="none"/><line x1="40" y1="8" x2="40" y2="20" stroke="url(#hg2)" stroke-width="2"/><path d="M30 8 Q30 16 35 18" stroke="url(#hg2)" stroke-width="1.5" fill="none"/><path d="M50 8 Q50 16 45 18" stroke="url(#hg2)" stroke-width="1.5" fill="none"/></svg><span class="hb-label">Jedlo</span></span>
+      <span class="hb" onclick="goTo('zmrzlina',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M32 42 L40 74 L48 42" stroke="url(#hg3)" stroke-width="2" fill="none" stroke-linejoin="round"/><circle cx="40" cy="30" r="13" stroke="url(#hg3)" stroke-width="2" fill="none"/><circle cx="27" cy="36" r="11" stroke="url(#hg3)" stroke-width="1.5" fill="none"/><circle cx="53" cy="36" r="11" stroke="url(#hg3)" stroke-width="1.5" fill="none"/></svg><span class="hb-label">Zmrzlina</span></span>
+      <span class="hb" onclick="goTo('shisha',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="58" rx="16" ry="9" stroke="url(#hg4)" stroke-width="2" fill="none"/><path d="M30 58 L30 44 Q30 36 40 36 Q50 36 50 44 L50 58" stroke="url(#hg4)" stroke-width="2" fill="none"/><rect x="34" y="28" width="12" height="9" rx="3" stroke="url(#hg4)" stroke-width="1.5" fill="none"/><line x1="40" y1="28" x2="40" y2="12" stroke="url(#hg4)" stroke-width="1.5"/></svg><span class="hb-label">Shisha</span></span>
+      <span class="hb" onclick="goTo('terasa',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 36 L40 12 L70 36" stroke="url(#hg5)" stroke-width="2" fill="none"/><line x1="10" y1="36" x2="70" y2="36" stroke="url(#hg5)" stroke-width="1.5"/><line x1="18" y1="36" x2="18" y2="72" stroke="url(#hg5)" stroke-width="1.5"/><line x1="62" y1="36" x2="62" y2="72" stroke="url(#hg5)" stroke-width="1.5"/><line x1="12" y1="72" x2="68" y2="72" stroke="url(#hg5)" stroke-width="2"/></svg><span class="hb-label">Letná Terasa</span></span>
+      <span class="hb" onclick="goTo('eventy',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="26" rx="13" ry="16" stroke="url(#hg6)" stroke-width="2" fill="none"/><line x1="27" y1="22" x2="53" y2="22" stroke="url(#hg6)" stroke-width="1"/><line x1="27" y1="28" x2="53" y2="28" stroke="url(#hg6)" stroke-width="1"/><line x1="40" y1="42" x2="40" y2="52" stroke="url(#hg6)" stroke-width="2.5"/><line x1="18" y1="58" x2="62" y2="58" stroke="url(#hg6)" stroke-width="2"/><path d="M30 42 Q28 50 24 54 L22 58" stroke="url(#hg6)" stroke-width="1.5" fill="none"/><path d="M50 42 Q52 50 56 54 L58 58" stroke="url(#hg6)" stroke-width="1.5" fill="none"/></svg><span class="hb-label">Eventy</span></span>
+      <span class="hb" onclick="goTo('wellness',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 18 Q46 26 40 32 Q34 26 40 18Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><path d="M54 24 Q54 34 46 36 Q44 28 54 24Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><path d="M58 40 Q52 48 44 46 Q46 38 58 40Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><path d="M40 58 Q34 50 40 44 Q46 50 40 58Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><path d="M26 52 Q26 42 34 40 Q36 48 26 52Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><path d="M22 36 Q28 28 36 30 Q34 38 22 36Z" stroke="url(#hg7)" stroke-width="1.5" fill="none"/><circle cx="40" cy="38" r="4" stroke="url(#hg7)" stroke-width="1.5" fill="none"/></svg><span class="hb-label">Wellness</span></span>
+      <span class="hb" onclick="goTo('ubytovanie',true)"><svg width="16" height="16" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="hg8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="6" y="42" width="68" height="26" rx="3" stroke="url(#hg8)" stroke-width="2" fill="none"/><rect x="6" y="34" width="68" height="10" rx="3" stroke="url(#hg8)" stroke-width="2" fill="none"/><rect x="14" y="44" width="20" height="10" rx="4" stroke="url(#hg8)" stroke-width="1.5" fill="none"/><rect x="46" y="44" width="20" height="10" rx="4" stroke="url(#hg8)" stroke-width="1.5" fill="none"/></svg><span class="hb-label">Ubytovanie</span></span>
+    </div>
+    <div class="h-coskoro" style="font-size:36px;color:rgba(255,180,80,.55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:28px;text-shadow:0 2px 10px rgba(0,0,0,.6)">✦ &nbsp; Čoskoro otvárame &nbsp; ✦</div>
+    <a class="h-cta" onclick="goTo('onas',true)">
+      <span class="h-cta-label">Objavte Raj</span>
+      <span class="h-cta-arrow"><svg width="22" height="22" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="arrowg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><line x1="40" y1="10" x2="40" y2="58" stroke="url(#arrowg)" stroke-width="4" stroke-linecap="round"/><path d="M18 42 L40 64 L62 42" stroke="url(#arrowg)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+
+
+  <div id="l-fog"></div>
+  <div id="scrollind"><span>scroll</span><div class="sline"></div></div>
+</section>
+<div id="l-leaf-left"><img src="assets/praralax02.webp" alt=""/></div>
+<div id="l-leaf-right"><img src="assets/praralax02.webp" alt=""/></div>
+
+<!-- O NÁS -->
+<section id="onas" class="sec sec-alt sec-glow-or">
+  <div class="sec-inner">
+    <div class="sec-label">O nás</div>
+    <h2 class="sec-title">Viac než len kaviareň</h2>
+    <p class="sec-sub">Café del Paradise je miesto kde sa stretáva výborná káva, tropická atmosféra a wellness zážitok — váš vlastný kúsok raja !</p>
+    <div class="cards">
+
+      <!-- NÁPOJE -->
+      <div class="card" onclick="goTo('napoje')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><!-- koktail pohár --><path d="M14 8 L40 44 L66 8 Z" stroke="url(#g1)" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity=".85"/><!-- stopka --><line x1="40" y1="44" x2="40" y2="62" stroke="url(#g1)" stroke-width="1.5" opacity=".85"/><!-- pätka --><line x1="28" y1="62" x2="52" y2="62" stroke="url(#g1)" stroke-width="1.5" opacity=".85"/><!-- nožička stopky – rozšírenie dolu --><path d="M36 62 Q40 66 44 62" stroke="url(#g1)" stroke-width="1.2" fill="none" opacity=".6"/><!-- základňa --><line x1="26" y1="70" x2="54" y2="70" stroke="url(#g1)" stroke-width="1.5" opacity=".8"/><!-- olivka na špáradku --><line x1="28" y1="26" x2="50" y2="20" stroke="url(#g1)" stroke-width="1" opacity=".6"/><circle cx="50" cy="20" r="3" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".7"/><!-- bubliny --><circle cx="33" cy="34" r="1.5" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".4"/><circle cx="40" cy="28" r="1.2" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".35"/><circle cx="46" cy="36" r="1" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".3"/></svg></div><div class="card-ttl">Coffee &amp; Bar</div></div>
+        <div class="card-txt">Prémiová káva, čerstvé limonády, kokteily, craft pivo a výber liehovín — od rána do noci.</div>
+        <div class="card-link">Zobraziť menu →</div>
+      </div>
+
+      <div class="card" onclick="goTo('jedlo')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="46" rx="26" ry="26" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity=".8"/><ellipse cx="40" cy="46" rx="16" ry="16" stroke="url(#g2)" stroke-width="1" fill="none" opacity=".4"/><line x1="40" y1="8" x2="40" y2="20" stroke="url(#g2)" stroke-width="1.5" opacity=".8"/><path d="M30 8 Q30 16 35 18" stroke="url(#g2)" stroke-width="1.3" fill="none" opacity=".7"/><path d="M50 8 Q50 16 45 18" stroke="url(#g2)" stroke-width="1.3" fill="none" opacity=".7"/></svg></div><div class="card-ttl">Jedlo</div></div>
+        <div class="card-txt">Toasty, šaláty, polievky, sladké dezerty aj vydatné raňajkové sety — čerstvé každý deň.</div>
+        <div class="card-link">Zobraziť menu →</div>
+      </div>
+
+      <div class="card" onclick="goTo('zmrzlina')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M32 42 L40 74 L48 42" stroke="url(#g3)" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity=".8"/><circle cx="40" cy="30" r="13" stroke="url(#g3)" stroke-width="1.5" fill="none" opacity=".8"/><circle cx="27" cy="36" r="11" stroke="url(#g3)" stroke-width="1.3" fill="none" opacity=".6"/><circle cx="53" cy="36" r="11" stroke="url(#g3)" stroke-width="1.3" fill="none" opacity=".6"/></svg></div><div class="card-ttl">Zmrzlina &amp; Smoothie</div></div>
+        <div class="card-txt">Remeselná zmrzlina, exotické poháre, tropické smoothie a osviežujúce milkshaky.</div>
+        <div class="card-link">Zobraziť ponuku →</div>
+      </div>
+
+      <div class="card" onclick="goTo('shisha')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="58" rx="16" ry="9" stroke="url(#g4)" stroke-width="1.5" fill="none" opacity=".8"/><path d="M30 58 L30 44 Q30 36 40 36 Q50 36 50 44 L50 58" stroke="url(#g4)" stroke-width="1.5" fill="none" opacity=".8"/><rect x="34" y="28" width="12" height="9" rx="3" stroke="url(#g4)" stroke-width="1.3" fill="none" opacity=".7"/><line x1="40" y1="28" x2="40" y2="12" stroke="url(#g4)" stroke-width="1.3" opacity=".7"/><path d="M38 12 Q36 7 40 5 Q44 7 42 12" stroke="url(#g4)" stroke-width="1" fill="none" opacity=".4"/></svg></div><div class="card-ttl">Shisha</div></div>
+        <div class="card-txt">Prémiová vodná fajka s klasickými aj exotickými príchuťami — orientálna pohoda v tropickej atmosfére.</div>
+        <div class="card-link">Zobraziť príchute →</div>
+      </div>
+
+      <div class="card" onclick="goTo('terasa')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 36 L40 12 L70 36" stroke="url(#g5)" stroke-width="1.5" fill="none" opacity=".8"/><line x1="10" y1="36" x2="70" y2="36" stroke="url(#g5)" stroke-width="1.2" opacity=".6"/><line x1="18" y1="36" x2="18" y2="72" stroke="url(#g5)" stroke-width="1.3" opacity=".7"/><line x1="62" y1="36" x2="62" y2="72" stroke="url(#g5)" stroke-width="1.3" opacity=".7"/><line x1="12" y1="72" x2="68" y2="72" stroke="url(#g5)" stroke-width="1.5" opacity=".8"/><path d="M26 56 Q31 50 36 56 Q41 50 46 56 Q51 50 56 56" stroke="url(#g5)" stroke-width="1" fill="none" opacity=".4"/></svg></div><div class="card-ttl">Letná Terasa</div></div>
+        <div class="card-txt">Prekrytá terasa s plážovými lehátkami, hojdačkami a detským ihriskom s trampolínami.</div>
+        <div class="card-link">Viac o terase →</div>
+      </div>
+
+      <div class="card" onclick="goTo('eventy')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><!-- 70s mikrofón – guľatá hlava --><ellipse cx="40" cy="26" rx="13" ry="16" stroke="url(#g6)" stroke-width="1.5" fill="none" opacity=".85"/><!-- mriežka mikrofónu --><line x1="27" y1="22" x2="53" y2="22" stroke="url(#g6)" stroke-width="1" opacity=".5"/><line x1="27" y1="28" x2="53" y2="28" stroke="url(#g6)" stroke-width="1" opacity=".5"/><path d="M29 16 Q40 14 51 16" stroke="url(#g6)" stroke-width="1" fill="none" opacity=".4"/><path d="M29 34 Q40 36 51 34" stroke="url(#g6)" stroke-width="1" fill="none" opacity=".4"/><!-- stojan --><path d="M30 42 Q28 50 24 54 L22 58" stroke="url(#g6)" stroke-width="1.5" fill="none" opacity=".75"/><path d="M50 42 Q52 50 56 54 L58 58" stroke="url(#g6)" stroke-width="1.5" fill="none" opacity=".75"/><line x1="18" y1="58" x2="62" y2="58" stroke="url(#g6)" stroke-width="1.5" opacity=".8"/><!-- rukoväť --><line x1="40" y1="42" x2="40" y2="52" stroke="url(#g6)" stroke-width="2" opacity=".8"/><!-- základňa kruhu --><ellipse cx="40" cy="58" rx="12" ry="3" stroke="url(#g6)" stroke-width="1.2" fill="none" opacity=".5"/></svg></div><div class="card-ttl">Eventy</div></div>
+        <div class="card-txt">Live koncerty, latino párty, súkromné oslavy, svadby a firemné večierky v unikátnej atmosfére.</div>
+        <div class="card-link">Rezervovať akciu →</div>
+      </div>
+
+      <div class="card" onclick="goTo('wellness')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><!-- vonkajší kruh spa --><circle cx="40" cy="38" r="28" stroke="url(#g7)" stroke-width="1.2" fill="none" opacity=".4"/><!-- kvet lotosu – 6 lupeňov --><path d="M40 18 Q46 26 40 32 Q34 26 40 18Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><path d="M54 24 Q54 34 46 36 Q44 28 54 24Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><path d="M58 40 Q52 48 44 46 Q46 38 58 40Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><path d="M40 58 Q34 50 40 44 Q46 50 40 58Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><path d="M26 52 Q26 42 34 40 Q36 48 26 52Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><path d="M22 36 Q28 28 36 30 Q34 38 22 36Z" stroke="url(#g7)" stroke-width="1.3" fill="none" opacity=".8"/><!-- stred --><circle cx="40" cy="38" r="4" stroke="url(#g7)" stroke-width="1.2" fill="none" opacity=".7"/><!-- vlnky vody dole --><path d="M24 68 Q29 64 34 68 Q39 64 44 68 Q49 64 54 68" stroke="url(#g7)" stroke-width="1.2" fill="none" opacity=".5"/></svg></div><div class="card-ttl">Wellness</div></div>
+        <div class="card-txt">Súkromná výrivková vaňa a parná sprcha. Relax pre páry aj skupiny — rezervácia online.</div>
+        <div class="card-link">Rezervovať →</div>
+      </div>
+
+      <div class="card" onclick="goTo('ubytovanie')" style="cursor:pointer">
+        <div class="card-head"><div class="card-img"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><!-- posteľ – rám --><rect x="6" y="42" width="68" height="26" rx="3" stroke="url(#g8)" stroke-width="1.4" fill="none" opacity=".8"/><!-- čelo postele --><rect x="6" y="34" width="68" height="10" rx="3" stroke="url(#g8)" stroke-width="1.4" fill="none" opacity=".8"/><!-- nožičky --><line x1="12" y1="68" x2="12" y2="75" stroke="url(#g8)" stroke-width="1.3" opacity=".6"/><line x1="68" y1="68" x2="68" y2="75" stroke="url(#g8)" stroke-width="1.3" opacity=".6"/><!-- panáčik 1 – hlava + telo ležiace --><circle cx="22" cy="50" r="4.5" stroke="url(#g8)" stroke-width="1.3" fill="none" opacity=".85"/><!-- telo --><path d="M26 50 L48 50" stroke="url(#g8)" stroke-width="3.5" stroke-linecap="round" opacity=".5"/><!-- nohy --><path d="M44 50 L52 55 L60 55" stroke="url(#g8)" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".7"/><!-- panáčik 2 – hlava + telo ležiace (menší, za prvým) --><circle cx="20" cy="57" r="3.5" stroke="url(#g8)" stroke-width="1.2" fill="none" opacity=".65"/><!-- telo --><path d="M23 57 L44 57" stroke="url(#g8)" stroke-width="2.5" stroke-linecap="round" opacity=".35"/><!-- nohy --><path d="M40 57 L48 61 L58 61" stroke="url(#g8)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".55"/><!-- deka linka --><path d="M8 63 Q37 60 72 63" stroke="url(#g8)" stroke-width="1" fill="none" opacity=".4"/></svg></div><div class="card-ttl">Ubytovanie</div></div>
+        <div class="card-txt">Štýlové izby s raňajkami a wellness prístupom — ideálne pre víkendový pobyt priamo nad kaviarňou.</div>
+        <div class="card-link">Zobraziť izby →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NÁPOJE -->
+<section id="napoje" class="sec sec-glow-yw">
+  <div class="sec-inner">
+    <div class="sec-label">Nápojový lístok</div>
+    <h2 class="sec-title">Čo si dáte?</h2>
+    <p class="sec-sub">Čerstvé limonády, prémiová káva, výber liehovín a vín — niečo pre každého.</p>
+    <div class="scroll-menu">
+    <div class="mtabs">
+      <button class="mtab on" onclick="mTab('nealko',this)">Nealko</button>
+      <button class="mtab"    onclick="mTab('alko',this)">Alko</button>
+      <button class="mtab"    onclick="mTab('kokteily',this)">Kokteily</button>
+      <button class="mtab"    onclick="mTab('kava',this)">Káva &amp; Čaj</button>
+      <button class="mtab"    onclick="mTab('horuce',this)">Horúce nápoje</button>
+    </div>
+    <div id="mp-nealko" class="mpanel on">
+      <div class="mgrid">
+        <div>
+          <div class="mgroup"><div class="mcat">Limonády</div>
+            <div class="mrow"><span class="mn">Limonáda + H₂O · Citrón / Jahoda / Malina</span><span class="mv">1000ml</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Limonáda + Sóda · Citrón / Jahoda / Malina</span><span class="mv">1000ml</span><span class="mp">5,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Nealko</div>
+            <div class="mrow"><span class="mn">Sóda</span><span class="mv">100ml</span><span class="mp">0,20 €</span></div>
+            <div class="mrow"><span class="mn">Kofola čapovaná 0,3l</span><span class="mv">–</span><span class="mp">1,50 €</span></div>
+            <div class="mrow"><span class="mn">Kofola čapovaná 0,5l</span><span class="mv">–</span><span class="mp">2,40 €</span></div>
+            <div class="mrow"><span class="mn">Royal Cola / Cola Zero</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Vinea Biela / Červená</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Targa Pomaranč</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Targa Marakuja a Mandarinka</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Targa Citrón</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Targa Tonic Originale / Rose / Ginger</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Curiosa Ice Tea Citrus / Peach</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="mgroup"><div class="mcat">Džúsy</div>
+            <div class="mrow"><span class="mn">Curiosa Jablko / Pomaranč / Jahoda</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Curiosa Multivitamín</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Curiosa Hruška s Mätou</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Curiosa Č. Ribezle s Levandulou</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Curiosa Mango s Kurkumou</span><span class="mv">250ml</span><span class="mp">2,50 €</span></div>
+            <div class="mrow"><span class="mn">Jupík</span><span class="mv">330ml</span><span class="mp">1,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Minerálky</div>
+            <div class="mrow"><span class="mn">Rajec Nesýtená / J. Sýtená / Sýtená</span><span class="mv">330ml</span><span class="mp">1,90 €</span></div>
+            <div class="mrow"><span class="mn">Korunní Jemne Perlivá</span><span class="mv">330ml</span><span class="mp">1,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-alko" class="mpanel">
+      <div class="mgrid">
+        <div>
+          <div class="mgroup"><div class="mcat">Pivo</div>
+            <div class="mrow"><span class="mn">Radegast 10° 0,3l</span><span class="mv">0,3l</span><span class="mp">1,40 €</span></div>
+            <div class="mrow"><span class="mn">Radegast 10° 0,5l</span><span class="mv">0,5l</span><span class="mp">2,20 €</span></div>
+            <div class="mrow"><span class="mn">Radegast Birell 0,5l</span><span class="mv">0,5l</span><span class="mp">2,20 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Vodka</div>
+            <div class="mrow"><span class="mn">Nicolaus Vodka Klasik 40%</span><span class="mv">0,04l</span><span class="mp">1,40 €</span></div>
+            <div class="mrow"><span class="mn">Absolut Vodka 40%</span><span class="mv">0,04l</span><span class="mp">1,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Whiskey / Bourbon</div>
+            <div class="mrow"><span class="mn">Jack Daniel's 40%</span><span class="mv">0,04l</span><span class="mp">2,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Rum</div>
+            <div class="mrow"><span class="mn">Nicolaus Tuzemský 40%</span><span class="mv">0,04l</span><span class="mp">1,40 €</span></div>
+            <div class="mrow"><span class="mn">Captain Morgan 40%</span><span class="mv">0,04l</span><span class="mp">1,90 €</span></div>
+            <div class="mrow"><span class="mn">Diplomatico Res. Ex. 12 Y.O. 40%</span><span class="mv">0,04l</span><span class="mp">3,90 €</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="mgroup"><div class="mcat">Gin</div>
+            <div class="mrow"><span class="mn">Kensington Silver Gin 37,5%</span><span class="mv">0,04l</span><span class="mp">1,50 €</span></div>
+            <div class="mrow"><span class="mn">Kensington Pink Gin 37,5%</span><span class="mv">0,04l</span><span class="mp">1,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Likéry</div>
+            <div class="mrow"><span class="mn">Aperol 11%</span><span class="mv">0,2l</span><span class="mp">4,40 €</span></div>
+            <div class="mrow"><span class="mn">Fernet Stock Citrus 27%</span><span class="mv">0,04l</span><span class="mp">1,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Destiláty</div>
+            <div class="mrow"><span class="mn">Nicolaus Borovička Klasik 40%</span><span class="mv">0,04l</span><span class="mp">1,40 €</span></div>
+            <div class="mrow"><span class="mn">Tri Stromy Gold Slivovica 52%</span><span class="mv">0,04l</span><span class="mp">2,20 €</span></div>
+            <div class="mrow"><span class="mn">Karpatské Brandy 40%</span><span class="mv">0,04l</span><span class="mp">1,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Prosecco &amp; Víno</div>
+            <div class="mrow"><span class="mn">Hamlet Frizzante 11%</span><span class="mv">0,1l</span><span class="mp">1,20 €</span></div>
+            <div class="mrow"><span class="mn">Biele Víno</span><span class="mv">0,1l</span><span class="mp">1,20 €</span></div>
+            <div class="mrow"><span class="mn">Červené Víno</span><span class="mv">0,1l</span><span class="mp">1,20 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-kokteily" class="mpanel">
+      <div class="mgrid">
+        <div>
+          <div class="mgroup"><div class="mcat">Klasické Kokteily</div>
+            <div class="mrow"><span class="mn">Mojito (rum, limetka, mäta, trstinový cukor)</span><span class="mv">300ml</span><span class="mp">7,90 €</span></div>
+            <div class="mrow"><span class="mn">Aperol Spritz (Aperol, Prosecco, sóda)</span><span class="mv">300ml</span><span class="mp">7,50 €</span></div>
+            <div class="mrow"><span class="mn">Piña Colada (rum, kokosový krém, ananás)</span><span class="mv">300ml</span><span class="mp">7,90 €</span></div>
+            <div class="mrow"><span class="mn">Cosmopolitan (vodka, triple sec, brusnica, limetka)</span><span class="mv">200ml</span><span class="mp">7,90 €</span></div>
+            <div class="mrow"><span class="mn">Sex on the Beach (vodka, peach, pomaranč, brusnica)</span><span class="mv">300ml</span><span class="mp">7,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Gin &amp; Tonic</div>
+            <div class="mrow"><span class="mn">G&amp;T Classic (Kensington Silver + Tonic)</span><span class="mv">300ml</span><span class="mp">6,90 €</span></div>
+            <div class="mrow"><span class="mn">G&amp;T Rose (Kensington Pink + Rose Tonic)</span><span class="mv">300ml</span><span class="mp">6,90 €</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="mgroup"><div class="mcat">Paradise Špeciality</div>
+            <div class="mrow"><span class="mn">Paradise Sunset (rum, marakuja, mango, limetka)</span><span class="mv">300ml</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Tropical Paradise (vodka, kokos, ananás, mäta)</span><span class="mv">300ml</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Garden of Eden (gin, okurka, bazalka, tonic)</span><span class="mv">300ml</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Café Negroni (gin, Campari, espresso, vermút)</span><span class="mv">200ml</span><span class="mp">8,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Nealko Kokteily</div>
+            <div class="mrow"><span class="mn">Virgin Mojito (limetka, mäta, sóda)</span><span class="mv">300ml</span><span class="mp">5,90 €</span></div>
+            <div class="mrow"><span class="mn">Sunrise (pomaranč, grenadína, sóda)</span><span class="mv">300ml</span><span class="mp">5,90 €</span></div>
+            <div class="mrow"><span class="mn">Blue Paradise (modré curaçao nealko, limetka, tonic)</span><span class="mv">300ml</span><span class="mp">5,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-kava" class="mpanel">
+      <div class="mgrid" style="max-width:460px">
+        <div>
+          <div class="mgroup"><div class="mcat">Káva</div>
+            <div class="mrow"><span class="mn">Ristretto / Espresso / Lungo</span><span class="mv">9g</span><span class="mp">2,30 €</span></div>
+            <div class="mrow"><span class="mn">Cappucino</span><span class="mv">9g</span><span class="mp">2,70 €</span></div>
+            <div class="mrow"><span class="mn">Latte Macchiato</span><span class="mv">–</span><span class="mp">3,20 €</span></div>
+            <div class="mrow"><span class="mn">Flat White</span><span class="mv">–</span><span class="mp">3,20 €</span></div>
+            <div class="mrow"><span class="mn">Cold Brew</span><span class="mv">200ml</span><span class="mp">3,50 €</span></div>
+            <div class="mrow"><span class="mn">Smotana do kávy</span><span class="mv">7ml</span><span class="mp">0,20 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Čaj</div>
+            <div class="mrow"><span class="mn">Čierny / Zelený / Ovocný / Bylinkový</span><span class="mv">30g</span><span class="mp">2,30 €</span></div>
+            <div class="mrow"><span class="mn">Ľadový čaj (Ice Tea domáci)</span><span class="mv">300ml</span><span class="mp">3,50 €</span></div>
+            <div class="mrow"><span class="mn">Med</span><span class="mv">20g</span><span class="mp">0,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-horuce" class="mpanel">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Horúca Čokoláda</div>
+            <div class="mrow"><span class="mn">Horúca čokoláda Classic</span><span class="mv">200ml</span><span class="mp">3,50 €</span></div>
+            <div class="mrow"><span class="mn">Horúca čokoláda so šľahačkou</span><span class="mv">200ml</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Belgická čokoláda s karamelom</span><span class="mv">200ml</span><span class="mp">4,20 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Špeciality</div>
+            <div class="mrow"><span class="mn">Matcha Latte</span><span class="mv">300ml</span><span class="mp">4,20 €</span></div>
+            <div class="mrow"><span class="mn">Chai Latte (korenistý čaj s mliekom)</span><span class="mv">300ml</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Turmeric Latte (zlaté mlieko)</span><span class="mv">300ml</span><span class="mp">3,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Svár &amp; Punč</div>
+            <div class="mrow"><span class="mn">Horúci svár (červené víno, koreniny)</span><span class="mv">200ml</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Nealko horúci punč (ovocie, koreniny)</span><span class="mv">200ml</span><span class="mp">3,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenuList(this)">
+      <span class="menu-toggle-line"></span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-label">Zobraziť celý lístok</span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-line"></span>
+    </button>
+    </div><!-- /scroll-menu -->
+  </div>
+</section>
+
+<!-- JEDLO -->
+<section id="jedlo" class="sec sec-alt sec-glow-or">
+  <div class="sec-inner">
+    <div class="sec-label">Jedálny lístok</div>
+    <h2 class="sec-title">Niečo na zahryznutie</h2>
+    <p class="sec-sub">Jednoduché, čerstvé a chutné — rýchle sústa aj ľahké jedlá priamo k vášmu nápoju.</p>
+    <div class="scroll-menu">
+    <div class="mtabs">
+      <button class="mtab on" onclick="mTab('snack',this)">Snacky &amp; Toast</button>
+      <button class="mtab"    onclick="mTab('sladke',this)">Sladké</button>
+      <button class="mtab"    onclick="mTab('raňajky',this)">Raňajky</button>
+    </div>
+    <div id="mp-snack" class="mpanel on">
+      <div class="mgrid">
+        <div>
+          <div class="mgroup"><div class="mcat">Toasty</div>
+            <div class="mrow"><span class="mn">Toast so šunkou a syrom</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Toast s avokádom a vajcom</span><span class="mv">–</span><span class="mp">4,90 €</span></div>
+            <div class="mrow"><span class="mn">Toast s lososom a cream cheese</span><span class="mv">–</span><span class="mp">5,50 €</span></div>
+            <div class="mrow"><span class="mn">Vegán toast s hummusom a zeleninou</span><span class="mv">–</span><span class="mp">4,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Snacky</div>
+            <div class="mrow"><span class="mn">Nachos s dipom (guacamole / salsa)</span><span class="mv">–</span><span class="mp">3,50 €</span></div>
+            <div class="mrow"><span class="mn">Bruschetta s paradajkami a bazalkou</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Tanier syrov a olivy</span><span class="mv">–</span><span class="mp">5,90 €</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="mgroup"><div class="mcat">Polievky</div>
+            <div class="mrow"><span class="mn">Polievka dňa</span><span class="mv">300ml</span><span class="mp">2,90 €</span></div>
+            <div class="mrow"><span class="mn">Gazpacho (sezóna)</span><span class="mv">300ml</span><span class="mp">3,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Šaláty</div>
+            <div class="mrow"><span class="mn">Grécky šalát</span><span class="mv">–</span><span class="mp">5,90 €</span></div>
+            <div class="mrow"><span class="mn">Šalát s grilovaným kuracím</span><span class="mv">–</span><span class="mp">6,90 €</span></div>
+            <div class="mrow"><span class="mn">Caesar šalát</span><span class="mv">–</span><span class="mp">6,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-sladke" class="mpanel">
+      <div class="mgrid" style="max-width:500px">
+        <div>
+          <div class="mgroup"><div class="mcat">Dezerty</div>
+            <div class="mrow"><span class="mn">Cheesecake (jahoda / mango)</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Čokoládový fondant</span><span class="mv">–</span><span class="mp">4,50 €</span></div>
+            <div class="mrow"><span class="mn">Tiramisu</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Waffle s ovocím a šľahačkou</span><span class="mv">–</span><span class="mp">4,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Zmrzlina</div>
+            <div class="mrow"><span class="mn">1 kopčok</span><span class="mv">–</span><span class="mp">0,90 €</span></div>
+            <div class="mrow"><span class="mn">Zmrzlinový pohár (3 kopčeky + topping)</span><span class="mv">–</span><span class="mp">4,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-raňajky" class="mpanel">
+      <div class="mgrid" style="max-width:500px">
+        <div>
+          <div class="mgroup"><div class="mcat">Raňajky</div>
+            <div class="mrow"><span class="mn">Granola s jogurtom a ovocím</span><span class="mv">–</span><span class="mp">4,50 €</span></div>
+            <div class="mrow"><span class="mn">Vajcia na rôzne spôsoby (volené / miešané)</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+            <div class="mrow"><span class="mn">Francúzsky toast so sirupom</span><span class="mv">–</span><span class="mp">4,90 €</span></div>
+            <div class="mrow"><span class="mn">Acai bowl</span><span class="mv">–</span><span class="mp">5,90 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Raňajkové sety</div>
+            <div class="mrow"><span class="mn">Set A – toast + káva + džús</span><span class="mv">–</span><span class="mp">7,90 €</span></div>
+            <div class="mrow"><span class="mn">Set B – granola + latte + ovocie</span><span class="mv">–</span><span class="mp">8,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenuList(this)">
+      <span class="menu-toggle-line"></span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-label">Zobraziť celý lístok</span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-line"></span>
+    </button>
+    </div><!-- /scroll-menu -->
+  </div>
+</section>
+
+<!-- ZMRZLINA -->
+<section id="zmrzlina" class="sec sec-glow-yw">
+  <div class="sec-inner">
+    <div class="sec-label">Zmrzlina</div>
+    <h2 class="sec-title">Tropický chlad</h2>
+    <p class="sec-sub">Remeselná zmrzlina, exotické poháre a osviežujúce smoothie — ideálne na horúce letné dni.</p>
+    <div class="scroll-menu">
+    <div class="mtabs">
+      <button class="mtab on" onclick="mTab('zmrz-kopceky',this)">Kopčeky</button>
+      <button class="mtab"    onclick="mTab('zmrz-pohare',this)">Poháre</button>
+      <button class="mtab"    onclick="mTab('zmrz-smoothie',this)">Smoothie</button>
+    </div>
+    <div id="mp-zmrz-kopceky" class="mpanel on">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Kopčeky</div>
+            <div class="mrow"><span class="mn">1 kopčok (vanilka / čokoláda / jahoda)</span><span class="mv">–</span><span class="mp">0,90 €</span></div>
+            <div class="mrow"><span class="mn">1 kopčok exotická príchuť (mango / kokos / marakuja)</span><span class="mv">–</span><span class="mp">1,10 €</span></div>
+            <div class="mrow"><span class="mn">Kornút / Pohár</span><span class="mv">–</span><span class="mp">0,20 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Toppings</div>
+            <div class="mrow"><span class="mn">Čokoládový / Karamelový / Jahodový sirup</span><span class="mv">–</span><span class="mp">0,50 €</span></div>
+            <div class="mrow"><span class="mn">Šľahačka</span><span class="mv">–</span><span class="mp">0,50 €</span></div>
+            <div class="mrow"><span class="mn">Čerstvé ovocie</span><span class="mv">–</span><span class="mp">0,80 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-zmrz-pohare" class="mpanel">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Zmrzlinové Poháre</div>
+            <div class="mrow"><span class="mn">Paradise Pohár (3 kopčeky + ovocie + šľahačka)</span><span class="mv">–</span><span class="mp">4,90 €</span></div>
+            <div class="mrow"><span class="mn">Tropický pohár (mango + kokos + marakuja)</span><span class="mv">–</span><span class="mp">5,50 €</span></div>
+            <div class="mrow"><span class="mn">Čokoládový pohár (čoko + karamel + oriešky)</span><span class="mv">–</span><span class="mp">4,90 €</span></div>
+            <div class="mrow"><span class="mn">Detský pohár (2 kopčeky + sirup + posýpka)</span><span class="mv">–</span><span class="mp">3,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Affogato</div>
+            <div class="mrow"><span class="mn">Affogato (vanilková zmrzlina + espresso)</span><span class="mv">–</span><span class="mp">3,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-zmrz-smoothie" class="mpanel">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Smoothie</div>
+            <div class="mrow"><span class="mn">Mango &amp; Marakuja</span><span class="mv">300ml</span><span class="mp">4,50 €</span></div>
+            <div class="mrow"><span class="mn">Jahoda &amp; Banán</span><span class="mv">300ml</span><span class="mp">4,50 €</span></div>
+            <div class="mrow"><span class="mn">Zelené (špenát + jablko + zázvor)</span><span class="mv">300ml</span><span class="mp">4,90 €</span></div>
+            <div class="mrow"><span class="mn">Kokos &amp; Ananás</span><span class="mv">300ml</span><span class="mp">4,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Milkshake</div>
+            <div class="mrow"><span class="mn">Vanilkový / Čokoládový / Jahodový</span><span class="mv">400ml</span><span class="mp">4,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenuList(this)">
+      <span class="menu-toggle-line"></span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-label">Zobraziť celý lístok</span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-line"></span>
+    </button>
+    </div><!-- /scroll-menu -->
+  </div>
+</section>
+
+<!-- SHISHA -->
+<section id="shisha" class="sec sec-alt sec-glow-or">
+  <div class="sec-inner">
+    <div class="sec-label">Shisha</div>
+    <h2 class="sec-title">Orientálna pohoda</h2>
+    <p class="sec-sub">Prémiová vodná fajka v uvoľnenej atmosfére — ideálny doplnok k nápoju alebo večernému posedeniu.</p>
+    <div class="scroll-menu">
+    <div class="mtabs">
+      <button class="mtab on" onclick="mTab('shisha-classic',this)">Klasické príchute</button>
+      <button class="mtab"    onclick="mTab('shisha-premium',this)">Premium</button>
+      <button class="mtab"    onclick="mTab('shisha-doplnky',this)">Doplnky</button>
+    </div>
+    <div id="mp-shisha-classic" class="mpanel on">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Klasické Príchute</div>
+            <div class="mrow"><span class="mn">Double Apple (dvojité jablko)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Mint (mäta)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Watermelon Mint (melón + mäta)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Blueberry (čučoriedka)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Grape (hrozno)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+            <div class="mrow"><span class="mn">Lemon (citrón)</span><span class="mv">–</span><span class="mp">8,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-shisha-premium" class="mpanel">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Premium Príchute</div>
+            <div class="mrow"><span class="mn">Mango &amp; Marakuja</span><span class="mv">–</span><span class="mp">11,90 €</span></div>
+            <div class="mrow"><span class="mn">Kokos &amp; Ananás (Tropický mix)</span><span class="mv">–</span><span class="mp">11,90 €</span></div>
+            <div class="mrow"><span class="mn">Ružová limonáda (Raspberry Lemonade)</span><span class="mv">–</span><span class="mp">11,90 €</span></div>
+            <div class="mrow"><span class="mn">Grapefruit &amp; Mäta</span><span class="mv">–</span><span class="mp">11,90 €</span></div>
+            <div class="mrow"><span class="mn">Exotic Paradise (špeciálny mix)</span><span class="mv">–</span><span class="mp">13,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mp-shisha-doplnky" class="mpanel">
+      <div class="mgrid" style="max-width:520px">
+        <div>
+          <div class="mgroup"><div class="mcat">Doplnky</div>
+            <div class="mrow"><span class="mn">Náhradný tabak (refill)</span><span class="mv">–</span><span class="mp">5,90 €</span></div>
+            <div class="mrow"><span class="mn">Nové uhlie</span><span class="mv">–</span><span class="mp">1,50 €</span></div>
+            <div class="mrow"><span class="mn">Hygienický náustok</span><span class="mv">–</span><span class="mp">0,50 €</span></div>
+          </div>
+          <div class="mgroup"><div class="mcat">Shisha Set</div>
+            <div class="mrow"><span class="mn">Shisha + nápoj podľa výberu</span><span class="mv">–</span><span class="mp">od 15,90 €</span></div>
+            <div class="mrow"><span class="mn">Romantický set pre 2 (shisha + 2× kokteil)</span><span class="mv">–</span><span class="mp">od 28,90 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenuList(this)">
+      <span class="menu-toggle-line"></span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-label">Zobraziť celý lístok</span>
+      <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="menu-toggle-line"></span>
+    </button>
+    </div><!-- /scroll-menu -->
+  </div>
+</section>
+
+<!-- TERASA -->
+<section id="terasa" class="sec sec-glow-yw">
+  <div class="sec-inner">
+    <div class="sec-label">Letná Terasa</div>
+    <h2 class="sec-title">Pod otvoreným nebom</h2>
+    <p class="sec-sub">Prekrytá mediteránska terasa na kraji Prievidzy — slnko, pohoda a zábava pre celú rodinu.</p>
+    <div class="cards">
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tg1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M6 18 Q19 6 32 18" stroke="url(#tg1)" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="19" y1="18" x2="19" y2="30" stroke="url(#tg1)" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="30" x2="28" y2="30" stroke="url(#tg1)" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="11" r="3" stroke="url(#tg1)" stroke-width="1.5" fill="none"/><line x1="13" y1="18" x2="13" y2="30" stroke="url(#tg1)" stroke-width="1" stroke-dasharray="2 2"/><line x1="25" y1="18" x2="25" y2="30" stroke="url(#tg1)" stroke-width="1" stroke-dasharray="2 2"/></svg><div class="card-ttl">Prekrytá Terasa</div></div><div class="card-txt">Strecha nad hlavou, takže počasie nie je prekážkou. Príjemné posedenie za každého počasia.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tg2" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="5" y="18" width="28" height="10" rx="5" stroke="url(#tg2)" stroke-width="2" fill="none"/><path d="M10 18 C10 14 14 12 19 12 C24 12 28 14 28 18" stroke="url(#tg2)" stroke-width="1.5" fill="none"/><circle cx="12" cy="14" r="2.5" stroke="url(#tg2)" stroke-width="1.5" fill="none"/><line x1="7" y1="28" x2="7" y2="33" stroke="url(#tg2)" stroke-width="2" stroke-linecap="round"/><line x1="31" y1="28" x2="31" y2="33" stroke="url(#tg2)" stroke-width="2" stroke-linecap="round"/></svg><div class="card-ttl">Rôznorodé Sedenie</div></div><div class="card-txt">Kaviarenské stoly, pohodlné plážové lehátka aj hojdačky — každý si nájde to svoje miesto.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tg3" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><circle cx="19" cy="10" r="5" stroke="url(#tg3)" stroke-width="2" fill="none"/><path d="M11 33 C11 25 27 25 27 33" stroke="url(#tg3)" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="14" y1="22" x2="12" y2="28" stroke="url(#tg3)" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="22" x2="26" y2="28" stroke="url(#tg3)" stroke-width="1.5" stroke-linecap="round"/><path d="M14 28 Q19 32 24 28" stroke="url(#tg3)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg><div class="card-ttl">Detský Kútik</div></div><div class="card-txt">Detské ihrisko s trampolínami priamo na terase — rodičia si oddýchnu, deti sa vybláznia.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tg4" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><circle cx="19" cy="19" r="10" stroke="url(#tg4)" stroke-width="2" fill="none"/><path d="M19 9 Q23 14 19 19 Q15 14 19 9Z" stroke="url(#tg4)" stroke-width="1.5" fill="none"/><path d="M29 19 Q24 23 19 19 Q24 15 29 19Z" stroke="url(#tg4)" stroke-width="1.5" fill="none"/><path d="M19 29 Q15 24 19 19 Q23 24 19 29Z" stroke="url(#tg4)" stroke-width="1.5" fill="none"/><path d="M9 19 Q14 15 19 19 Q14 23 9 19Z" stroke="url(#tg4)" stroke-width="1.5" fill="none"/><circle cx="19" cy="19" r="2" stroke="url(#tg4)" stroke-width="1.5" fill="none"/></svg><div class="card-ttl">Večerná Atmosféra</div></div><div class="card-txt">Fairy lights, Edison žiarovky a teplé svetlo — magická nálada od súmraku do noci.</div></div>
+    </div>
+
+    <div class="scroll-menu" style="margin-top:28px">
+      <button class="menu-toggle" onclick="toggleMenuList(this)" data-label="Rezervovať stôl">
+        <span class="menu-toggle-line"></span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-label">Rezervovať stôl</span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-line"></span>
+      </button>
+      <div class="mpanel">
+        <div class="res-wrap">
+          <div class="res-form">
+            <div class="res-field"><label>Dátum</label><input type="date" /></div>
+            <div class="res-field"><label>Čas</label>
+              <select><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option></select>
+            </div>
+            <div class="res-field"><label>Počet hostí</label>
+              <select><option>1 osoba</option><option>2 osoby</option><option>3 osoby</option><option>4 osoby</option><option>5 osôb</option><option>6+ osôb</option></select>
+            </div>
+            <div class="res-field"><label>Meno</label><input type="text" placeholder="Vaše meno" /></div>
+          </div>
+          <button class="res-btn" onclick="return false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="rgba(255,200,100,.8)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Rezervovať stôl
+          </button>
+          <p class="res-note">★ Rezervačný systém bude čoskoro aktívny. Kontaktujte nás telefonicky alebo cez správu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTY -->
+<section id="eventy" class="sec sec-alt sec-glow-or">
+  <div class="sec-inner">
+    <div class="sec-label">Eventy</div>
+    <h2 class="sec-title">Zažite niečo výnimočné</h2>
+    <p class="sec-sub">Živá hudba, súkromné oslavy, firemné večierky — Café del Paradise je miesto kde sa dejú veci.</p>
+    <div class="cards">
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="eg1" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 28 L10 14 L19 8 L28 14 L28 28" stroke="url(#eg1)" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M14 28 L14 20 Q19 17 24 20 L24 28" stroke="url(#eg1)" stroke-width="1.5" fill="none"/><ellipse cx="19" cy="11" rx="2" ry="1.5" stroke="url(#eg1)" stroke-width="1.5" fill="none"/><line x1="8" y1="14" x2="11" y2="14" stroke="url(#eg1)" stroke-width="1.5" stroke-linecap="round"/><line x1="27" y1="14" x2="30" y2="14" stroke="url(#eg1)" stroke-width="1.5" stroke-linecap="round"/></svg><div class="card-ttl">Koncerty &amp; Párty</div></div><div class="card-txt">Pravidelné live vystúpenia rôznych žánrov — jazz, latino, funk, pop, rock aj elektronická hudba. Vstupné väčšinou zadarmo.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="eg2" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M10 20 L10 30 Q10 33 13 33 L25 33 Q28 33 28 30 L28 20 L10 20Z" stroke="url(#eg2)" stroke-width="2" fill="none"/><path d="M8 20 L30 20" stroke="url(#eg2)" stroke-width="2" stroke-linecap="round"/><path d="M14 20 L14 12 Q14 8 19 8 Q24 8 24 12 L24 20" stroke="url(#eg2)" stroke-width="1.5" fill="none"/><path d="M15 25 Q19 28 23 25" stroke="url(#eg2)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg><div class="card-ttl">Súkromné Oslavy</div></div><div class="card-txt">Narodeniny, výročia, rozlúčky so slobodou — zarezervujte si celú terasu alebo súkromnú miestnosť len pre vás.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="eg3" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><circle cx="19" cy="17" r="8" stroke="url(#eg3)" stroke-width="2" fill="none"/><path d="M14 14 L18 18 L24 12" stroke="url(#eg3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 24 L8 32" stroke="url(#eg3)" stroke-width="1.5" stroke-linecap="round"/><path d="M26 24 L30 32" stroke="url(#eg3)" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="32" x2="31" y2="32" stroke="url(#eg3)" stroke-width="1.5" stroke-linecap="round"/></svg><div class="card-ttl">Svadby &amp; Recepcie</div></div><div class="card-txt">Intímna svadba v tropickej atmosfére. Individuálne menu, dekorácie a obsluha podľa vašich predstáv.</div></div>
+      <div class="card"><div class="card-head"><svg class="card-img" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="eg4" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="6" y="14" width="26" height="20" rx="3" stroke="url(#eg4)" stroke-width="2" fill="none"/><rect x="14" y="6" width="10" height="8" rx="2" stroke="url(#eg4)" stroke-width="1.5" fill="none"/><line x1="12" y1="21" x2="26" y2="21" stroke="url(#eg4)" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="26" x2="22" y2="26" stroke="url(#eg4)" stroke-width="1.5" stroke-linecap="round"/></svg><div class="card-ttl">Firemné Večierky</div></div><div class="card-txt">Teambuildingy, vianočné večierky, produktové prezentácie. Komplexný catering a technická podpora.</div></div>
+    </div>
+    <div class="scroll-menu" style="margin-top:32px">
+      <div class="mpanel">
+        <div class="ev-list">
+          <div class="ev-item">
+            <div class="ev-date"><span class="ev-day">14</span><span class="ev-mon">Jún</span></div>
+            <div class="ev-info">
+              <div class="ev-name">Latino Night</div>
+              <div class="ev-desc">Živá hudba · Salsa &amp; Bachata · DJ set do rána</div>
+            </div>
+            <span class="ev-tag">Zadarmo</span>
+          </div>
+          <div class="ev-item">
+            <div class="ev-date"><span class="ev-day">21</span><span class="ev-mon">Jún</span></div>
+            <div class="ev-info">
+              <div class="ev-name">Jazz &amp; Cocktails</div>
+              <div class="ev-desc">Akustický jazz kvartét · Špeciálne kokteilové menu</div>
+            </div>
+            <span class="ev-tag">Vstupné 5€</span>
+          </div>
+          <div class="ev-item">
+            <div class="ev-date"><span class="ev-day">28</span><span class="ev-mon">Jún</span></div>
+            <div class="ev-info">
+              <div class="ev-name">Summer Opening Party</div>
+              <div class="ev-desc">Otvorenie letnej sezóny · Live DJ · Špeciálne ceny</div>
+            </div>
+            <span class="ev-tag">Zadarmo</span>
+          </div>
+          <div class="ev-item">
+            <div class="ev-date"><span class="ev-day">05</span><span class="ev-mon">Júl</span></div>
+            <div class="ev-info">
+              <div class="ev-name">Funk &amp; Soul Night</div>
+              <div class="ev-desc">Live kapela · Groove music · Tanečný parket</div>
+            </div>
+            <span class="ev-tag">Zadarmo</span>
+          </div>
+        </div>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenuList(this)" data-label="Najbližšie eventy">
+        <span class="menu-toggle-line"></span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-label">Najbližšie eventy</span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-line"></span>
+      </button>
+    </div>
+
+    <div class="scroll-menu" style="margin-top:36px">
+      <button class="menu-toggle" onclick="toggleMenuList(this)" data-label="Záujem o súkromnú akciu?">
+        <span class="menu-toggle-line"></span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-label">Záujem o súkromnú akciu?</span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-line"></span>
+      </button>
+      <div class="mpanel">
+        <div class="res-wrap">
+          <div class="res-form">
+            <div class="res-field"><label>Meno</label><input type="text" placeholder="Vaše meno" /></div>
+            <div class="res-field"><label>E-mail</label><input type="email" placeholder="vas@email.sk" /></div>
+            <div class="res-field"><label>Typ akcie</label>
+              <select>
+                <option>Súkromná oslava</option>
+                <option>Svadba / Recepcia</option>
+                <option>Firemný večierok</option>
+                <option>Teambuilding</option>
+                <option>Iné</option>
+              </select>
+            </div>
+            <div class="res-field"><label>Dátum akcie</label><input type="date" /></div>
+            <div class="res-field" style="grid-column:1/-1"><label>Správa</label>
+              <textarea rows="3" placeholder="Popíšte vašu akciu — počet hostí, špeciálne požiadavky..." style="background:rgba(255,120,0,.06);border:1px solid rgba(255,140,0,.22);border-radius:10px;padding:10px 14px;color:rgba(255,235,190,.85);font-family:'Outfit',sans-serif;font-size:13px;outline:none;resize:vertical;transition:border-color .25s;"></textarea>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:4px">
+            <button class="res-btn" onclick="return false">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="rgba(255,200,100,.8)" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="rgba(255,200,100,.8)" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Odoslať dopyt
+            </button>
+            <a href="tel:+421915978838" style="display:inline-flex;align-items:center;gap:8px;color:rgba(255,200,100,.75);font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:color .2s" onmouseover="this.style.color='rgba(255,220,140,1)'" onmouseout="this.style.color='rgba(255,200,100,.75)'">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2.02z" stroke="rgba(255,180,80,.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              0915 978 838
+            </a>
+          </div>
+          <p class="res-note">★ Odpovieme do 24 hodín. Môžete nás tiež kontaktovať priamo telefonicky.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WELLNESS -->
+<section id="wellness" class="sec sec-alt sec-glow-or">
+  <div class="sec-inner">
+    <div class="sec-label">Wellness</div>
+    <h2 class="sec-title">Oáza na kraji mesta</h2>
+    <p class="sec-sub">Zabudnite na stres. Parná sprcha a výrivková vaňa čakajú iba na vás.</p>
+    <div class="wcards">
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="w1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="54" rx="26" ry="14" stroke="url(#w1)" stroke-width="2" fill="none"/><path d="M14 54 Q14 36 40 36 Q66 36 66 54" stroke="url(#w1)" stroke-width="1.5" fill="none"/><path d="M20 44 Q26 40 32 44 Q38 40 44 44 Q50 40 56 44 Q62 40 66 44" stroke="url(#w1)" stroke-width="1.2" fill="none"/></svg></div><div class="card-ttl">Výrivková vaňa</div><div class="card-txt">Súkromný prenájom pre páry aj skupiny. Ideálny spôsob ako si oddýchnuť.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="w2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="16" y="32" width="48" height="34" rx="6" stroke="url(#w2)" stroke-width="2" fill="none"/><path d="M24 32 Q22 20 30 16 Q36 12 40 16 Q44 12 50 16 Q58 20 56 32" stroke="url(#w2)" stroke-width="1.8" fill="none"/><path d="M26 48 Q30 44 34 48 Q38 44 42 48 Q46 44 50 48 Q54 44 58 48" stroke="url(#w2)" stroke-width="1.2" fill="none"/></svg></div><div class="card-ttl">Parná sprcha</div><div class="card-txt">Prémiová parná kabína. Uvoľnenie svalov, detox a relax v jednom.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="w3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><ellipse cx="40" cy="62" rx="8" ry="4" stroke="url(#w3)" stroke-width="1.5" fill="none"/><path d="M40 58 L40 26" stroke="url(#w3)" stroke-width="2.5" stroke-linecap="round"/><path d="M30 38 Q28 26 40 22 Q52 26 50 38" stroke="url(#w3)" stroke-width="1.8" fill="none"/><path d="M34 30 Q32 20 40 16 Q48 20 46 30" stroke="url(#w3)" stroke-width="1.2" fill="none" opacity=".6"/></svg></div><div class="card-ttl">Atmosféra</div><div class="card-txt">Tlmené svetlo, difuzéry, hudba. Každý detail premyslený pre váš komfort.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="w4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="10" y="18" width="60" height="52" rx="5" stroke="url(#w4)" stroke-width="2.5" fill="none"/><line x1="10" y1="32" x2="70" y2="32" stroke="url(#w4)" stroke-width="2"/><line x1="26" y1="10" x2="26" y2="26" stroke="url(#w4)" stroke-width="2.5" stroke-linecap="round"/><line x1="54" y1="10" x2="54" y2="26" stroke="url(#w4)" stroke-width="2.5" stroke-linecap="round"/><rect x="22" y="42" width="12" height="10" rx="2" stroke="url(#w4)" stroke-width="1.5" fill="none"/><rect x="46" y="42" width="12" height="10" rx="2" stroke="url(#w4)" stroke-width="1.5" fill="none"/></svg></div><div class="card-ttl">Rezervácie</div><div class="card-txt">WhatsApp alebo online rezervácia. Prvý týždeň uvítacia zľava.</div></div>
+    </div>
+    <div class="scroll-menu" style="margin-top:28px">
+      <button class="menu-toggle" onclick="toggleMenuList(this)" data-label="Rezervovať wellness">
+        <span class="menu-toggle-line"></span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-label">Rezervovať wellness</span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-line"></span>
+      </button>
+      <div class="mpanel">
+        <div class="res-wrap">
+          <div class="res-form">
+            <div class="res-field"><label>Dátum</label><input type="date" /></div>
+            <div class="res-field"><label>Čas</label>
+              <select><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option></select>
+            </div>
+            <div class="res-field"><label>Typ</label>
+              <select><option>Výrivková vaňa</option><option>Parná sprcha</option><option>Výrivka + Parná sprcha</option></select>
+            </div>
+            <div class="res-field"><label>Meno</label><input type="text" placeholder="Vaše meno" /></div>
+          </div>
+          <button class="res-btn" onclick="return false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="rgba(255,200,100,.8)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Rezervovať wellness
+          </button>
+          <p class="res-note">★ Rezervačný systém bude čoskoro aktívny. Kontaktujte nás telefonicky alebo cez správu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBYTOVANIE -->
+<section id="ubytovanie" class="sec sec-glow-yw">
+  <div class="sec-inner">
+    <div class="sec-label">Ubytovanie</div>
+    <h2 class="sec-title">Zostaňte dlhšie</h2>
+    <p class="sec-sub">Komfortné izby priamo nad kaviarňou — ideálne pre víkendový oddych alebo firemné cesty.</p>
+    <div class="wcards">
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="u1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="6" y="42" width="68" height="26" rx="3" stroke="url(#u1)" stroke-width="2" fill="none"/><rect x="6" y="34" width="68" height="10" rx="3" stroke="url(#u1)" stroke-width="2" fill="none"/><rect x="14" y="44" width="20" height="10" rx="4" stroke="url(#u1)" stroke-width="1.5" fill="none"/><rect x="46" y="44" width="20" height="10" rx="4" stroke="url(#u1)" stroke-width="1.5" fill="none"/></svg></div><div class="card-ttl">Komfortné Izby</div><div class="card-txt">Štýlové izby s klimatizáciou, rýchlym WiFi a exkluzívnym prístupom k wellness.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="u2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 8 Q50 14 52 26 Q54 38 46 46 Q52 52 50 62 Q44 70 40 72 Q36 70 30 62 Q28 52 34 46 Q26 38 28 26 Q30 14 40 8Z" stroke="url(#u2)" stroke-width="2" fill="none"/><path d="M34 32 Q40 28 46 32" stroke="url(#u2)" stroke-width="1.5" fill="none"/></svg></div><div class="card-ttl">Raňajky v cene</div><div class="card-txt">Každý pobyt zahŕňa raňajky v kaviarni — čerstvý toast, káva a sezónne ovocie.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="u3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 18 Q46 26 40 32 Q34 26 40 18Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><path d="M54 24 Q54 34 46 36 Q44 28 54 24Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><path d="M58 40 Q52 48 44 46 Q46 38 58 40Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><path d="M40 58 Q34 50 40 44 Q46 50 40 58Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><path d="M26 52 Q26 42 34 40 Q36 48 26 52Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><path d="M22 36 Q28 28 36 30 Q34 38 22 36Z" stroke="url(#u3)" stroke-width="1.8" fill="none"/><circle cx="40" cy="38" r="5" stroke="url(#u3)" stroke-width="1.8" fill="none"/></svg></div><div class="card-ttl">Wellness Prístup</div><div class="card-txt">Hostia majú prednostný prístup k výrivkovej vani a parnej sprche so zľavou.</div></div>
+      <div class="wcard"><div class="card-ico"><svg width="32" height="32" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="u4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="10" y="18" width="60" height="52" rx="5" stroke="url(#u4)" stroke-width="2.5" fill="none"/><line x1="10" y1="32" x2="70" y2="32" stroke="url(#u4)" stroke-width="2"/><line x1="26" y1="10" x2="26" y2="26" stroke="url(#u4)" stroke-width="2.5" stroke-linecap="round"/><line x1="54" y1="10" x2="54" y2="26" stroke="url(#u4)" stroke-width="2.5" stroke-linecap="round"/><rect x="22" y="42" width="12" height="10" rx="2" stroke="url(#u4)" stroke-width="1.5" fill="none"/><rect x="46" y="42" width="12" height="10" rx="2" stroke="url(#u4)" stroke-width="1.5" fill="none"/></svg></div><div class="card-ttl">Rezervácie</div><div class="card-txt">Dostupnosť a ceny na vyžiadanie. Kapacita obmedzená — odporúčame rezervovať vopred.</div></div>
+    </div>
+    <div class="scroll-menu" style="margin-top:28px">
+      <button class="menu-toggle" onclick="toggleMenuList(this)" data-label="Rezervovať pobyt">
+        <span class="menu-toggle-line"></span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-label">Rezervovať pobyt</span>
+        <svg class="menu-toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="rgba(255,180,80,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-toggle-line"></span>
+      </button>
+      <div class="mpanel">
+        <div class="res-wrap">
+          <div class="res-form">
+            <div class="res-field"><label>Príchod</label><input type="date" /></div>
+            <div class="res-field"><label>Odchod</label><input type="date" /></div>
+            <div class="res-field"><label>Počet hostí</label>
+              <select><option>1 osoba</option><option>2 osoby</option><option>3 osoby</option><option>4 osoby</option></select>
+            </div>
+            <div class="res-field"><label>Meno</label><input type="text" placeholder="Vaše meno" /></div>
+          </div>
+          <button class="res-btn" onclick="return false">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="rgba(255,200,100,.8)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Rezervovať pobyt
+          </button>
+          <p class="res-note">★ Rezervačný systém bude čoskoro aktívny. Kontaktujte nás telefonicky alebo cez správu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="sec sec-alt">
+  <div class="sec-inner" style="text-align:center">
+    <div class="sec-label">Kontakt</div>
+    <h2 class="sec-title">Nájdite nás</h2>
+    <div class="kbox">
+      <div class="krow"><span class="kico"><svg width="22" height="22" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="ki1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 8 C26 8 14 19 14 33 C14 52 40 72 40 72 C40 72 66 52 66 33 C66 19 54 8 40 8Z" stroke="url(#ki1)" stroke-width="2.5" fill="none"/><circle cx="40" cy="33" r="9" stroke="url(#ki1)" stroke-width="2.5" fill="none"/></svg></span><div><div class="klbl">Adresa</div><div class="kval">J. Murgaša 46, Prievidza&#10;čínsky múr (bývalé Kuppe Coffee)</div></div></div>
+      <div class="krow"><span class="kico"><svg width="22" height="22" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="ki2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="10" y="18" width="60" height="52" rx="5" stroke="url(#ki2)" stroke-width="2.5" fill="none"/><line x1="10" y1="32" x2="70" y2="32" stroke="url(#ki2)" stroke-width="2"/><line x1="26" y1="10" x2="26" y2="26" stroke="url(#ki2)" stroke-width="2.5" stroke-linecap="round"/><line x1="54" y1="10" x2="54" y2="26" stroke="url(#ki2)" stroke-width="2.5" stroke-linecap="round"/><rect x="22" y="42" width="12" height="10" rx="2" stroke="url(#ki2)" stroke-width="1.5" fill="none"/><rect x="46" y="42" width="12" height="10" rx="2" stroke="url(#ki2)" stroke-width="1.5" fill="none"/></svg></span><div><div class="klbl">Otvorenie</div><div class="kval">1. – 15. júna 2026&#10;Hodiny budú upresne oznámené</div></div></div>
+      <div class="krow"><span class="kico"><svg width="22" height="22" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="ki3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><path d="M40 18 Q46 26 40 32 Q34 26 40 18Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><path d="M54 24 Q54 34 46 36 Q44 28 54 24Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><path d="M58 40 Q52 48 44 46 Q46 38 58 40Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><path d="M40 58 Q34 50 40 44 Q46 50 40 58Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><path d="M26 52 Q26 42 34 40 Q36 48 26 52Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><path d="M22 36 Q28 28 36 30 Q34 38 22 36Z" stroke="url(#ki3)" stroke-width="1.8" fill="none"/><circle cx="40" cy="38" r="5" stroke="url(#ki3)" stroke-width="1.8" fill="none"/></svg></span><div><div class="klbl">Rezervácie Wellness</div><div class="kval">WhatsApp · Online booking</div></div></div>
+      <div class="krow"><span class="kico"><svg width="22" height="22" viewBox="0 0 80 80" fill="none"><defs><linearGradient id="ki4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs><rect x="10" y="18" width="60" height="44" rx="6" stroke="url(#ki4)" stroke-width="2.5" fill="none"/><circle cx="40" cy="40" r="10" stroke="url(#ki4)" stroke-width="2" fill="none"/><line x1="40" y1="18" x2="40" y2="30" stroke="url(#ki4)" stroke-width="2"/><line x1="40" y1="50" x2="40" y2="62" stroke="url(#ki4)" stroke-width="2"/><line x1="10" y1="40" x2="30" y2="40" stroke="url(#ki4)" stroke-width="2"/><line x1="50" y1="40" x2="70" y2="40" stroke="url(#ki4)" stroke-width="2"/></svg></span><div><div class="klbl">Sociálne siete</div><div class="kval">@cafedelparadise</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">Café del Paradise</div>
+  <p>J. Murgaša 46 · Prievidza · Coffee · Bar · Wellness · Terasa</p>
+</footer>
+
+<script>
+function goTo(id,slow){
+  if(id==='top'){window.scrollTo({top:0,behavior:'smooth'});return;}
+  const el=document.getElementById(id);
+  if(!el) return;
+  const navH=(document.getElementById('nav')||{offsetHeight:62}).offsetHeight||62;
+  if(slow){
+    // vypnúť CSS scroll-behavior počas animácie
+    document.documentElement.style.scrollBehavior='auto';
+    document.body.style.scrollBehavior='auto';
+    const target=el.getBoundingClientRect().top+window.scrollY-navH;
+    const start=window.scrollY;
+    const dist=target-start;
+    const dur=2600;
+    let t0=null;
+    function ease(t){
+      // easeInOutCubic
+      return t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+    }
+    function step(ts){
+      if(!t0) t0=ts;
+      const p=Math.min((ts-t0)/dur,1);
+      window.scrollTo(0,start+dist*ease(p));
+      if(p<1){
+        requestAnimationFrame(step);
+      } else {
+        document.documentElement.style.scrollBehavior='';
+        document.body.style.scrollBehavior='';
+      }
+    }
+    requestAnimationFrame(step);
+  } else {
+    const target=el.getBoundingClientRect().top+window.scrollY-navH;
+    window.scrollTo({top:target,behavior:'smooth'});
+  }
+}
+function toggleMenu(){
+  const t=document.getElementById('nav-toggle');
+  const m=document.getElementById('mobile-menu');
+  t.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+
+function toggleMenuList(btn){
+  const wrapper=btn.closest('.scroll-menu');
+  const lbl=btn.querySelector('.menu-toggle-label');
+  // panel môže štartovať skrytý (bez 'on') alebo viditeľný (s 'on')
+  let panel=wrapper.querySelector('.mpanel');
+  if(!panel) return;
+  const hasOn=panel.classList.contains('on');
+  const isExpanded=panel.classList.contains('expanded');
+  if(!hasOn){
+    // panel bol skrytý — zobraz ho a rozbaľ
+    panel.classList.add('on','expanded');
+    btn.classList.add('open');
+    lbl.textContent='Skryť';
+  } else if(isExpanded){
+    // bol rozbalený — skry úplne
+    panel.classList.remove('on','expanded');
+    btn.classList.remove('open');
+    lbl.textContent=btn.dataset.label||'Zobraziť';
+  } else {
+    // viditeľný ale nie rozbalený — rozbaľ
+    panel.classList.add('expanded');
+    btn.classList.add('open');
+    lbl.textContent='Skryť lístok';
+  }
+}
+
+function mTab(id,btn){
+  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('on','expanded'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('mp-'+id).classList.add('on');
+  btn.classList.add('on');
+  // reset toggle button v tomto scroll-menu
+  const wrapper=btn.closest('.scroll-menu');
+  if(wrapper){
+    const tb=wrapper.querySelector('.menu-toggle');
+    if(tb){
+      tb.classList.remove('open');
+      tb.querySelector('.menu-toggle-label').textContent='Zobraziť celý lístok';
+    }
+  }
+}
+
+// Hviezdy
+(function(){
+  const c=document.getElementById('l-stars'),ctx=c.getContext('2d');
+  let s=[];
+  function resize(){
+    c.width=innerWidth;c.height=innerHeight;s=[];
+    for(let i=0;i<130;i++) s.push({
+      x:Math.random()*c.width,y:Math.random()*c.height*.65,
+      r:Math.random()*.9+.2,a:Math.random(),da:(Math.random()-.5)*.007,
+      col:Math.random()>.65?'#ff9e1b':Math.random()>.5?'#ffce00':'#fff'
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    s.forEach(p=>{
+      p.a=Math.max(.05,Math.min(1,p.a+p.da));
+      if(p.a<=.05||p.a>=1)p.da*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col;ctx.globalAlpha=p.a*.85;ctx.fill();
+    });
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// Nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('solid',scrollY>60);
+  const si=document.getElementById('scrollind');
+  if(si) si.style.opacity=Math.max(0,1-scrollY/200);
+},{passive:true});
+
+// Parallax scroll
+window.addEventListener('scroll',()=>{
+  const y=scrollY;
+  const bg=document.getElementById('l-bg');
+  if(bg) bg.style.transform=`scale(1.14) translateY(${y*.15}px)`;
+  const lo=document.getElementById('l-logo');
+  const vh=window.innerHeight;
+  const scale=Math.max(0, 1 - (y/vh) * 0.85);
+  const fade=Math.max(0, 1 - (y/vh) * 1.7);
+  if(lo){lo.style.transform=`translate(-50%,-50%) translateY(${y*.17}px) scale(${scale})`;lo.style.opacity=fade;}
+  const lt=document.getElementById('l-text');
+  if(lt) lt.style.transform=`translateY(${y*.20}px)`;
+  const maxSpread=window.innerWidth*.22;
+  const spread=Math.min(y*.35,maxSpread);
+  const ll=document.getElementById('l-leaf-left');
+  if(ll) ll.style.transform=`translateX(${-spread}px)`;
+  const lr=document.getElementById('l-leaf-right');
+  if(lr) lr.style.transform=`scaleX(-1) translateX(${-spread}px)`;
+
+},{passive:true});
+
+// Parallax mouse
+document.getElementById('hero').addEventListener('mousemove',e=>{
+  if(scrollY>innerHeight*.4)return;
+  const dx=(e.clientX/innerWidth-.5),dy=(e.clientY/innerHeight-.5);
+  const bg=document.getElementById('l-bg');
+  if(bg) bg.style.transform=`scale(1.14) translate(${dx*14}px,${dy*8}px)`;
+  const lo=document.getElementById('l-logo');
+  if(lo) lo.style.transform=`translate(calc(-50% + ${dx*8}px),calc(-50% + ${dy*5}px))`;
+  const lt=document.getElementById('l-text');
+  if(lt) lt.style.transform=`translate(${dx*4}px,${dy*3}px)`;
+  const ll=document.getElementById('l-leaf-left');
+  if(ll) ll.style.transform=`translate(${dx*-32}px,${dy*14}px)`;
+  const lr=document.getElementById('l-leaf-right');
+  if(lr) lr.style.transform=`scaleX(-1) translate(${dx*32}px,${dy*14}px)`;
+});
+</script>
+
+<div id="back-top" onclick="goTo('top')" title="Späť na vrch">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <defs><linearGradient id="bttg" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ff9e1b"/><stop offset="100%" stop-color="#ffce00"/></linearGradient></defs>
+    <path d="M18 15l-6-6-6 6" stroke="url(#bttg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('back-top').classList.toggle('visible', window.scrollY > 300);
+});
+</script>
+</body>
+</html>
