@@ -393,7 +393,7 @@ footer p{font-size:11px;color:rgba(255,106,0,.35);letter-spacing:.1em}
 .cc-partner .cc-dot{width:7px;height:7px;border-radius:50%;background:#e61a27;box-shadow:0 0 10px rgba(230,26,39,.9);animation:cc-pulse 2s infinite}
 @keyframes cc-pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .cc-stage{
-  position:relative;margin-top:10px;
+  position:relative;margin-top:10px;margin-bottom:90px;
   height:430px;
   user-select:none;-webkit-user-select:none;touch-action:pan-y;
 }
@@ -476,7 +476,7 @@ footer p{font-size:11px;color:rgba(255,106,0,.35);letter-spacing:.1em}
 .cc-arrow:active{transform:translateY(-50%) scale(.92)}
 .cc-prev{left:-6px}
 .cc-next{right:-6px}
-.cc-dots{display:flex;gap:8px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.cc-dots{display:flex;gap:8px;justify-content:center;margin-top:0;flex-wrap:wrap;position:relative;z-index:6}
 .cc-dot-btn{
   width:8px;height:8px;border-radius:50%;cursor:pointer;border:none;padding:0;
   background:rgba(255,140,120,.25);transition:background .25s,transform .25s;
@@ -487,20 +487,25 @@ footer p{font-size:11px;color:rgba(255,106,0,.35);letter-spacing:.1em}
   color:rgba(255,170,150,.35);margin-top:14px;
 }
 @media(max-width:1024px){
-  .cc-stage{height:400px}
+  .cc-stage{height:400px;margin-bottom:80px}
   .cc-card{width:185px;height:300px;left:-92.5px;top:-150px}
   .cc-img{height:165px}
 }
 @media(max-width:767px){
-  .cc-stage{height:360px}
-  .cc-viewport{perspective:1000px}
-  .cc-card{width:158px;height:272px;left:-79px;top:-136px;padding:10px 10px 9px}
-  .cc-img{height:140px}
+  .cc-stage{height:340px;margin-bottom:72px}
+  .cc-viewport{perspective:1000px;perspective-origin:50% 45%}
+  .cc-card{width:150px;height:258px;left:-75px;top:-129px;padding:10px 10px 9px}
+  .cc-img{height:132px}
   .cc-name{font-size:13px;margin-top:9px}
   .cc-desc{display:none}
   .cc-price{font-size:16px}
   .cc-arrow{width:38px;height:38px}
   .cc-prev{left:-4px}.cc-next{right:-4px}
+}
+@media(max-width:400px){
+  .cc-stage{height:315px;margin-bottom:64px}
+  .cc-card{width:136px;height:238px;left:-68px;top:-119px}
+  .cc-img{height:118px}
 }
 
 /* ══ TABLET – 1024px ══ */
