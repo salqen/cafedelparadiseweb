@@ -1,0 +1,106 @@
+{
+  "section": {
+    "label": "Náš partner",
+    "title": "Svet Coca‑Cola",
+    "sub": "Sme hrdým partnerom spoločnosti Coca‑Cola. Vychutnajte si ikonické nápoje dokonale vychladené — v skle, tak ako majú chutiť.",
+    "note": "★ Ceny sú ukážkové — finálny cenník doplníme pri otvorení."
+  },
+  "products": [
+    {
+      "name": "Coca‑Cola",
+      "desc": "Original Taste — ikonická chuť už viac ako 125 rokov.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/products/coca-cola-original-taste/ski-coca-cola-prod-original-taste.jpg",
+      "visible": true
+    },
+    {
+      "name": "Coca‑Cola Zero",
+      "desc": "Pravá chuť Coca‑Cola bez cukru.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/products/coca-cola-zero-sugar/sk_coca-cola-zero_prod_original_750x750_v1.jpg",
+      "visible": true
+    },
+    {
+      "name": "Coca‑Cola Cherry",
+      "desc": "Kolovo-čerešňová príchuť.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/products/coca-cola-original-taste/sk-coca-cola-prod-cherry-750x750.jpg",
+      "visible": true
+    },
+    {
+      "name": "Sprite",
+      "desc": "Osviežujúca limonáda s citrónovo-limetkovou príchuťou.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/sprite/03-2025-spriteupdate/sprite-classic.png",
+      "visible": true
+    },
+    {
+      "name": "Fanta Pomaranč",
+      "desc": "Limonáda s pomarančovou šťavou.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/fanta/fanta-orange-2025.jpg",
+      "visible": true
+    },
+    {
+      "name": "Fanta Shokata",
+      "desc": "Citrón a bazový kvet — osviežujúca kombinácia.",
+      "volume": "0,33 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/fanta/shokata-cz-sk.png",
+      "visible": true
+    },
+    {
+      "name": "Kinley Tonic Water",
+      "desc": "Klasický tonik — sólo alebo do miešaných drinkov.",
+      "volume": "0,25 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/kinley/april-page-update-2025/tonice-water.jpg",
+      "visible": true
+    },
+    {
+      "name": "Kinley Ginger Ale",
+      "desc": "Jemne štipľavý zázvorový tonik.",
+      "volume": "0,25 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/kinley/april-page-update-2025/ginger-ale.jpg",
+      "visible": true
+    },
+    {
+      "name": "FuzeTea Broskyňa",
+      "desc": "Čierny čaj s broskyňou a ibištekom.",
+      "volume": "0,25 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/fuzetea/images/fuzetea-ibistek.jpg",
+      "visible": true
+    },
+    {
+      "name": "FuzeTea Citrón Zero",
+      "desc": "Zelený čaj s citrónom, bez cukru.",
+      "volume": "0,25 l",
+      "price": "2,90 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/fuzetea/images/fuzetea-lemon.jpg",
+      "visible": true
+    },
+    {
+      "name": "Cappy Pomaranč 100%",
+      "desc": "Stopercentný pomarančový džús.",
+      "volume": "0,25 l",
+      "price": "2,50 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/cappy/2023/cappy-pomaranc-sk.jpg",
+      "visible": true
+    },
+    {
+      "name": "Cappy Multivitamín",
+      "desc": "Viacdruhový nektár s vitamínmi.",
+      "volume": "0,25 l",
+      "price": "2,50 €",
+      "img": "https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/cappy/2023/cappy-multivitamin-sk.jpg",
+      "visible": true
+    }
+  ]
+}

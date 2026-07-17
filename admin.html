@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Admin – Café del Paradise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--or1:#ff6a00;--or2:#ff9e1b;--or3:#ffce00;--red:#e61a27;--dark:#2b0a00}
+body{background:var(--dark);color:#fff;font-family:'Outfit',sans-serif;min-height:100vh;padding-bottom:120px}
+a{color:var(--or2)}
+.wrap{max-width:980px;margin:0 auto;padding:34px 20px}
+h1{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:4px;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:13px;color:rgba(255,200,120,.5);margin-bottom:26px}
+.panel{background:rgba(255,120,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:16px;padding:22px;margin-bottom:22px}
+.panel h2{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,180,80,.6);margin:10px 0 5px}
+input,textarea,select{
+  width:100%;background:rgba(255,120,0,.07);border:1px solid rgba(255,140,0,.25);border-radius:10px;
+  padding:9px 12px;color:rgba(255,240,210,.92);font-family:'Outfit',sans-serif;font-size:13px;outline:none;
+  transition:border-color .2s;
+}
+input:focus,textarea:focus{border-color:rgba(255,190,0,.6)}
+textarea{resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.grid4{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:0 12px;align-items:end}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  padding:10px 20px;border-radius:10px;border:1px solid rgba(255,140,0,.4);
+  background:linear-gradient(135deg,rgba(255,120,0,.2),rgba(255,180,0,.1));
+  color:rgba(255,220,140,.95);font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  transition:border-color .2s,box-shadow .2s;
+}
+.btn:hover{border-color:rgba(255,190,0,.7);box-shadow:0 4px 18px rgba(255,110,0,.2)}
+.btn.red{border-color:rgba(230,26,39,.45);background:linear-gradient(135deg,rgba(230,26,39,.2),rgba(120,10,10,.15));color:#ffb9b9}
+.btn.red:hover{border-color:rgba(255,80,90,.8);box-shadow:0 4px 18px rgba(230,26,39,.25)}
+.btn.small{padding:6px 11px;font-size:11px;border-radius:8px}
+.btn.ghost{background:none}
+.prod{
+  display:grid;grid-template-columns:74px 1fr auto;gap:16px;align-items:start;
+  border:1px solid rgba(255,140,0,.16);border-radius:14px;padding:14px;margin-bottom:12px;
+  background:rgba(0,0,0,.18);
+}
+.prod.hidden-prod{opacity:.45}
+.thumb{
+  width:74px;height:96px;border-radius:10px;overflow:hidden;flex-shrink:0;
+  background:radial-gradient(circle at 50% 30%,#fff,#efe9e4);
+  display:flex;align-items:center;justify-content:center;
+}
+.thumb img{max-width:92%;max-height:92%;object-fit:contain}
+.prod-actions{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.rowline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.note{font-size:11.5px;color:rgba(255,190,120,.55);line-height:1.6;margin-top:10px}
+.note code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:5px;font-size:11px}
+#status{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:50;
+  padding:12px 26px;border-radius:12px;font-size:13px;font-weight:600;letter-spacing:.03em;
+  background:rgba(20,4,0,.92);border:1px solid rgba(255,140,0,.4);backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;transition:opacity .3s;max-width:92vw;text-align:center;
+}
+#status.show{opacity:1}
+#status.ok{border-color:rgba(80,220,120,.6);color:#8fe6ae}
+#status.err{border-color:rgba(230,26,39,.7);color:#ff9d9d}
+#status.busy{color:rgba(255,220,140,.95)}
+.chk{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,200,140,.7);cursor:pointer;user-select:none}
+.chk input{width:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+details{margin-top:10px}
+summary{cursor:pointer;font-size:12px;color:rgba(255,190,120,.7)}
+@media(max-width:640px){
+  .grid2,.grid4{grid-template-columns:1fr}
+  .prod{grid-template-columns:64px 1fr}
+  .prod-actions{flex-direction:row;grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>Café del Paradise — Admin</h1>
+      <div class="sub">Sekcia Coca‑Cola · produkty, ceny, texty a obrázky</div>
+    </div>
+    <a class="btn ghost" href="index.html#cocacola" target="_blank">Otvoriť web ↗</a>
+  </div>
+
+  <div class="panel">
+    <h2>Texty sekcie</h2>
+    <div class="grid2">
+      <div><label>Štítok (label)</label><input id="f-label"></div>
+      <div><label>Nadpis</label><input id="f-title"></div>
+    </div>
+    <label>Podnadpis</label><textarea id="f-sub" rows="2"></textarea>
+    <label>Poznámka pod carouselom</label><input id="f-note">
+  </div>
+
+  <div class="panel">
+    <h2>Produkty <span id="p-count" style="font-size:12px;opacity:.6"></span></h2>
+    <div id="prod-list"></div>
+    <div class="rowline">
+      <button class="btn" onclick="addProduct()">＋ Pridať produkt</button>
+    </div>
+    <p class="note">Obrázok = URL (napr. oficiálny packshot z coca-cola.com) alebo nahraj vlastný súbor tlačidlom 📷 pri produkte — uloží sa do <code>assets/uploads/</code> v repozitári.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Uloženie zmien</h2>
+    <div class="grid2">
+      <div>
+        <label>GitHub token (fine-grained PAT s právom Contents: Read/Write na repo <code>salqen/cafedelparadiseweb</code>)</label>
+        <input id="f-token" type="password" placeholder="github_pat_…">
+      </div>
+      <div style="display:flex;align-items:flex-end;padding-bottom:2px">
+        <label class="chk" style="margin:0"><input type="checkbox" id="f-remember"> Zapamätať token v tomto prehliadači</label>
+      </div>
+    </div>
+    <div class="rowline">
+      <button class="btn" id="btn-save" onclick="saveToGitHub()">💾 Uložiť na web (GitHub)</button>
+      <button class="btn ghost" onclick="downloadJson()">⬇ Stiahnuť cola.json</button>
+      <button class="btn ghost" onclick="reloadData()">↻ Znova načítať</button>
+    </div>
+    <details>
+      <summary>Ako získať token?</summary>
+      <p class="note">
+        1. GitHub → Settings → Developer settings → Fine-grained personal access tokens → Generate new token.<br>
+        2. Repository access: <code>salqen/cafedelparadiseweb</code>. Permissions: <code>Contents → Read and write</code>.<br>
+        3. Token vlož sem. Po uložení sa zmena commitne do repozitára a GitHub Pages web sa automaticky obnoví (1–2 min).<br>
+        Bez tokenu môžeš použiť „Stiahnuť cola.json" a súbor nahrať do <code>data/cola.json</code> ručne.
+      </p>
+    </details>
+  </div>
+</div>
+
+<div id="status"></div>
+
+<script>
+const REPO='salqen/cafedelparadiseweb', BRANCH='main', DATA_PATH='data/cola.json';
+const API='https://api.github.com/repos/'+REPO+'/contents/';
+let data={section:{},products:[]};
+let fileSha=null;
+
+const $=id=>document.getElementById(id);
+
+function status(msg,cls){
+  const s=$('status');
+  s.textContent=msg;s.className='show '+(cls||'');
+  if(cls!=='busy'){clearTimeout(s._t);s._t=setTimeout(()=>s.className='',4500);}
+}
+
+/* ── načítanie ── */
+function reloadData(){
+  fetch(DATA_PATH+'?v='+Date.now())
+    .then(r=>{if(!r.ok)throw 0;return r.json();})
+    .then(d=>{data=d;renderAll();status('Dáta načítané','ok');})
+    .catch(()=>{
+      // fallback: skús cez GitHub API (funguje aj lokálne z file://)
+      fetch(API+DATA_PATH+'?ref='+BRANCH)
+        .then(r=>{if(!r.ok)throw 0;return r.json();})
+        .then(j=>{
+          fileSha=j.sha;
+          data=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,'')))));
+          renderAll();status('Dáta načítané z GitHubu','ok');
+        })
+        .catch(()=>{renderAll();status('Nepodarilo sa načítať dáta — začínam s prázdnym zoznamom','err');});
+    });
+}
+
+/* ── render ── */
+function renderAll(){
+  const s=data.section||{};
+  $('f-label').value=s.label||'';
+  $('f-title').value=s.title||'';
+  $('f-sub').value=s.sub||'';
+  $('f-note').value=s.note||'';
+  renderProducts();
+}
+function renderProducts(){
+  const list=$('prod-list');
+  list.innerHTML='';
+  (data.products||[]).forEach((p,i)=>{
+    const div=document.createElement('div');
+    div.className='prod'+(p.visible===false?' hidden-prod':'');
+    div.innerHTML=`
+      <div class="thumb">${p.img?'<img src="'+escAttr(p.img)+'" onerror="this.remove()">':''}</div>
+      <div>
+        <div class="grid4">
+          <div><label>Názov</label><input value="${escAttr(p.name||'')}" onchange="upd(${i},'name',this.value)"></div>
+          <div><label>Objem</label><input value="${escAttr(p.volume||'')}" onchange="upd(${i},'volume',this.value)"></div>
+          <div><label>Cena</label><input value="${escAttr(p.price||'')}" onchange="upd(${i},'price',this.value)"></div>
+          <div style="padding-bottom:3px"><label class="chk" style="margin:0 0 6px"><input type="checkbox" ${p.visible!==false?'checked':''} onchange="upd(${i},'visible',this.checked)"> Viditeľný</label></div>
+        </div>
+        <label>Popis</label><input value="${escAttr(p.desc||'')}" onchange="upd(${i},'desc',this.value)">
+        <label>Obrázok (URL alebo cesta v repozitári)</label>
+        <div style="display:flex;gap:8px">
+          <input value="${escAttr(p.img||'')}" onchange="upd(${i},'img',this.value)">
+          <button class="btn small" title="Nahrať obrázok" onclick="pickImage(${i})">📷</button>
+        </div>
+      </div>
+      <div class="prod-actions">
+        <button class="btn small ghost" title="Posunúť vyššie" onclick="move(${i},-1)">▲</button>
+        <button class="btn small ghost" title="Posunúť nižšie" onclick="move(${i},1)">▼</button>
+        <button class="btn small red" title="Odstrániť" onclick="delProduct(${i})">✕</button>
+      </div>`;
+    list.appendChild(div);
+  });
+  $('p-count').textContent='('+(data.products||[]).length+')';
+}
+function escAttr(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+/* ── úpravy ── */
+function upd(i,k,v){data.products[i][k]=v;if(k==='img'||k==='visible')renderProducts();}
+function move(i,dir){
+  const j=i+dir;
+  if(j<0||j>=data.products.length)return;
+  [data.products[i],data.products[j]]=[data.products[j],data.products[i]];
+  renderProducts();
+}
+function delProduct(i){
+  if(!confirm('Odstrániť produkt „'+(data.products[i].name||'')+'"?'))return;
+  data.products.splice(i,1);renderProducts();
+}
+function addProduct(){
+  data.products.push({name:'Nový produkt',desc:'',volume:'0,33 l',price:'2,90 €',img:'',visible:true});
+  renderProducts();
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function collect(){
+  data.section={label:$('f-label').value,title:$('f-title').value,sub:$('f-sub').value,note:$('f-note').value};
+  return data;
+}
+
+/* ── token ── */
+const savedTok=localStorage.getItem('cdp_gh_token');
+if(savedTok){$('f-token').value=savedTok;$('f-remember').checked=true;}
+function getToken(){
+  const t=$('f-token').value.trim();
+  if($('f-remember').checked&&t)localStorage.setItem('cdp_gh_token',t);
+  if(!$('f-remember').checked)localStorage.removeItem('cdp_gh_token');
+  return t;
+}
+
+/* ── GitHub API ── */
+async function ghGetSha(path){
+  const r=await fetch(API+path+'?ref='+BRANCH+'&t='+Date.now(),{headers:ghHeaders()});
+  if(r.status===404)return null;
+  if(!r.ok)throw new Error('GitHub: '+r.status);
+  return (await r.json()).sha;
+}
+function ghHeaders(){
+  const h={'Accept':'application/vnd.github+json'};
+  const t=getToken();if(t)h['Authorization']='Bearer '+t;
+  return h;
+}
+async function ghPut(path,base64,msg){
+  const sha=await ghGetSha(path);
+  const body={message:msg,content:base64,branch:BRANCH};
+  if(sha)body.sha=sha;
+  const r=await fetch(API+path,{method:'PUT',headers:{...ghHeaders(),'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){
+    const e=await r.json().catch(()=>({}));
+    throw new Error('GitHub '+r.status+': '+(e.message||''));
+  }
+  return r.json();
+}
+async function saveToGitHub(){
+  if(!getToken()){status('Vlož GitHub token (alebo použi Stiahnuť cola.json)','err');return;}
+  collect();
+  const json=JSON.stringify(data,null,2);
+  const b64=btoa(unescape(encodeURIComponent(json)));
+  status('Ukladám na GitHub…','busy');
+  $('btn-save').disabled=true;
+  try{
+    await ghPut(DATA_PATH,b64,'Admin: aktualizácia Coca-Cola cenníka');
+    status('✓ Uložené! Web sa obnoví do 1–2 minút.','ok');
+  }catch(e){
+    status('Chyba: '+e.message,'err');
+  }finally{
+    $('btn-save').disabled=false;
+  }
+}
+
+/* ── upload obrázka ── */
+function pickImage(i){
+  const inp=document.createElement('input');
+  inp.type='file';inp.accept='image/*';
+  inp.onchange=async ()=>{
+    const f=inp.files[0];if(!f)return;
+    if(!getToken()){status('Na nahratie obrázka je potrebný GitHub token','err');return;}
+    if(f.size>3*1024*1024){status('Obrázok je príliš veľký (max 3 MB)','err');return;}
+    status('Nahrávam obrázok…','busy');
+    try{
+      const b64=await new Promise((res,rej)=>{
+        const r=new FileReader();
+        r.onload=()=>res(r.result.split(',')[1]);
+        r.onerror=rej;r.readAsDataURL(f);
+      });
+      const safe=f.name.toLowerCase().replace(/[^a-z0-9._-]/g,'-');
+      const path='assets/uploads/'+Date.now()+'-'+safe;
+      await ghPut(path,b64,'Admin: upload obrázka '+safe);
+      data.products[i].img=path;
+      renderProducts();
+      status('✓ Obrázok nahratý — nezabudni Uložiť na web','ok');
+    }catch(e){status('Chyba uploadu: '+e.message,'err');}
+  };
+  inp.click();
+}
+
+/* ── download fallback ── */
+function downloadJson(){
+  collect();
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='cola.json';a.click();
+  URL.revokeObjectURL(a.href);
+  status('Súbor stiahnutý — nahraj ho do data/cola.json','ok');
+}
+
+reloadData();
+</script>
+</body>
+</html>
