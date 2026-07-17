@@ -11,22 +11,25 @@
 :root{--or1:#ff6a00;--or2:#ff9e1b;--or3:#ffce00;--red:#e61a27;--dark:#2b0a00}
 body{background:var(--dark);color:#fff;font-family:'Outfit',sans-serif;min-height:100vh;padding-bottom:120px}
 a{color:var(--or2)}
-.wrap{max-width:980px;margin:0 auto;padding:34px 20px}
+.wrap{max-width:1020px;margin:0 auto;padding:34px 20px}
 h1{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:4px;
   background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{font-size:13px;color:rgba(255,200,120,.5);margin-bottom:26px}
+.sub{font-size:13px;color:rgba(255,200,120,.5);margin-bottom:20px}
 .panel{background:rgba(255,120,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:16px;padding:22px;margin-bottom:22px}
 .panel h2{font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;
   background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h3.gr{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,200,120,.75);margin:20px 0 8px}
 label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,180,80,.6);margin:10px 0 5px}
 input,textarea,select{
   width:100%;background:rgba(255,120,0,.07);border:1px solid rgba(255,140,0,.25);border-radius:10px;
   padding:9px 12px;color:rgba(255,240,210,.92);font-family:'Outfit',sans-serif;font-size:13px;outline:none;
   transition:border-color .2s;
 }
-input:focus,textarea:focus{border-color:rgba(255,190,0,.6)}
+input:focus,textarea:focus,select:focus{border-color:rgba(255,190,0,.6)}
+select option{background:#3a1000}
 textarea{resize:vertical}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 14px}
 .grid4{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:0 12px;align-items:end}
 .btn{
   display:inline-flex;align-items:center;gap:8px;cursor:pointer;
@@ -57,7 +60,7 @@ textarea{resize:vertical}
 .note{font-size:11.5px;color:rgba(255,190,120,.55);line-height:1.6;margin-top:10px}
 .note code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:5px;font-size:11px}
 #status{
-  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:50;
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:120;
   padding:12px 26px;border-radius:12px;font-size:13px;font-weight:600;letter-spacing:.03em;
   background:rgba(20,4,0,.92);border:1px solid rgba(255,140,0,.4);backdrop-filter:blur(10px);
   opacity:0;pointer-events:none;transition:opacity .3s;max-width:92vw;text-align:center;
@@ -68,110 +71,278 @@ textarea{resize:vertical}
 #status.busy{color:rgba(255,220,140,.95)}
 .chk{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,200,140,.7);cursor:pointer;user-select:none}
 .chk input{width:auto}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
 details{margin-top:10px}
 summary{cursor:pointer;font-size:12px;color:rgba(255,190,120,.7)}
-@media(max-width:640px){
-  .grid2,.grid4{grid-template-columns:1fr}
+/* hlavné taby */
+.atabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.atab{
+  padding:9px 20px;border-radius:30px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  border:1px solid rgba(255,106,0,.25);background:transparent;color:rgba(255,200,100,.55);
+  cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;
+}
+.atab.on,.atab:hover{border-color:var(--or1);color:var(--or2);background:rgba(255,106,0,.1)}
+.aview{display:none}
+.aview.on{display:block}
+/* menu editor */
+.subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.mtab-box{border:1px solid rgba(255,140,0,.2);border-radius:14px;padding:16px;margin-bottom:16px;background:rgba(0,0,0,.16)}
+.mtab-head{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:6px}
+.mtab-head>div{flex:1;min-width:170px}
+.group-box{border:1px solid rgba(255,140,0,.14);border-radius:12px;padding:12px;margin-top:12px;background:rgba(255,120,0,.03)}
+.group-head{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.group-head .g-cat{flex:1;min-width:150px}
+.mrow-edit{display:grid;grid-template-columns:3fr 1fr 1fr auto;gap:8px;margin-top:8px;align-items:center}
+.mrow-edit .acts{display:flex;gap:4px}
+.ev-edit{display:grid;grid-template-columns:60px 70px 1.4fr 2fr 1fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.card-edit{border:1px solid rgba(255,140,0,.14);border-radius:12px;padding:12px;margin-bottom:10px;background:rgba(0,0,0,.14)}
+@media(max-width:720px){
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
   .prod{grid-template-columns:64px 1fr}
   .prod-actions{flex-direction:row;grid-column:1/-1}
+  .mrow-edit{grid-template-columns:1fr 1fr}
+  .ev-edit{grid-template-columns:1fr 1fr}
 }
+/* login */
+#login-overlay{
+  position:fixed;inset:0;z-index:100;
+  background:radial-gradient(circle at 50% 30%,#4a1200 0%,#2b0a00 70%);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.login-box{
+  width:100%;max-width:360px;
+  background:rgba(255,120,0,.06);border:1px solid rgba(255,140,0,.25);
+  border-radius:18px;padding:34px 30px;text-align:center;
+  box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+.login-box h1{font-size:22px;margin-bottom:2px}
+.login-box .sub{margin-bottom:22px}
+.login-box input{text-align:center;margin-bottom:12px}
+.login-box .btn{width:100%;justify-content:center;margin-top:6px}
+#login-err{font-size:12px;color:#ff9d9d;margin-top:12px;min-height:16px}
+body.locked .wrap{display:none}
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div id="login-overlay">
+  <form class="login-box" onsubmit="doLogin(event)">
+    <h1>Café del Paradise</h1>
+    <div class="sub">Administrácia — prihlásenie</div>
+    <input id="l-user" placeholder="Meno" autocomplete="username" required>
+    <input id="l-pass" type="password" placeholder="Heslo" autocomplete="current-password" required>
+    <button class="btn" type="submit">Prihlásiť sa</button>
+    <div id="login-err"></div>
+  </form>
+</div>
+
 <div class="wrap">
   <div class="topbar">
     <div>
       <h1>Café del Paradise — Admin</h1>
-      <div class="sub">Sekcia Coca‑Cola · produkty, ceny, texty a obrázky</div>
+      <div class="sub">Editácia celého webu · texty, cenníky, produkty, eventy</div>
     </div>
-    <a class="btn ghost" href="index.html#cocacola" target="_blank">Otvoriť web ↗</a>
+    <div style="display:flex;gap:8px">
+      <a class="btn ghost" href="index.html" target="_blank">Otvoriť web ↗</a>
+      <button class="btn ghost" onclick="logout()">Odhlásiť</button>
+    </div>
   </div>
 
-  <div class="panel">
-    <h2>Texty sekcie</h2>
-    <div class="grid2">
-      <div><label>Štítok (label)</label><input id="f-label"></div>
-      <div><label>Nadpis</label><input id="f-title"></div>
-    </div>
-    <label>Podnadpis</label><textarea id="f-sub" rows="2"></textarea>
-    <label>Poznámka pod carouselom</label><input id="f-note">
+  <div class="atabs">
+    <button class="atab on" data-v="v-cola" onclick="aTab(this)">Coca‑Cola</button>
+    <button class="atab" data-v="v-texty" onclick="aTab(this)">Texty sekcií</button>
+    <button class="atab" data-v="v-menu" onclick="aTab(this)">Cenníky</button>
+    <button class="atab" data-v="v-eventy" onclick="aTab(this)">Eventy</button>
+    <button class="atab" data-v="v-kontakt" onclick="aTab(this)">Kontakt &amp; iné</button>
+    <button class="atab" data-v="v-save" onclick="aTab(this)" style="border-color:rgba(80,220,120,.4);color:#8fe6ae">💾 Uloženie</button>
   </div>
 
-  <div class="panel">
-    <h2>Produkty <span id="p-count" style="font-size:12px;opacity:.6"></span></h2>
-    <div id="prod-list"></div>
-    <div class="rowline">
-      <button class="btn" onclick="addProduct()">＋ Pridať produkt</button>
-    </div>
-    <p class="note">Obrázok = URL (napr. oficiálny packshot z coca-cola.com) alebo nahraj vlastný súbor tlačidlom 📷 pri produkte — uloží sa do <code>assets/uploads/</code> v repozitári.</p>
-  </div>
-
-  <div class="panel">
-    <h2>Uloženie zmien</h2>
-    <div class="grid2">
-      <div>
-        <label>GitHub token (fine-grained PAT s právom Contents: Read/Write na repo <code>salqen/cafedelparadiseweb</code>)</label>
-        <input id="f-token" type="password" placeholder="github_pat_…">
+  <!-- COCA-COLA -->
+  <div class="aview on" id="v-cola">
+    <div class="panel">
+      <h2>Texty sekcie Coca‑Cola</h2>
+      <div class="grid2">
+        <div><label>Štítok (label)</label><input id="f-label"></div>
+        <div><label>Nadpis</label><input id="f-title"></div>
       </div>
-      <div style="display:flex;align-items:flex-end;padding-bottom:2px">
-        <label class="chk" style="margin:0"><input type="checkbox" id="f-remember"> Zapamätať token v tomto prehliadači</label>
+      <label>Podnadpis</label><textarea id="f-sub" rows="2"></textarea>
+      <label>Poznámka pod carouselom</label><input id="f-note">
+    </div>
+    <div class="panel">
+      <h2>Produkty <span id="p-count" style="font-size:12px;opacity:.6"></span></h2>
+      <div id="prod-list"></div>
+      <div class="rowline"><button class="btn" onclick="addProduct()">＋ Pridať produkt</button></div>
+      <p class="note">Obrázok = URL (napr. oficiálny packshot z coca-cola.com) alebo nahraj vlastný súbor tlačidlom 📷 — uloží sa do <code>assets/uploads/</code>.</p>
+    </div>
+  </div>
+
+  <!-- TEXTY -->
+  <div class="aview" id="v-texty">
+    <div class="panel">
+      <h2>Úvod (hero)</h2>
+      <label>Adresa pod logom</label><input id="h-addr">
+      <label>Hlavný text („Čoskoro otvárame")</label><input id="h-coming">
+    </div>
+    <div class="panel">
+      <h2>Hlavičky sekcií</h2>
+      <div id="sec-list"></div>
+    </div>
+    <div class="panel">
+      <h2>Karty v sekciách</h2>
+      <div id="cards-list"></div>
+    </div>
+  </div>
+
+  <!-- CENNÍKY -->
+  <div class="aview" id="v-menu">
+    <div class="panel">
+      <h2>Cenníky</h2>
+      <div class="subtabs" id="menu-subtabs"></div>
+      <div id="menu-editor"></div>
+    </div>
+  </div>
+
+  <!-- EVENTY -->
+  <div class="aview" id="v-eventy">
+    <div class="panel">
+      <h2>Najbližšie eventy</h2>
+      <div class="ev-edit" style="opacity:.6;font-size:10px;letter-spacing:.1em;text-transform:uppercase">
+        <span>Deň</span><span>Mesiac</span><span>Názov</span><span>Popis</span><span>Štítok</span><span></span>
       </div>
+      <div id="ev-list"></div>
+      <div class="rowline"><button class="btn" onclick="addEvent()">＋ Pridať event</button></div>
     </div>
-    <div class="rowline">
-      <button class="btn" id="btn-save" onclick="saveToGitHub()">💾 Uložiť na web (GitHub)</button>
-      <button class="btn ghost" onclick="downloadJson()">⬇ Stiahnuť cola.json</button>
-      <button class="btn ghost" onclick="reloadData()">↻ Znova načítať</button>
+  </div>
+
+  <!-- KONTAKT -->
+  <div class="aview" id="v-kontakt">
+    <div class="panel">
+      <h2>Kontakt</h2>
+      <div id="kontakt-list"></div>
     </div>
-    <details>
-      <summary>Ako získať token?</summary>
-      <p class="note">
-        1. GitHub → Settings → Developer settings → Fine-grained personal access tokens → Generate new token.<br>
-        2. Repository access: <code>salqen/cafedelparadiseweb</code>. Permissions: <code>Contents → Read and write</code>.<br>
-        3. Token vlož sem. Po uložení sa zmena commitne do repozitára a GitHub Pages web sa automaticky obnoví (1–2 min).<br>
-        Bez tokenu môžeš použiť „Stiahnuť cola.json" a súbor nahrať do <code>data/cola.json</code> ručne.
-      </p>
-    </details>
+    <div class="panel">
+      <h2>Pätička</h2>
+      <label>Riadok v pätičke</label><input id="f-footer">
+    </div>
+  </div>
+
+  <!-- ULOŽENIE -->
+  <div class="aview" id="v-save">
+    <div class="panel">
+      <h2>Uloženie zmien</h2>
+      <div class="grid2">
+        <div>
+          <label>GitHub token (fine-grained PAT s právom Contents: Read/Write na repo <code>salqen/cafedelparadiseweb</code>)</label>
+          <input id="f-token" type="password" placeholder="github_pat_…">
+        </div>
+        <div style="display:flex;align-items:flex-end;padding-bottom:2px">
+          <label class="chk" style="margin:0"><input type="checkbox" id="f-remember"> Zapamätať token v tomto prehliadači</label>
+        </div>
+      </div>
+      <div class="rowline">
+        <button class="btn" id="btn-save" onclick="saveToGitHub()">💾 Uložiť na web (GitHub)</button>
+        <button class="btn ghost" onclick="downloadJson()">⬇ Stiahnuť JSON súbory</button>
+        <button class="btn ghost" onclick="reloadData()">↻ Znova načítať</button>
+      </div>
+      <details>
+        <summary>Ako získať token?</summary>
+        <p class="note">
+          1. GitHub → Settings → Developer settings → Fine-grained personal access tokens → Generate new token.<br>
+          2. Repository access: <code>salqen/cafedelparadiseweb</code>. Permissions: <code>Contents → Read and write</code>.<br>
+          3. Token vlož sem. Po uložení sa zmeny commitnú a GitHub Pages web sa obnoví (1–2 min).<br>
+          Bez tokenu použi „Stiahnuť JSON súbory" a nahraj ich do <code>data/</code> ručne.
+        </p>
+      </details>
+    </div>
   </div>
 </div>
 
 <div id="status"></div>
 
 <script>
-const REPO='salqen/cafedelparadiseweb', BRANCH='main', DATA_PATH='data/cola.json';
+/* ── LOGIN ── */
+const AUTH_HASH='a4aa6ac2e17fb8e7e941aeafef37182313be405c842a8b10a581ab989686bf38';
+async function sha256(s){
+  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function unlock(){
+  document.body.classList.remove('locked');
+  const o=document.getElementById('login-overlay');
+  if(o)o.remove();
+  reloadData();
+}
+async function doLogin(e){
+  e.preventDefault();
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value;
+  if(await sha256(u+':'+p)===AUTH_HASH){
+    sessionStorage.setItem('cdp_admin',AUTH_HASH);
+    unlock();
+  }else{
+    document.getElementById('login-err').textContent='Nesprávne meno alebo heslo';
+    document.getElementById('l-pass').value='';
+  }
+}
+function logout(){sessionStorage.removeItem('cdp_admin');location.reload();}
+
+/* ── KONŠTANTY ── */
+const REPO='salqen/cafedelparadiseweb', BRANCH='main';
 const API='https://api.github.com/repos/'+REPO+'/contents/';
-let data={section:{},products:[]};
-let fileSha=null;
+const SEC_NAMES={onas:'O nás',napoje:'Nápoje',jedlo:'Jedlo',zmrzlina:'Zmrzlina',shisha:'Shisha',terasa:'Terasa',eventy:'Eventy',wellness:'Wellness',ubytovanie:'Ubytovanie',kontakt:'Kontakt'};
+const MENU_NAMES={napoje:'Nápoje',jedlo:'Jedlo',zmrzlina:'Zmrzlina',shisha:'Shisha'};
+let cola={section:{},products:[]};
+let content={hero:{},sections:{},cards:{},menus:{},events:[],kontakt:[],footer:{}};
+let curMenu='napoje';
 
 const $=id=>document.getElementById(id);
-
 function status(msg,cls){
   const s=$('status');
   s.textContent=msg;s.className='show '+(cls||'');
   if(cls!=='busy'){clearTimeout(s._t);s._t=setTimeout(()=>s.className='',4500);}
 }
+function escAttr(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 
-/* ── načítanie ── */
-function reloadData(){
-  fetch(DATA_PATH+'?v='+Date.now())
-    .then(r=>{if(!r.ok)throw 0;return r.json();})
-    .then(d=>{data=d;renderAll();status('Dáta načítané','ok');})
-    .catch(()=>{
-      // fallback: skús cez GitHub API (funguje aj lokálne z file://)
-      fetch(API+DATA_PATH+'?ref='+BRANCH)
-        .then(r=>{if(!r.ok)throw 0;return r.json();})
-        .then(j=>{
-          fileSha=j.sha;
-          data=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,'')))));
-          renderAll();status('Dáta načítané z GitHubu','ok');
-        })
-        .catch(()=>{renderAll();status('Nepodarilo sa načítať dáta — začínam s prázdnym zoznamom','err');});
-    });
+/* ── TABY ── */
+function aTab(btn){
+  document.querySelectorAll('.atab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.aview').forEach(v=>v.classList.remove('on'));
+  btn.classList.add('on');
+  $(btn.dataset.v).classList.add('on');
 }
 
-/* ── render ── */
+/* ── NAČÍTANIE ── */
+async function loadJson(path){
+  try{
+    const r=await fetch(path+'?v='+Date.now());
+    if(!r.ok)throw 0;
+    return await r.json();
+  }catch(e){
+    // fallback cez GitHub API (funguje aj z file://)
+    const r=await fetch(API+path+'?ref='+BRANCH,{headers:ghHeaders()});
+    if(!r.ok)throw new Error('načítanie '+path+' zlyhalo');
+    const j=await r.json();
+    return JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,'')))));
+  }
+}
+async function reloadData(){
+  try{
+    const [c1,c2]=await Promise.all([loadJson('data/cola.json'),loadJson('data/content.json')]);
+    cola=c1;content=c2;
+    renderAll();
+    status('Dáta načítané','ok');
+  }catch(e){
+    renderAll();
+    status('Nepodarilo sa načítať dáta: '+e.message,'err');
+  }
+}
 function renderAll(){
-  const s=data.section||{};
+  renderCola();renderTexty();renderMenuTabs();renderMenu();renderEvents();renderKontakt();
+}
+
+/* ══ COCA-COLA ══ */
+function renderCola(){
+  const s=cola.section||{};
   $('f-label').value=s.label||'';
   $('f-title').value=s.title||'';
   $('f-sub').value=s.sub||'';
@@ -181,59 +352,205 @@ function renderAll(){
 function renderProducts(){
   const list=$('prod-list');
   list.innerHTML='';
-  (data.products||[]).forEach((p,i)=>{
+  (cola.products||[]).forEach((p,i)=>{
     const div=document.createElement('div');
     div.className='prod'+(p.visible===false?' hidden-prod':'');
     div.innerHTML=`
       <div class="thumb">${p.img?'<img src="'+escAttr(p.img)+'" onerror="this.remove()">':''}</div>
       <div>
         <div class="grid4">
-          <div><label>Názov</label><input value="${escAttr(p.name||'')}" onchange="upd(${i},'name',this.value)"></div>
-          <div><label>Objem</label><input value="${escAttr(p.volume||'')}" onchange="upd(${i},'volume',this.value)"></div>
-          <div><label>Cena</label><input value="${escAttr(p.price||'')}" onchange="upd(${i},'price',this.value)"></div>
-          <div style="padding-bottom:3px"><label class="chk" style="margin:0 0 6px"><input type="checkbox" ${p.visible!==false?'checked':''} onchange="upd(${i},'visible',this.checked)"> Viditeľný</label></div>
+          <div><label>Názov</label><input value="${escAttr(p.name||'')}" onchange="updP(${i},'name',this.value)"></div>
+          <div><label>Objem</label><input value="${escAttr(p.volume||'')}" onchange="updP(${i},'volume',this.value)"></div>
+          <div><label>Cena</label><input value="${escAttr(p.price||'')}" onchange="updP(${i},'price',this.value)"></div>
+          <div style="padding-bottom:3px"><label class="chk" style="margin:0 0 6px"><input type="checkbox" ${p.visible!==false?'checked':''} onchange="updP(${i},'visible',this.checked)"> Viditeľný</label></div>
         </div>
-        <label>Popis</label><input value="${escAttr(p.desc||'')}" onchange="upd(${i},'desc',this.value)">
+        <label>Popis</label><input value="${escAttr(p.desc||'')}" onchange="updP(${i},'desc',this.value)">
         <label>Obrázok (URL alebo cesta v repozitári)</label>
         <div style="display:flex;gap:8px">
-          <input value="${escAttr(p.img||'')}" onchange="upd(${i},'img',this.value)">
+          <input value="${escAttr(p.img||'')}" onchange="updP(${i},'img',this.value)">
           <button class="btn small" title="Nahrať obrázok" onclick="pickImage(${i})">📷</button>
         </div>
       </div>
       <div class="prod-actions">
-        <button class="btn small ghost" title="Posunúť vyššie" onclick="move(${i},-1)">▲</button>
-        <button class="btn small ghost" title="Posunúť nižšie" onclick="move(${i},1)">▼</button>
-        <button class="btn small red" title="Odstrániť" onclick="delProduct(${i})">✕</button>
+        <button class="btn small ghost" onclick="moveP(${i},-1)">▲</button>
+        <button class="btn small ghost" onclick="moveP(${i},1)">▼</button>
+        <button class="btn small red" onclick="delProduct(${i})">✕</button>
       </div>`;
     list.appendChild(div);
   });
-  $('p-count').textContent='('+(data.products||[]).length+')';
+  $('p-count').textContent='('+(cola.products||[]).length+')';
 }
-function escAttr(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function updP(i,k,v){cola.products[i][k]=v;if(k==='img'||k==='visible')renderProducts();}
+function moveP(i,d){const j=i+d;if(j<0||j>=cola.products.length)return;[cola.products[i],cola.products[j]]=[cola.products[j],cola.products[i]];renderProducts();}
+function delProduct(i){if(!confirm('Odstrániť produkt „'+(cola.products[i].name||'')+'"?'))return;cola.products.splice(i,1);renderProducts();}
+function addProduct(){cola.products.push({name:'Nový produkt',desc:'',volume:'0,33 l',price:'2,90 €',img:'',visible:true});renderProducts();}
 
-/* ── úpravy ── */
-function upd(i,k,v){data.products[i][k]=v;if(k==='img'||k==='visible')renderProducts();}
-function move(i,dir){
-  const j=i+dir;
-  if(j<0||j>=data.products.length)return;
-  [data.products[i],data.products[j]]=[data.products[j],data.products[i]];
-  renderProducts();
+/* ══ TEXTY ══ */
+function renderTexty(){
+  $('h-addr').value=(content.hero||{}).addr||'';
+  $('h-coming').value=(content.hero||{}).coming||'';
+  const sl=$('sec-list');sl.innerHTML='';
+  for(const id in (content.sections||{})){
+    const s=content.sections[id];
+    const d=document.createElement('div');
+    d.className='card-edit';
+    d.innerHTML=`<h3 class="gr" style="margin-top:0">${SEC_NAMES[id]||id}</h3>
+      <div class="grid3">
+        <div><label>Štítok</label><input value="${escAttr(s.label||'')}" onchange="content.sections['${id}'].label=this.value"></div>
+        <div><label>Nadpis</label><input value="${escAttr(s.title||'')}" onchange="content.sections['${id}'].title=this.value"></div>
+        <div><label>Podnadpis</label><input value="${escAttr(s.sub||'')}" onchange="content.sections['${id}'].sub=this.value"></div>
+      </div>`;
+    sl.appendChild(d);
+  }
+  const cl=$('cards-list');cl.innerHTML='';
+  for(const key in (content.cards||{})){
+    const det=document.createElement('details');
+    det.innerHTML=`<summary>${SEC_NAMES[key]||key} — ${content.cards[key].length} kariet</summary>`;
+    content.cards[key].forEach((c,i)=>{
+      const d=document.createElement('div');
+      d.className='card-edit';
+      d.innerHTML=`<div class="grid2">
+        <div><label>Titulok karty</label><input value="${escAttr(c.ttl||'')}" onchange="content.cards['${key}'][${i}].ttl=this.value"></div>
+        <div><label>Text karty</label><input value="${escAttr(c.txt||'')}" onchange="content.cards['${key}'][${i}].txt=this.value"></div>
+      </div>`;
+      det.appendChild(d);
+    });
+    cl.appendChild(det);
+  }
 }
-function delProduct(i){
-  if(!confirm('Odstrániť produkt „'+(data.products[i].name||'')+'"?'))return;
-  data.products.splice(i,1);renderProducts();
+
+/* ══ CENNÍKY ══ */
+function renderMenuTabs(){
+  const st=$('menu-subtabs');st.innerHTML='';
+  for(const id in MENU_NAMES){
+    const b=document.createElement('button');
+    b.className='atab'+(id===curMenu?' on':'');
+    b.textContent=MENU_NAMES[id];
+    b.onclick=()=>{curMenu=id;renderMenuTabs();renderMenu();};
+    st.appendChild(b);
+  }
 }
-function addProduct(){
-  data.products.push({name:'Nový produkt',desc:'',volume:'0,33 l',price:'2,90 €',img:'',visible:true});
-  renderProducts();
-  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+function renderMenu(){
+  const ed=$('menu-editor');ed.innerHTML='';
+  const m=(content.menus||{})[curMenu];
+  if(!m){ed.innerHTML='<p class="note">Žiadne dáta.</p>';return;}
+  m.tabs.forEach((t,ti)=>{
+    const box=document.createElement('div');
+    box.className='mtab-box';
+    box.innerHTML=`<div class="mtab-head">
+      <div><label>Názov záložky</label><input value="${escAttr(t.label||'')}" onchange="mTabU(${ti},'label',this.value)"></div>
+      <div style="flex:0 0 auto;display:flex;gap:6px">
+        <button class="btn small ghost" onclick="mTabMove(${ti},-1)">▲</button>
+        <button class="btn small ghost" onclick="mTabMove(${ti},1)">▼</button>
+        <button class="btn small red" onclick="mTabDel(${ti})">✕ záložka</button>
+      </div>
+    </div>
+    <div class="tab-groups"></div>
+    <div class="rowline"><button class="btn small" onclick="mGroupAdd(${ti})">＋ Kategória</button></div>`;
+    const gwrap=box.querySelector('.tab-groups');
+    (t.groups||[]).forEach((g,gi)=>{
+      const gb=document.createElement('div');
+      gb.className='group-box';
+      gb.innerHTML=`<div class="group-head">
+        <div class="g-cat"><label>Kategória</label><input value="${escAttr(g.cat||'')}" onchange="mGroupU(${ti},${gi},'cat',this.value)"></div>
+        <div style="flex:0 0 110px"><label>Stĺpec</label>
+          <select onchange="mGroupU(${ti},${gi},'col',+this.value)">
+            <option value="1" ${(g.col||1)===1?'selected':''}>1 (ľavý)</option>
+            <option value="2" ${g.col===2?'selected':''}>2 (pravý)</option>
+          </select>
+        </div>
+        <div style="flex:0 0 auto;display:flex;gap:6px;padding-bottom:2px">
+          <button class="btn small ghost" onclick="mGroupMove(${ti},${gi},-1)">▲</button>
+          <button class="btn small ghost" onclick="mGroupMove(${ti},${gi},1)">▼</button>
+          <button class="btn small red" onclick="mGroupDel(${ti},${gi})">✕</button>
+        </div>
+      </div>
+      <div class="g-rows"></div>
+      <div class="rowline" style="margin-top:8px"><button class="btn small ghost" onclick="mRowAdd(${ti},${gi})">＋ Položka</button></div>`;
+      const rwrap=gb.querySelector('.g-rows');
+      (g.rows||[]).forEach((r,ri)=>{
+        const rr=document.createElement('div');
+        rr.className='mrow-edit';
+        rr.innerHTML=`
+          <input placeholder="Názov" value="${escAttr(r.n||'')}" onchange="mRowU(${ti},${gi},${ri},'n',this.value)">
+          <input placeholder="Objem" value="${escAttr(r.v||'')}" onchange="mRowU(${ti},${gi},${ri},'v',this.value)">
+          <input placeholder="Cena" value="${escAttr(r.p||'')}" onchange="mRowU(${ti},${gi},${ri},'p',this.value)">
+          <div class="acts">
+            <button class="btn small ghost" onclick="mRowMove(${ti},${gi},${ri},-1)">▲</button>
+            <button class="btn small ghost" onclick="mRowMove(${ti},${gi},${ri},1)">▼</button>
+            <button class="btn small red" onclick="mRowDel(${ti},${gi},${ri})">✕</button>
+          </div>`;
+        rwrap.appendChild(rr);
+      });
+      gwrap.appendChild(gb);
+    });
+    ed.appendChild(box);
+  });
+  const add=document.createElement('button');
+  add.className='btn';add.textContent='＋ Pridať záložku';
+  add.onclick=()=>{m.tabs.push({id:curMenu+'-tab'+Date.now()%10000,label:'Nová záložka',groups:[]});renderMenu();};
+  ed.appendChild(add);
 }
+function mm(){return content.menus[curMenu];}
+function mTabU(ti,k,v){mm().tabs[ti][k]=v;}
+function mTabMove(ti,d){const t=mm().tabs;const j=ti+d;if(j<0||j>=t.length)return;[t[ti],t[j]]=[t[j],t[ti]];renderMenu();}
+function mTabDel(ti){if(!confirm('Odstrániť celú záložku „'+(mm().tabs[ti].label||'')+'"?'))return;mm().tabs.splice(ti,1);renderMenu();}
+function mGroupAdd(ti){(mm().tabs[ti].groups=mm().tabs[ti].groups||[]).push({cat:'Nová kategória',col:1,rows:[]});renderMenu();}
+function mGroupU(ti,gi,k,v){mm().tabs[ti].groups[gi][k]=v;}
+function mGroupMove(ti,gi,d){const g=mm().tabs[ti].groups;const j=gi+d;if(j<0||j>=g.length)return;[g[gi],g[j]]=[g[j],g[gi]];renderMenu();}
+function mGroupDel(ti,gi){if(!confirm('Odstrániť kategóriu?'))return;mm().tabs[ti].groups.splice(gi,1);renderMenu();}
+function mRowAdd(ti,gi){mm().tabs[ti].groups[gi].rows.push({n:'Nová položka',v:'–',p:'0,00 €'});renderMenu();}
+function mRowU(ti,gi,ri,k,v){mm().tabs[ti].groups[gi].rows[ri][k]=v;}
+function mRowMove(ti,gi,ri,d){const r=mm().tabs[ti].groups[gi].rows;const j=ri+d;if(j<0||j>=r.length)return;[r[ri],r[j]]=[r[j],r[ri]];renderMenu();}
+function mRowDel(ti,gi,ri){mm().tabs[ti].groups[gi].rows.splice(ri,1);renderMenu();}
+
+/* ══ EVENTY ══ */
+function renderEvents(){
+  const l=$('ev-list');l.innerHTML='';
+  (content.events||[]).forEach((e,i)=>{
+    const d=document.createElement('div');
+    d.className='ev-edit';
+    d.innerHTML=`
+      <input value="${escAttr(e.day||'')}" onchange="content.events[${i}].day=this.value">
+      <input value="${escAttr(e.mon||'')}" onchange="content.events[${i}].mon=this.value">
+      <input value="${escAttr(e.name||'')}" onchange="content.events[${i}].name=this.value">
+      <input value="${escAttr(e.desc||'')}" onchange="content.events[${i}].desc=this.value">
+      <input value="${escAttr(e.tag||'')}" onchange="content.events[${i}].tag=this.value">
+      <div style="display:flex;gap:4px">
+        <button class="btn small ghost" onclick="evMove(${i},-1)">▲</button>
+        <button class="btn small ghost" onclick="evMove(${i},1)">▼</button>
+        <button class="btn small red" onclick="evDel(${i})">✕</button>
+      </div>`;
+    l.appendChild(d);
+  });
+}
+function evMove(i,d){const e=content.events;const j=i+d;if(j<0||j>=e.length)return;[e[i],e[j]]=[e[j],e[i]];renderEvents();}
+function evDel(i){if(!confirm('Odstrániť event?'))return;content.events.splice(i,1);renderEvents();}
+function addEvent(){content.events.push({day:'01',mon:'Jan',name:'Nový event',desc:'',tag:'Zadarmo'});renderEvents();}
+
+/* ══ KONTAKT ══ */
+function renderKontakt(){
+  const l=$('kontakt-list');l.innerHTML='';
+  (content.kontakt||[]).forEach((k,i)=>{
+    const d=document.createElement('div');
+    d.className='card-edit';
+    d.innerHTML=`<div class="grid2">
+      <div><label>Štítok</label><input value="${escAttr(k.lbl||'')}" onchange="content.kontakt[${i}].lbl=this.value"></div>
+      <div><label>Hodnota (Enter = nový riadok)</label><textarea rows="2" onchange="content.kontakt[${i}].val=this.value">${escAttr(k.val||'')}</textarea></div>
+    </div>`;
+    l.appendChild(d);
+  });
+  $('f-footer').value=(content.footer||{}).line||'';
+}
+
+/* ══ ZBER DÁT ══ */
 function collect(){
-  data.section={label:$('f-label').value,title:$('f-title').value,sub:$('f-sub').value,note:$('f-note').value};
-  return data;
+  cola.section={label:$('f-label').value,title:$('f-title').value,sub:$('f-sub').value,note:$('f-note').value};
+  content.hero={addr:$('h-addr').value,coming:$('h-coming').value};
+  content.footer={line:$('f-footer').value};
 }
 
-/* ── token ── */
+/* ══ TOKEN + GITHUB ══ */
 const savedTok=localStorage.getItem('cdp_gh_token');
 if(savedTok){$('f-token').value=savedTok;$('f-remember').checked=true;}
 function getToken(){
@@ -242,18 +559,17 @@ function getToken(){
   if(!$('f-remember').checked)localStorage.removeItem('cdp_gh_token');
   return t;
 }
-
-/* ── GitHub API ── */
+function ghHeaders(){
+  const h={'Accept':'application/vnd.github+json'};
+  const t=$('f-token')?$('f-token').value.trim():'';
+  if(t)h['Authorization']='Bearer '+t;
+  return h;
+}
 async function ghGetSha(path){
   const r=await fetch(API+path+'?ref='+BRANCH+'&t='+Date.now(),{headers:ghHeaders()});
   if(r.status===404)return null;
   if(!r.ok)throw new Error('GitHub: '+r.status);
   return (await r.json()).sha;
-}
-function ghHeaders(){
-  const h={'Accept':'application/vnd.github+json'};
-  const t=getToken();if(t)h['Authorization']='Bearer '+t;
-  return h;
 }
 async function ghPut(path,base64,msg){
   const sha=await ghGetSha(path);
@@ -266,15 +582,15 @@ async function ghPut(path,base64,msg){
   }
   return r.json();
 }
+function toB64(obj){return btoa(unescape(encodeURIComponent(JSON.stringify(obj,null,2))));}
 async function saveToGitHub(){
-  if(!getToken()){status('Vlož GitHub token (alebo použi Stiahnuť cola.json)','err');return;}
+  if(!getToken()){status('Vlož GitHub token (alebo použi Stiahnuť JSON)','err');aTabByView('v-save');return;}
   collect();
-  const json=JSON.stringify(data,null,2);
-  const b64=btoa(unescape(encodeURIComponent(json)));
   status('Ukladám na GitHub…','busy');
   $('btn-save').disabled=true;
   try{
-    await ghPut(DATA_PATH,b64,'Admin: aktualizácia Coca-Cola cenníka');
+    await ghPut('data/cola.json',toB64(cola),'Admin: aktualizácia Coca-Cola cenníka');
+    await ghPut('data/content.json',toB64(content),'Admin: aktualizácia obsahu webu');
     status('✓ Uložené! Web sa obnoví do 1–2 minút.','ok');
   }catch(e){
     status('Chyba: '+e.message,'err');
@@ -282,14 +598,17 @@ async function saveToGitHub(){
     $('btn-save').disabled=false;
   }
 }
+function aTabByView(v){
+  document.querySelectorAll('.atab').forEach(b=>{if(b.dataset.v===v)aTab(b);});
+}
 
-/* ── upload obrázka ── */
+/* ══ UPLOAD OBRÁZKA ══ */
 function pickImage(i){
   const inp=document.createElement('input');
   inp.type='file';inp.accept='image/*';
   inp.onchange=async ()=>{
     const f=inp.files[0];if(!f)return;
-    if(!getToken()){status('Na nahratie obrázka je potrebný GitHub token','err');return;}
+    if(!getToken()){status('Na nahratie obrázka je potrebný GitHub token (záložka Uloženie)','err');return;}
     if(f.size>3*1024*1024){status('Obrázok je príliš veľký (max 3 MB)','err');return;}
     status('Nahrávam obrázok…','busy');
     try{
@@ -301,7 +620,7 @@ function pickImage(i){
       const safe=f.name.toLowerCase().replace(/[^a-z0-9._-]/g,'-');
       const path='assets/uploads/'+Date.now()+'-'+safe;
       await ghPut(path,b64,'Admin: upload obrázka '+safe);
-      data.products[i].img=path;
+      cola.products[i].img=path;
       renderProducts();
       status('✓ Obrázok nahratý — nezabudni Uložiť na web','ok');
     }catch(e){status('Chyba uploadu: '+e.message,'err');}
@@ -309,17 +628,19 @@ function pickImage(i){
   inp.click();
 }
 
-/* ── download fallback ── */
+/* ══ DOWNLOAD FALLBACK ══ */
 function downloadJson(){
   collect();
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='cola.json';a.click();
-  URL.revokeObjectURL(a.href);
-  status('Súbor stiahnutý — nahraj ho do data/cola.json','ok');
+  [['cola.json',cola],['content.json',content]].forEach(([name,obj])=>{
+    const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download=name;a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  status('Súbory stiahnuté — nahraj ich do priečinka data/','ok');
 }
 
-reloadData();
+if(sessionStorage.getItem('cdp_admin')===AUTH_HASH){unlock();}
 </script>
 </body>
 </html>

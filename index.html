@@ -1812,6 +1812,122 @@ document.getElementById('hero').addEventListener('mousemove',e=>{
     .then(build)
     .catch(()=>build(FALLBACK));
 })();
+
+/* ══ OBSAH WEBU Z data/content.json ══ */
+(function(){
+  function txt(sel,val){
+    if(val==null)return;
+    const el=document.querySelector(sel);
+    if(el)el.textContent=val;
+  }
+  function applyContent(c){
+    // hero
+    if(c.hero){
+      const addr=document.querySelector('#l-text .h-addr');
+      if(addr&&c.hero.addr!=null){
+        while(addr.childNodes.length>1)addr.removeChild(addr.lastChild);
+        addr.appendChild(document.createTextNode(c.hero.addr));
+      }
+      txt('#hero .h-coskoro',c.hero.coming);
+    }
+    // hlavičky sekcií
+    if(c.sections)for(const id in c.sections){
+      const s=c.sections[id];
+      txt('#'+id+' .sec-label',s.label);
+      txt('#'+id+' .sec-title',s.title);
+      if(s.sub)txt('#'+id+' .sec-sub',s.sub);
+    }
+    // karty (texty, ikony ostávajú)
+    const cardSel={onas:'#onas .card',terasa:'#terasa .card',eventy:'#eventy .cards .card',wellness:'#wellness .wcard',ubytovanie:'#ubytovanie .wcard'};
+    if(c.cards)for(const key in c.cards){
+      const els=document.querySelectorAll(cardSel[key]||'');
+      c.cards[key].forEach((cd,i)=>{
+        if(!els[i])return;
+        const t=els[i].querySelector('.card-ttl'),x=els[i].querySelector('.card-txt');
+        if(t&&cd.ttl!=null)t.textContent=cd.ttl;
+        if(x&&cd.txt!=null)x.textContent=cd.txt;
+      });
+    }
+    // cenníky (menu sekcie)
+    if(c.menus)for(const secId in c.menus)rebuildMenu(secId,c.menus[secId]);
+    // eventy
+    if(Array.isArray(c.events)){
+      const list=document.querySelector('#eventy .ev-list');
+      if(list){
+        list.innerHTML='';
+        c.events.forEach(e=>{
+          const it=document.createElement('div');it.className='ev-item';
+          it.innerHTML='<div class="ev-date"><span class="ev-day"></span><span class="ev-mon"></span></div>'+
+            '<div class="ev-info"><div class="ev-name"></div><div class="ev-desc"></div></div>'+
+            '<span class="ev-tag"></span>';
+          it.querySelector('.ev-day').textContent=e.day||'';
+          it.querySelector('.ev-mon').textContent=e.mon||'';
+          it.querySelector('.ev-name').textContent=e.name||'';
+          it.querySelector('.ev-desc').textContent=e.desc||'';
+          it.querySelector('.ev-tag').textContent=e.tag||'';
+          list.appendChild(it);
+        });
+      }
+    }
+    // kontakt
+    if(Array.isArray(c.kontakt)){
+      const rows=document.querySelectorAll('#kontakt .krow');
+      c.kontakt.forEach((k,i)=>{
+        if(!rows[i])return;
+        const l=rows[i].querySelector('.klbl'),v=rows[i].querySelector('.kval');
+        if(l&&k.lbl!=null)l.textContent=k.lbl;
+        if(v&&k.val!=null)v.textContent=k.val;
+      });
+    }
+    // footer
+    if(c.footer)txt('footer p',c.footer.line);
+  }
+  function rebuildMenu(secId,menu){
+    const sm=document.querySelector('#'+secId+' .scroll-menu');
+    if(!sm||!menu||!Array.isArray(menu.tabs)||!menu.tabs.length)return;
+    const tabsEl=sm.querySelector('.mtabs');
+    const toggle=sm.querySelector('.menu-toggle');
+    if(!tabsEl||!toggle)return;
+    sm.querySelectorAll('.mpanel').forEach(p=>p.remove());
+    tabsEl.innerHTML='';
+    menu.tabs.forEach((t,ti)=>{
+      const b=document.createElement('button');
+      b.className='mtab'+(ti===0?' on':'');
+      b.textContent=t.label||t.id;
+      b.addEventListener('click',()=>mTab(t.id,b));
+      tabsEl.appendChild(b);
+      const panel=document.createElement('div');
+      panel.id='mp-'+t.id;
+      panel.className='mpanel'+(ti===0?' on':'');
+      const grid=document.createElement('div');
+      grid.className='mgrid';
+      const groups=t.groups||[];
+      const ncols=Math.max(1,...groups.map(g=>g.col||1));
+      if(ncols===1)grid.style.maxWidth='520px';
+      const colDivs=[];
+      for(let i=0;i<ncols;i++){const d=document.createElement('div');colDivs.push(d);grid.appendChild(d);}
+      groups.forEach(g=>{
+        const gd=document.createElement('div');gd.className='mgroup';
+        const mc=document.createElement('div');mc.className='mcat';mc.textContent=g.cat||'';gd.appendChild(mc);
+        (g.rows||[]).forEach(r=>{
+          const row=document.createElement('div');row.className='mrow';
+          row.innerHTML='<span class="mn"></span><span class="mv"></span><span class="mp"></span>';
+          row.children[0].textContent=r.n||'';
+          row.children[1].textContent=r.v||'–';
+          row.children[2].textContent=r.p||'';
+          gd.appendChild(row);
+        });
+        colDivs[Math.min((g.col||1),ncols)-1].appendChild(gd);
+      });
+      panel.appendChild(grid);
+      sm.insertBefore(panel,toggle);
+    });
+  }
+  fetch('data/content.json?v='+Date.now())
+    .then(r=>{if(!r.ok)throw 0;return r.json();})
+    .then(applyContent)
+    .catch(()=>{}); // bez JSON ostane statický obsah
+})();
 </script>
 
 <div id="back-top" onclick="goTo('top')" title="Späť na vrch">

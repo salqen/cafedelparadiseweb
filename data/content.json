@@ -1,0 +1,311 @@
+{
+  "hero": {
+    "addr": "J. Murgaša 46 – Prievidza · čínsky múr (bývalé Kuppe Coffee)",
+    "coming": "✦   Čoskoro otvárame   ✦"
+  },
+  "sections": {
+    "onas": { "label": "O nás", "title": "Viac než len kaviareň", "sub": "Café del Paradise je miesto kde sa stretáva výborná káva, tropická atmosféra a wellness zážitok — váš vlastný kúsok raja !" },
+    "napoje": { "label": "Nápojový lístok", "title": "Čo si dáte?", "sub": "Čerstvé limonády, prémiová káva, výber liehovín a vín — niečo pre každého." },
+    "jedlo": { "label": "Jedálny lístok", "title": "Niečo na zahryznutie", "sub": "Jednoduché, čerstvé a chutné — rýchle sústa aj ľahké jedlá priamo k vášmu nápoju." },
+    "zmrzlina": { "label": "Zmrzlina", "title": "Tropický chlad", "sub": "Remeselná zmrzlina, exotické poháre a osviežujúce smoothie — ideálne na horúce letné dni." },
+    "shisha": { "label": "Shisha", "title": "Orientálna pohoda", "sub": "Prémiová vodná fajka v uvoľnenej atmosfére — ideálny doplnok k nápoju alebo večernému posedeniu." },
+    "terasa": { "label": "Letná Terasa", "title": "Pod otvoreným nebom", "sub": "Prekrytá mediteránska terasa na kraji Prievidzy — slnko, pohoda a zábava pre celú rodinu." },
+    "eventy": { "label": "Eventy", "title": "Zažite niečo výnimočné", "sub": "Živá hudba, súkromné oslavy, firemné večierky — Café del Paradise je miesto kde sa dejú veci." },
+    "wellness": { "label": "Wellness", "title": "Oáza na kraji mesta", "sub": "Zabudnite na stres. Parná sprcha a výrivková vaňa čakajú iba na vás." },
+    "ubytovanie": { "label": "Ubytovanie", "title": "Zostaňte dlhšie", "sub": "Komfortné izby priamo nad kaviarňou — ideálne pre víkendový oddych alebo firemné cesty." },
+    "kontakt": { "label": "Kontakt", "title": "Nájdite nás", "sub": "" }
+  },
+  "cards": {
+    "onas": [
+      { "ttl": "Coffee & Bar", "txt": "Prémiová káva, čerstvé limonády, kokteily, craft pivo a výber liehovín — od rána do noci." },
+      { "ttl": "Jedlo", "txt": "Toasty, šaláty, polievky, sladké dezerty aj vydatné raňajkové sety — čerstvé každý deň." },
+      { "ttl": "Zmrzlina & Smoothie", "txt": "Remeselná zmrzlina, exotické poháre, tropické smoothie a osviežujúce milkshaky." },
+      { "ttl": "Shisha", "txt": "Prémiová vodná fajka s klasickými aj exotickými príchuťami — orientálna pohoda v tropickej atmosfére." },
+      { "ttl": "Letná Terasa", "txt": "Prekrytá terasa s plážovými lehátkami, hojdačkami a detským ihriskom s trampolínami." },
+      { "ttl": "Eventy", "txt": "Live koncerty, latino párty, súkromné oslavy, svadby a firemné večierky v unikátnej atmosfére." },
+      { "ttl": "Wellness", "txt": "Súkromná výrivková vaňa a parná sprcha. Relax pre páry aj skupiny — rezervácia online." },
+      { "ttl": "Ubytovanie", "txt": "Štýlové izby s raňajkami a wellness prístupom — ideálne pre víkendový pobyt priamo nad kaviarňou." }
+    ],
+    "terasa": [
+      { "ttl": "Prekrytá Terasa", "txt": "Strecha nad hlavou, takže počasie nie je prekážkou. Príjemné posedenie za každého počasia." },
+      { "ttl": "Rôznorodé Sedenie", "txt": "Kaviarenské stoly, pohodlné plážové lehátka aj hojdačky — každý si nájde to svoje miesto." },
+      { "ttl": "Detský Kútik", "txt": "Detské ihrisko s trampolínami priamo na terase — rodičia si oddýchnu, deti sa vybláznia." },
+      { "ttl": "Večerná Atmosféra", "txt": "Fairy lights, Edison žiarovky a teplé svetlo — magická nálada od súmraku do noci." }
+    ],
+    "eventy": [
+      { "ttl": "Koncerty & Párty", "txt": "Pravidelné live vystúpenia rôznych žánrov — jazz, latino, funk, pop, rock aj elektronická hudba. Vstupné väčšinou zadarmo." },
+      { "ttl": "Súkromné Oslavy", "txt": "Narodeniny, výročia, rozlúčky so slobodou — zarezervujte si celú terasu alebo súkromnú miestnosť len pre vás." },
+      { "ttl": "Svadby & Recepcie", "txt": "Intímna svadba v tropickej atmosfére. Individuálne menu, dekorácie a obsluha podľa vašich predstáv." },
+      { "ttl": "Firemné Večierky", "txt": "Teambuildingy, vianočné večierky, produktové prezentácie. Komplexný catering a technická podpora." }
+    ],
+    "wellness": [
+      { "ttl": "Výrivková vaňa", "txt": "Súkromný prenájom pre páry aj skupiny. Ideálny spôsob ako si oddýchnuť." },
+      { "ttl": "Parná sprcha", "txt": "Prémiová parná kabína. Uvoľnenie svalov, detox a relax v jednom." },
+      { "ttl": "Atmosféra", "txt": "Tlmené svetlo, difuzéry, hudba. Každý detail premyslený pre váš komfort." },
+      { "ttl": "Rezervácie", "txt": "WhatsApp alebo online rezervácia. Prvý týždeň uvítacia zľava." }
+    ],
+    "ubytovanie": [
+      { "ttl": "Komfortné Izby", "txt": "Štýlové izby s klimatizáciou, rýchlym WiFi a exkluzívnym prístupom k wellness." },
+      { "ttl": "Raňajky v cene", "txt": "Každý pobyt zahŕňa raňajky v kaviarni — čerstvý toast, káva a sezónne ovocie." },
+      { "ttl": "Wellness Prístup", "txt": "Hostia majú prednostný prístup k výrivkovej vani a parnej sprche so zľavou." },
+      { "ttl": "Rezervácie", "txt": "Dostupnosť a ceny na vyžiadanie. Kapacita obmedzená — odporúčame rezervovať vopred." }
+    ]
+  },
+  "menus": {
+    "napoje": { "tabs": [
+      { "id": "nealko", "label": "Nealko", "groups": [
+        { "cat": "Limonády", "col": 1, "rows": [
+          { "n": "Limonáda + H₂O · Citrón / Jahoda / Malina", "v": "1000ml", "p": "3,90 €" },
+          { "n": "Limonáda + Sóda · Citrón / Jahoda / Malina", "v": "1000ml", "p": "5,90 €" }
+        ]},
+        { "cat": "Nealko", "col": 1, "rows": [
+          { "n": "Sóda", "v": "100ml", "p": "0,20 €" },
+          { "n": "Kofola čapovaná 0,3l", "v": "–", "p": "1,50 €" },
+          { "n": "Kofola čapovaná 0,5l", "v": "–", "p": "2,40 €" },
+          { "n": "Royal Cola / Cola Zero", "v": "250ml", "p": "2,50 €" },
+          { "n": "Vinea Biela / Červená", "v": "250ml", "p": "2,50 €" },
+          { "n": "Targa Pomaranč", "v": "250ml", "p": "2,50 €" },
+          { "n": "Targa Marakuja a Mandarinka", "v": "250ml", "p": "2,50 €" },
+          { "n": "Targa Citrón", "v": "250ml", "p": "2,50 €" },
+          { "n": "Targa Tonic Originale / Rose / Ginger", "v": "250ml", "p": "2,50 €" },
+          { "n": "Curiosa Ice Tea Citrus / Peach", "v": "250ml", "p": "2,50 €" }
+        ]},
+        { "cat": "Džúsy", "col": 2, "rows": [
+          { "n": "Curiosa Jablko / Pomaranč / Jahoda", "v": "250ml", "p": "2,50 €" },
+          { "n": "Curiosa Multivitamín", "v": "250ml", "p": "2,50 €" },
+          { "n": "Curiosa Hruška s Mätou", "v": "250ml", "p": "2,50 €" },
+          { "n": "Curiosa Č. Ribezle s Levandulou", "v": "250ml", "p": "2,50 €" },
+          { "n": "Curiosa Mango s Kurkumou", "v": "250ml", "p": "2,50 €" },
+          { "n": "Jupík", "v": "330ml", "p": "1,50 €" }
+        ]},
+        { "cat": "Minerálky", "col": 2, "rows": [
+          { "n": "Rajec Nesýtená / J. Sýtená / Sýtená", "v": "330ml", "p": "1,90 €" },
+          { "n": "Korunní Jemne Perlivá", "v": "330ml", "p": "1,90 €" }
+        ]}
+      ]},
+      { "id": "alko", "label": "Alko", "groups": [
+        { "cat": "Pivo", "col": 1, "rows": [
+          { "n": "Radegast 10° 0,3l", "v": "0,3l", "p": "1,40 €" },
+          { "n": "Radegast 10° 0,5l", "v": "0,5l", "p": "2,20 €" },
+          { "n": "Radegast Birell 0,5l", "v": "0,5l", "p": "2,20 €" }
+        ]},
+        { "cat": "Vodka", "col": 1, "rows": [
+          { "n": "Nicolaus Vodka Klasik 40%", "v": "0,04l", "p": "1,40 €" },
+          { "n": "Absolut Vodka 40%", "v": "0,04l", "p": "1,90 €" }
+        ]},
+        { "cat": "Whiskey / Bourbon", "col": 1, "rows": [
+          { "n": "Jack Daniel's 40%", "v": "0,04l", "p": "2,90 €" }
+        ]},
+        { "cat": "Rum", "col": 1, "rows": [
+          { "n": "Nicolaus Tuzemský 40%", "v": "0,04l", "p": "1,40 €" },
+          { "n": "Captain Morgan 40%", "v": "0,04l", "p": "1,90 €" },
+          { "n": "Diplomatico Res. Ex. 12 Y.O. 40%", "v": "0,04l", "p": "3,90 €" }
+        ]},
+        { "cat": "Gin", "col": 2, "rows": [
+          { "n": "Kensington Silver Gin 37,5%", "v": "0,04l", "p": "1,50 €" },
+          { "n": "Kensington Pink Gin 37,5%", "v": "0,04l", "p": "1,50 €" }
+        ]},
+        { "cat": "Likéry", "col": 2, "rows": [
+          { "n": "Aperol 11%", "v": "0,2l", "p": "4,40 €" },
+          { "n": "Fernet Stock Citrus 27%", "v": "0,04l", "p": "1,90 €" }
+        ]},
+        { "cat": "Destiláty", "col": 2, "rows": [
+          { "n": "Nicolaus Borovička Klasik 40%", "v": "0,04l", "p": "1,40 €" },
+          { "n": "Tri Stromy Gold Slivovica 52%", "v": "0,04l", "p": "2,20 €" },
+          { "n": "Karpatské Brandy 40%", "v": "0,04l", "p": "1,50 €" }
+        ]},
+        { "cat": "Prosecco & Víno", "col": 2, "rows": [
+          { "n": "Hamlet Frizzante 11%", "v": "0,1l", "p": "1,20 €" },
+          { "n": "Biele Víno", "v": "0,1l", "p": "1,20 €" },
+          { "n": "Červené Víno", "v": "0,1l", "p": "1,20 €" }
+        ]}
+      ]},
+      { "id": "kokteily", "label": "Kokteily", "groups": [
+        { "cat": "Klasické Kokteily", "col": 1, "rows": [
+          { "n": "Mojito (rum, limetka, mäta, trstinový cukor)", "v": "300ml", "p": "7,90 €" },
+          { "n": "Aperol Spritz (Aperol, Prosecco, sóda)", "v": "300ml", "p": "7,50 €" },
+          { "n": "Piña Colada (rum, kokosový krém, ananás)", "v": "300ml", "p": "7,90 €" },
+          { "n": "Cosmopolitan (vodka, triple sec, brusnica, limetka)", "v": "200ml", "p": "7,90 €" },
+          { "n": "Sex on the Beach (vodka, peach, pomaranč, brusnica)", "v": "300ml", "p": "7,90 €" }
+        ]},
+        { "cat": "Gin & Tonic", "col": 1, "rows": [
+          { "n": "G&T Classic (Kensington Silver + Tonic)", "v": "300ml", "p": "6,90 €" },
+          { "n": "G&T Rose (Kensington Pink + Rose Tonic)", "v": "300ml", "p": "6,90 €" }
+        ]},
+        { "cat": "Paradise Špeciality", "col": 2, "rows": [
+          { "n": "Paradise Sunset (rum, marakuja, mango, limetka)", "v": "300ml", "p": "8,90 €" },
+          { "n": "Tropical Paradise (vodka, kokos, ananás, mäta)", "v": "300ml", "p": "8,90 €" },
+          { "n": "Garden of Eden (gin, okurka, bazalka, tonic)", "v": "300ml", "p": "8,90 €" },
+          { "n": "Café Negroni (gin, Campari, espresso, vermút)", "v": "200ml", "p": "8,90 €" }
+        ]},
+        { "cat": "Nealko Kokteily", "col": 2, "rows": [
+          { "n": "Virgin Mojito (limetka, mäta, sóda)", "v": "300ml", "p": "5,90 €" },
+          { "n": "Sunrise (pomaranč, grenadína, sóda)", "v": "300ml", "p": "5,90 €" },
+          { "n": "Blue Paradise (modré curaçao nealko, limetka, tonic)", "v": "300ml", "p": "5,90 €" }
+        ]}
+      ]},
+      { "id": "kava", "label": "Káva & Čaj", "groups": [
+        { "cat": "Káva", "col": 1, "rows": [
+          { "n": "Ristretto / Espresso / Lungo", "v": "9g", "p": "2,30 €" },
+          { "n": "Cappucino", "v": "9g", "p": "2,70 €" },
+          { "n": "Latte Macchiato", "v": "–", "p": "3,20 €" },
+          { "n": "Flat White", "v": "–", "p": "3,20 €" },
+          { "n": "Cold Brew", "v": "200ml", "p": "3,50 €" },
+          { "n": "Smotana do kávy", "v": "7ml", "p": "0,20 €" }
+        ]},
+        { "cat": "Čaj", "col": 1, "rows": [
+          { "n": "Čierny / Zelený / Ovocný / Bylinkový", "v": "30g", "p": "2,30 €" },
+          { "n": "Ľadový čaj (Ice Tea domáci)", "v": "300ml", "p": "3,50 €" },
+          { "n": "Med", "v": "20g", "p": "0,50 €" }
+        ]}
+      ]},
+      { "id": "horuce", "label": "Horúce nápoje", "groups": [
+        { "cat": "Horúca Čokoláda", "col": 1, "rows": [
+          { "n": "Horúca čokoláda Classic", "v": "200ml", "p": "3,50 €" },
+          { "n": "Horúca čokoláda so šľahačkou", "v": "200ml", "p": "3,90 €" },
+          { "n": "Belgická čokoláda s karamelom", "v": "200ml", "p": "4,20 €" }
+        ]},
+        { "cat": "Špeciality", "col": 1, "rows": [
+          { "n": "Matcha Latte", "v": "300ml", "p": "4,20 €" },
+          { "n": "Chai Latte (korenistý čaj s mliekom)", "v": "300ml", "p": "3,90 €" },
+          { "n": "Turmeric Latte (zlaté mlieko)", "v": "300ml", "p": "3,90 €" }
+        ]},
+        { "cat": "Svár & Punč", "col": 1, "rows": [
+          { "n": "Horúci svár (červené víno, koreniny)", "v": "200ml", "p": "3,90 €" },
+          { "n": "Nealko horúci punč (ovocie, koreniny)", "v": "200ml", "p": "3,50 €" }
+        ]}
+      ]}
+    ]},
+    "jedlo": { "tabs": [
+      { "id": "snack", "label": "Snacky & Toast", "groups": [
+        { "cat": "Toasty", "col": 1, "rows": [
+          { "n": "Toast so šunkou a syrom", "v": "–", "p": "3,90 €" },
+          { "n": "Toast s avokádom a vajcom", "v": "–", "p": "4,90 €" },
+          { "n": "Toast s lososom a cream cheese", "v": "–", "p": "5,50 €" },
+          { "n": "Vegán toast s hummusom a zeleninou", "v": "–", "p": "4,50 €" }
+        ]},
+        { "cat": "Snacky", "col": 1, "rows": [
+          { "n": "Nachos s dipom (guacamole / salsa)", "v": "–", "p": "3,50 €" },
+          { "n": "Bruschetta s paradajkami a bazalkou", "v": "–", "p": "3,90 €" },
+          { "n": "Tanier syrov a olivy", "v": "–", "p": "5,90 €" }
+        ]},
+        { "cat": "Polievky", "col": 2, "rows": [
+          { "n": "Polievka dňa", "v": "300ml", "p": "2,90 €" },
+          { "n": "Gazpacho (sezóna)", "v": "300ml", "p": "3,50 €" }
+        ]},
+        { "cat": "Šaláty", "col": 2, "rows": [
+          { "n": "Grécky šalát", "v": "–", "p": "5,90 €" },
+          { "n": "Šalát s grilovaným kuracím", "v": "–", "p": "6,90 €" },
+          { "n": "Caesar šalát", "v": "–", "p": "6,50 €" }
+        ]}
+      ]},
+      { "id": "sladke", "label": "Sladké", "groups": [
+        { "cat": "Dezerty", "col": 1, "rows": [
+          { "n": "Cheesecake (jahoda / mango)", "v": "–", "p": "3,90 €" },
+          { "n": "Čokoládový fondant", "v": "–", "p": "4,50 €" },
+          { "n": "Tiramisu", "v": "–", "p": "3,90 €" },
+          { "n": "Waffle s ovocím a šľahačkou", "v": "–", "p": "4,90 €" }
+        ]},
+        { "cat": "Zmrzlina", "col": 1, "rows": [
+          { "n": "1 kopčok", "v": "–", "p": "0,90 €" },
+          { "n": "Zmrzlinový pohár (3 kopčeky + topping)", "v": "–", "p": "4,50 €" }
+        ]}
+      ]},
+      { "id": "raňajky", "label": "Raňajky", "groups": [
+        { "cat": "Raňajky", "col": 1, "rows": [
+          { "n": "Granola s jogurtom a ovocím", "v": "–", "p": "4,50 €" },
+          { "n": "Vajcia na rôzne spôsoby (volené / miešané)", "v": "–", "p": "3,90 €" },
+          { "n": "Francúzsky toast so sirupom", "v": "–", "p": "4,90 €" },
+          { "n": "Acai bowl", "v": "–", "p": "5,90 €" }
+        ]},
+        { "cat": "Raňajkové sety", "col": 1, "rows": [
+          { "n": "Set A – toast + káva + džús", "v": "–", "p": "7,90 €" },
+          { "n": "Set B – granola + latte + ovocie", "v": "–", "p": "8,50 €" }
+        ]}
+      ]}
+    ]},
+    "zmrzlina": { "tabs": [
+      { "id": "zmrz-kopceky", "label": "Kopčeky", "groups": [
+        { "cat": "Kopčeky", "col": 1, "rows": [
+          { "n": "1 kopčok (vanilka / čokoláda / jahoda)", "v": "–", "p": "0,90 €" },
+          { "n": "1 kopčok exotická príchuť (mango / kokos / marakuja)", "v": "–", "p": "1,10 €" },
+          { "n": "Kornút / Pohár", "v": "–", "p": "0,20 €" }
+        ]},
+        { "cat": "Toppings", "col": 1, "rows": [
+          { "n": "Čokoládový / Karamelový / Jahodový sirup", "v": "–", "p": "0,50 €" },
+          { "n": "Šľahačka", "v": "–", "p": "0,50 €" },
+          { "n": "Čerstvé ovocie", "v": "–", "p": "0,80 €" }
+        ]}
+      ]},
+      { "id": "zmrz-pohare", "label": "Poháre", "groups": [
+        { "cat": "Zmrzlinové Poháre", "col": 1, "rows": [
+          { "n": "Paradise Pohár (3 kopčeky + ovocie + šľahačka)", "v": "–", "p": "4,90 €" },
+          { "n": "Tropický pohár (mango + kokos + marakuja)", "v": "–", "p": "5,50 €" },
+          { "n": "Čokoládový pohár (čoko + karamel + oriešky)", "v": "–", "p": "4,90 €" },
+          { "n": "Detský pohár (2 kopčeky + sirup + posýpka)", "v": "–", "p": "3,50 €" }
+        ]},
+        { "cat": "Affogato", "col": 1, "rows": [
+          { "n": "Affogato (vanilková zmrzlina + espresso)", "v": "–", "p": "3,90 €" }
+        ]}
+      ]},
+      { "id": "zmrz-smoothie", "label": "Smoothie", "groups": [
+        { "cat": "Smoothie", "col": 1, "rows": [
+          { "n": "Mango & Marakuja", "v": "300ml", "p": "4,50 €" },
+          { "n": "Jahoda & Banán", "v": "300ml", "p": "4,50 €" },
+          { "n": "Zelené (špenát + jablko + zázvor)", "v": "300ml", "p": "4,90 €" },
+          { "n": "Kokos & Ananás", "v": "300ml", "p": "4,50 €" }
+        ]},
+        { "cat": "Milkshake", "col": 1, "rows": [
+          { "n": "Vanilkový / Čokoládový / Jahodový", "v": "400ml", "p": "4,90 €" }
+        ]}
+      ]}
+    ]},
+    "shisha": { "tabs": [
+      { "id": "shisha-classic", "label": "Klasické príchute", "groups": [
+        { "cat": "Klasické Príchute", "col": 1, "rows": [
+          { "n": "Double Apple (dvojité jablko)", "v": "–", "p": "8,90 €" },
+          { "n": "Mint (mäta)", "v": "–", "p": "8,90 €" },
+          { "n": "Watermelon Mint (melón + mäta)", "v": "–", "p": "8,90 €" },
+          { "n": "Blueberry (čučoriedka)", "v": "–", "p": "8,90 €" },
+          { "n": "Grape (hrozno)", "v": "–", "p": "8,90 €" },
+          { "n": "Lemon (citrón)", "v": "–", "p": "8,90 €" }
+        ]}
+      ]},
+      { "id": "shisha-premium", "label": "Premium", "groups": [
+        { "cat": "Premium Príchute", "col": 1, "rows": [
+          { "n": "Mango & Marakuja", "v": "–", "p": "11,90 €" },
+          { "n": "Kokos & Ananás (Tropický mix)", "v": "–", "p": "11,90 €" },
+          { "n": "Ružová limonáda (Raspberry Lemonade)", "v": "–", "p": "11,90 €" },
+          { "n": "Grapefruit & Mäta", "v": "–", "p": "11,90 €" },
+          { "n": "Exotic Paradise (špeciálny mix)", "v": "–", "p": "13,90 €" }
+        ]}
+      ]},
+      { "id": "shisha-doplnky", "label": "Doplnky", "groups": [
+        { "cat": "Doplnky", "col": 1, "rows": [
+          { "n": "Náhradný tabak (refill)", "v": "–", "p": "5,90 €" },
+          { "n": "Nové uhlie", "v": "–", "p": "1,50 €" },
+          { "n": "Hygienický náustok", "v": "–", "p": "0,50 €" }
+        ]},
+        { "cat": "Shisha Set", "col": 1, "rows": [
+          { "n": "Shisha + nápoj podľa výberu", "v": "–", "p": "od 15,90 €" },
+          { "n": "Romantický set pre 2 (shisha + 2× kokteil)", "v": "–", "p": "od 28,90 €" }
+        ]}
+      ]}
+    ]}
+  },
+  "events": [
+    { "day": "14", "mon": "Jún", "name": "Latino Night", "desc": "Živá hudba · Salsa & Bachata · DJ set do rána", "tag": "Zadarmo" },
+    { "day": "21", "mon": "Jún", "name": "Jazz & Cocktails", "desc": "Akustický jazz kvartét · Špeciálne kokteilové menu", "tag": "Vstupné 5€" },
+    { "day": "28", "mon": "Jún", "name": "Summer Opening Party", "desc": "Otvorenie letnej sezóny · Live DJ · Špeciálne ceny", "tag": "Zadarmo" },
+    { "day": "05", "mon": "Júl", "name": "Funk & Soul Night", "desc": "Live kapela · Groove music · Tanečný parket", "tag": "Zadarmo" }
+  ],
+  "kontakt": [
+    { "lbl": "Adresa", "val": "J. Murgaša 46, Prievidza\nčínsky múr (bývalé Kuppe Coffee)" },
+    { "lbl": "Otvorenie", "val": "1. – 15. júna 2026\nHodiny budú upresne oznámené" },
+    { "lbl": "Rezervácie Wellness", "val": "WhatsApp · Online booking" },
+    { "lbl": "Sociálne siete", "val": "@cafedelparadise" }
+  ],
+  "footer": {
+    "line": "J. Murgaša 46 · Prievidza · Coffee · Bar · Wellness · Terasa"
+  }
+}
