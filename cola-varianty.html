@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Coca‑Cola carousel — varianty | Café del Paradise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--or1:#ff6a00;--or2:#ff9e1b;--or3:#ffce00;--red:#e61a27;--dark:#3d0e00}
+body{background:#2b0a00;color:#fff;font-family:'Outfit',sans-serif;overflow-x:hidden}
+.top{max-width:1100px;margin:0 auto;padding:30px 24px 6px}
+.top h1{font-family:'Playfair Display',serif;font-size:26px;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.top p{font-size:13px;color:rgba(255,200,120,.55);margin-top:6px;line-height:1.6;max-width:720px}
+.switch{max-width:1100px;margin:18px auto 0;padding:0 24px;display:flex;gap:10px;flex-wrap:wrap}
+.sbtn{
+  padding:10px 20px;border-radius:30px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  border:1px solid rgba(230,26,39,.3);background:transparent;color:rgba(255,190,170,.7);cursor:pointer;
+  font-family:'Outfit',sans-serif;transition:all .2s;
+}
+.sbtn.on,.sbtn:hover{border-color:#e61a27;color:#ff8f88;background:rgba(230,26,39,.12);box-shadow:0 0 18px rgba(230,26,39,.18)}
+.variant{display:none;padding:20px 0 70px}
+.variant.on{display:block}
+.vtitle{max-width:1100px;margin:20px auto 0;padding:0 24px;font-family:'Playfair Display',serif;font-size:20px;color:rgba(255,220,180,.9)}
+.vdesc{max-width:1100px;margin:4px auto 0;padding:0 24px;font-size:12.5px;color:rgba(255,190,140,.5);line-height:1.6}
+.sec-inner{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ===== spoločné karty / obrázok ===== */
+.pcard-img{
+  border-radius:12px;overflow:hidden;
+  background:radial-gradient(circle at 50% 26%,#fff 0%,#f2ede8 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.pcard-img img{max-width:86%;max-height:86%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.28));pointer-events:none}
+.pname{font-family:'Playfair Display',serif;font-weight:700;
+  background:linear-gradient(120deg,#fff4f0,#ffc9bb);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pdesc{color:rgba(255,205,180,.55);line-height:1.45}
+.pprice{font-family:'Playfair Display',serif;font-weight:900;
+  background:linear-gradient(120deg,var(--or2),var(--or3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 8px rgba(255,158,27,.35))}
+.pvol{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,180,160,.5)}
+.arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:8;
+  width:46px;height:46px;border-radius:50%;cursor:pointer;
+  background:linear-gradient(135deg,rgba(230,26,39,.16),rgba(60,8,4,.5));border:1px solid rgba(230,26,39,.4);
+  display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(6px);
+}
+.arrow:hover{border-color:rgba(255,90,100,.8);box-shadow:0 4px 24px rgba(230,26,39,.35)}
+.arrow:active{transform:translateY(-50%) scale(.92)}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;border:none;padding:0;cursor:pointer;background:rgba(255,140,120,.25);transition:all .25s}
+.dot.on{background:#e61a27;transform:scale(1.35);box-shadow:0 0 8px rgba(230,26,39,.7)}
+.hint{text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,170,150,.35);margin-top:14px}
+
+/* ============ V1: COVERFLOW (3 viditeľné, stred + rozostrené boky) ============ */
+.cf-stage{position:relative;height:440px;margin-top:24px;user-select:none;touch-action:pan-y}
+.cf-track{position:absolute;inset:0;transform-style:preserve-3d}
+.cf-card{
+  position:absolute;left:50%;top:50%;width:250px;height:360px;margin:-180px 0 0 -125px;
+  border-radius:20px;padding:16px 16px 14px;
+  background:linear-gradient(160deg,rgba(70,10,8,.94),rgba(24,4,2,.97));
+  border:1px solid rgba(230,26,39,.3);box-shadow:0 18px 50px rgba(0,0,0,.55);
+  display:flex;flex-direction:column;cursor:pointer;
+  transition:transform .55s cubic-bezier(.22,.61,.36,1),opacity .55s,filter .55s,box-shadow .55s;
+  will-change:transform,opacity,filter;
+}
+.cf-card .pcard-img{width:100%;height:210px;flex-shrink:0}
+.cf-card .pname{font-size:17px;margin-top:12px;line-height:1.2}
+.cf-card .pdesc{font-size:11px;margin-top:5px;flex:1;overflow:hidden}
+.cf-card .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:8px;border-top:1px solid rgba(230,26,39,.22)}
+.cf-card .pprice{font-size:20px}
+.cf-card.is-center{border-color:rgba(255,90,100,.75);box-shadow:0 22px 66px rgba(230,26,39,.4)}
+.cf-card.is-hidden{opacity:0;pointer-events:none}
+.cf-floor{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:70%;height:120px;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(230,26,39,.18),transparent 70%);filter:blur(2px)}
+
+/* ============ V2: 3D RING (otočný kruh) ============ */
+.rg-stage{position:relative;height:430px;margin-top:24px;user-select:none;touch-action:pan-y}
+.rg-vp{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 42%}
+.rg-ring{position:absolute;left:50%;top:50%;transform-style:preserve-3d;cursor:grab;will-change:transform}
+.rg-ring.drag{cursor:grabbing}
+.rg-card{
+  position:absolute;width:210px;height:330px;left:-105px;top:-165px;border-radius:18px;padding:14px 14px 12px;
+  background:linear-gradient(160deg,rgba(70,10,8,.92),rgba(30,4,2,.96));border:1px solid rgba(230,26,39,.35);
+  box-shadow:0 14px 40px rgba(0,0,0,.55);backface-visibility:hidden;display:flex;flex-direction:column;
+}
+.rg-card .pcard-img{width:100%;height:190px;flex-shrink:0}
+.rg-card .pname{font-size:16px;margin-top:12px;line-height:1.25}
+.rg-card .pdesc{font-size:10.5px;margin-top:4px;flex:1;overflow:hidden}
+.rg-card .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:8px;border-top:1px solid rgba(230,26,39,.22)}
+.rg-card .pprice{font-size:19px}
+.rg-card.front{border-color:rgba(255,90,100,.7);box-shadow:0 18px 60px rgba(230,26,39,.35)}
+
+/* ============ V3: SPOTLIGHT STACK (parallax tilt) ============ */
+.sp-stage{position:relative;height:440px;margin-top:24px;user-select:none;touch-action:pan-y;perspective:1400px}
+.sp-track{position:absolute;inset:0;transform-style:preserve-3d}
+.sp-card{
+  position:absolute;left:50%;top:50%;width:260px;height:370px;margin:-185px 0 0 -130px;border-radius:22px;padding:16px;
+  background:linear-gradient(160deg,rgba(72,10,8,.96),rgba(20,3,2,.98));border:1px solid rgba(230,26,39,.3);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;cursor:pointer;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .6s,filter .6s;will-change:transform,opacity,filter;
+}
+.sp-card .pcard-img{width:100%;height:222px;flex-shrink:0}
+.sp-card .pname{font-size:18px;margin-top:13px}
+.sp-card .pdesc{font-size:11px;margin-top:5px;flex:1;overflow:hidden}
+.sp-card .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:8px;border-top:1px solid rgba(230,26,39,.22)}
+.sp-card .pprice{font-size:21px}
+.sp-card.is-hidden{opacity:0;pointer-events:none}
+.sp-glow{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:520px;height:520px;border-radius:50%;
+  pointer-events:none;background:radial-gradient(circle,rgba(230,26,39,.14),transparent 62%)}
+
+@media(max-width:767px){
+  .cf-stage,.sp-stage{height:400px}
+  .cf-card{width:210px;height:320px;margin:-160px 0 0 -105px}
+  .cf-card .pcard-img{height:178px}
+  .sp-card{width:220px;height:330px;margin:-165px 0 0 -110px}
+  .sp-card .pcard-img{height:190px}
+  .rg-stage{height:360px}
+  .rg-vp{perspective:1000px}
+  .rg-card{width:158px;height:272px;left:-79px;top:-136px}
+  .rg-card .pcard-img{height:140px}
+  .rg-card .pdesc{display:none}
+  .arrow{width:38px;height:38px}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Coca‑Cola carousel — varianty na výber</h1>
+  <p>Tri štýly animácie na tých istých dátach (<code>data/cola.json</code>). Vyber si, ktorý nasadíme na web. Ovládanie: potiahni myšou/prstom, šípky, alebo klikni na kartu / bodku.</p>
+</div>
+<div class="switch">
+  <button class="sbtn on" data-v="v-coverflow" onclick="pick(this)">1 · Coverflow (stred + rozostrené boky)</button>
+  <button class="sbtn" data-v="v-ring" onclick="pick(this)">2 · 3D Ring (otočný kruh)</button>
+  <button class="sbtn" data-v="v-spotlight" onclick="pick(this)">3 · Spotlight Stack (parallax)</button>
+</div>
+
+<!-- V1 COVERFLOW -->
+<section class="variant on" id="v-coverflow">
+  <div class="vtitle">1 · Coverflow</div>
+  <div class="vdesc">Tri karty naraz — stredná ostrá a zväčšená, bočné posunuté dozadu, zmenšené a rozostrené (blur). Presne štýl, ktorý si opisoval.</div>
+  <div class="sec-inner">
+    <div class="cf-stage" id="cf-stage">
+      <div class="cf-track" id="cf-track"></div>
+      <div class="cf-floor"></div>
+      <button class="arrow" style="left:6px" id="cf-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="arrow" style="right:6px" id="cf-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="dots" id="cf-dots"></div>
+    <div class="hint">Potiahni · šípky · klikni na bočnú kartu</div>
+  </div>
+</section>
+
+<!-- V2 RING -->
+<section class="variant" id="v-ring">
+  <div class="vtitle">2 · 3D Ring</div>
+  <div class="vdesc">Všetky produkty rozmiestnené na otáčajúcom sa 3D kruhu s auto‑rotáciou. Efektné pri väčšom počte položiek.</div>
+  <div class="sec-inner">
+    <div class="rg-stage" id="rg-stage">
+      <div class="rg-vp"><div class="rg-ring" id="rg-ring"></div></div>
+      <button class="arrow" style="left:6px" id="rg-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="arrow" style="right:6px" id="rg-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="dots" id="rg-dots"></div>
+    <div class="hint">Potiahni · šípky · klikni na produkt</div>
+  </div>
+</section>
+
+<!-- V3 SPOTLIGHT -->
+<section class="variant" id="v-spotlight">
+  <div class="vtitle">3 · Spotlight Stack</div>
+  <div class="vdesc">Stredný produkt vo svetle reflektora, ďalšie sa vynárajú spoza neho do hĺbky s rozostrením. Karty jemne reagujú na pohyb myši (parallax tilt).</div>
+  <div class="sec-inner">
+    <div class="sp-stage" id="sp-stage">
+      <div class="sp-glow"></div>
+      <div class="sp-track" id="sp-track"></div>
+      <button class="arrow" style="left:6px" id="sp-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="arrow" style="right:6px" id="sp-next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="rgba(255,180,170,.9)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="dots" id="sp-dots"></div>
+    <div class="hint">Potiahni · šípky · pohyb myšou</div>
+  </div>
+</section>
+
+<script>
+const FALLBACK=[
+  {name:'Coca‑Cola',desc:'Original Taste — ikonická chuť už viac ako 125 rokov.',volume:'0,25 l',price:'2,90 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/products/coca-cola-original-taste/ski-coca-cola-prod-original-taste.jpg'},
+  {name:'Coca‑Cola Zero',desc:'Pravá chuť Coca‑Cola bez cukru.',volume:'0,25 l',price:'2,90 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/products/coca-cola-zero-sugar/sk_coca-cola-zero_prod_original_750x750_v1.jpg'},
+  {name:'Sprite',desc:'Osviežujúca citrónovo-limetková limonáda.',volume:'0,25 l',price:'2,90 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/sprite/03-2025-spriteupdate/sprite-classic.png'},
+  {name:'Fanta Pomaranč',desc:'Limonáda s pomarančovou šťavou.',volume:'0,25 l',price:'2,90 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/fanta/fanta-orange-2025.jpg'},
+  {name:'Kinley Tonic',desc:'Klasický tonik do drinkov aj sólo.',volume:'0,25 l',price:'2,90 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/kinley/april-page-update-2025/tonice-water.jpg'},
+  {name:'Cappy Pomaranč 100%',desc:'Stopercentný pomarančový džús.',volume:'0,25 l',price:'2,50 €',img:'https://www.coca-cola.com/content/dam/onexp/sk/sk/brands/cappy/2023/cappy-pomaranc-sk.jpg'}
+];
+let PRODUCTS=[];
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+function cardInner(p,cls){
+  return '<div class="pcard-img"><img loading="lazy" src="'+esc(p.img)+'" alt="'+esc(p.name)+'" onerror="this.style.display=\'none\'"></div>'+
+    '<div class="pname">'+esc(p.name)+'</div>'+
+    '<div class="pdesc">'+esc(p.desc||'')+'</div>'+
+    '<div class="meta"><span class="pvol">'+esc(p.volume||'')+'</span><span class="pprice">'+esc(p.price||'')+'</span></div>';
+}
+
+/* prepínač variantov */
+function pick(btn){
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.variant').forEach(v=>v.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(btn.dataset.v).classList.add('on');
+}
+
+/* ========= V1 COVERFLOW ========= */
+const CF=(()=>{
+  const track=document.getElementById('cf-track'),stage=document.getElementById('cf-stage'),dwrap=document.getElementById('cf-dots');
+  let cards=[],dots=[],idx=0,N=0;
+  function build(){
+    track.innerHTML='';dwrap.innerHTML='';cards=[];dots=[];N=PRODUCTS.length;
+    PRODUCTS.forEach((p,i)=>{
+      const c=document.createElement('div');c.className='cf-card';c.innerHTML=cardInner(p);
+      c.addEventListener('click',()=>{if(i!==idx&&!moved){go(i);}});
+      track.appendChild(c);cards.push(c);
+      const d=document.createElement('button');d.className='dot';d.onclick=()=>go(i);dwrap.appendChild(d);dots.push(d);
+    });
+    render();
+  }
+  function go(i){idx=(i+N)%N;render();}
+  function render(){
+    cards.forEach((c,i)=>{
+      let off=i-idx;
+      if(off>N/2)off-=N; if(off<-N/2)off+=N;
+      c.classList.remove('is-center','is-hidden');
+      const a=Math.abs(off);
+      if(a>2){c.classList.add('is-hidden');c.style.transform='translateX('+(off>0?520:-520)+'px) scale(.6)';return;}
+      if(off===0){
+        c.classList.add('is-center');
+        c.style.transform='translateX(0) translateZ(0) rotateY(0deg) scale(1)';
+        c.style.opacity='1';c.style.filter='none';c.style.zIndex=10;
+      }else{
+        const dir=off>0?1:-1;
+        const x=dir*(180+ (a-1)*70);
+        const rot=dir*-32;
+        const sc=a===1?.82:.66;
+        c.style.transform='translateX('+x+'px) translateZ(-'+(a*160)+'px) rotateY('+rot+'deg) scale('+sc+')';
+        c.style.opacity=a===1?'.62':'.28';
+        c.style.filter='blur('+(a===1?2.5:5)+'px)';
+        c.style.zIndex=10-a;
+      }
+    });
+    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  }
+  document.getElementById('cf-prev').onclick=()=>go(idx-1);
+  document.getElementById('cf-next').onclick=()=>go(idx+1);
+  // drag
+  let sx=0,moved=false,down=false;
+  stage.addEventListener('pointerdown',e=>{if(e.target.closest('.arrow'))return;down=true;moved=false;sx=e.clientX;});
+  stage.addEventListener('pointermove',e=>{if(!down)return;if(Math.abs(e.clientX-sx)>8)moved=true;});
+  stage.addEventListener('pointerup',e=>{if(!down)return;down=false;const dx=e.clientX-sx;if(dx>40)go(idx-1);else if(dx<-40)go(idx+1);});
+  stage.addEventListener('pointerleave',()=>down=false);
+  // autoplay
+  let timer=setInterval(()=>go(idx+1),4200);
+  stage.addEventListener('pointerdown',()=>{clearInterval(timer);});
+  return {build};
+})();
+
+/* ========= V2 3D RING ========= */
+const RG=(()=>{
+  const ring=document.getElementById('rg-ring'),stage=document.getElementById('rg-stage'),dwrap=document.getElementById('rg-dots');
+  let cards=[],dots=[],N=0,step=0,radius=0,rot=0,vel=0,drag=false,lastX=0,lastT=0,idle=0,animTo=null,justDr=false,lf=0;
+  function build(){
+    ring.innerHTML='';dwrap.innerHTML='';cards=[];dots=[];N=PRODUCTS.length;step=360/N;
+    PRODUCTS.forEach((p,i)=>{
+      const c=document.createElement('div');c.className='rg-card';c.innerHTML=cardInner(p);
+      c.addEventListener('click',()=>{if(Math.abs(vel)>.3||justDr)return;goTo(i);});
+      ring.appendChild(c);cards.push(c);
+      const d=document.createElement('button');d.className='dot';d.onclick=()=>goTo(i);dwrap.appendChild(d);dots.push(d);
+    });
+    layout();requestAnimationFrame(tick);
+  }
+  function layout(){const w=cards[0].offsetWidth;radius=Math.round((w/2)/Math.tan(Math.PI/N))+70;cards.forEach((c,i)=>c.style.transform='rotateY('+(i*step)+'deg) translateZ('+radius+'px)');}
+  function frontI(){return ((Math.round(-rot/step)%N)+N)%N;}
+  function goTo(i){let t=-i*step;while(t-rot>180)t-=360;while(t-rot<-180)t+=360;animTo=t;vel=0;idle=0;}
+  function tick(ts){const dt=lf?Math.min((ts-lf)/16.7,3):1;lf=ts;
+    if(drag){}else if(animTo!==null){const df=animTo-rot;rot+=df*.12*dt;if(Math.abs(df)<.05){rot=animTo;animTo=null;}}
+    else if(Math.abs(vel)>.02){rot+=vel*dt;vel*=Math.pow(.94,dt);if(Math.abs(vel)<=.02)snap();}
+    else{idle+=dt;if(idle>240)rot-=.045*dt;}
+    render();requestAnimationFrame(tick);}
+  function snap(){vel=0;animTo=Math.round(rot/step)*step;}
+  function render(){ring.style.transform='rotateY('+rot+'deg)';const fi=frontI();
+    cards.forEach((c,i)=>{const a=((i*step+rot)%360+360)%360;const cos=Math.cos(a*Math.PI/180);
+      c.style.opacity=(.35+.65*Math.max(0,cos)).toFixed(2);c.classList.toggle('front',i===fi);});
+    dots.forEach((d,i)=>d.classList.toggle('on',i===fi));}
+  stage.addEventListener('pointerdown',e=>{if(e.target.closest('.arrow'))return;drag=true;justDr=false;idle=0;animTo=null;vel=0;lastX=e.clientX;lastT=performance.now();ring.classList.add('drag');});
+  stage.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lastX;if(Math.abs(dx)>2)justDr=true;const now=performance.now();rot+=dx*.28;vel=dx*.28/Math.max((now-lastT)/16.7,.5);lastX=e.clientX;lastT=now;});
+  function end(){if(!drag)return;drag=false;idle=0;ring.classList.remove('drag');if(Math.abs(vel)<.3)snap();setTimeout(()=>justDr=false,50);}
+  stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);stage.addEventListener('pointerleave',end);
+  document.getElementById('rg-prev').onclick=()=>goTo((frontI()-1+N)%N);
+  document.getElementById('rg-next').onclick=()=>goTo((frontI()+1)%N);
+  window.addEventListener('resize',()=>{if(N)layout();});
+  return {build};
+})();
+
+/* ========= V3 SPOTLIGHT STACK ========= */
+const SP=(()=>{
+  const track=document.getElementById('sp-track'),stage=document.getElementById('sp-stage'),dwrap=document.getElementById('sp-dots');
+  let cards=[],dots=[],idx=0,N=0,mx=0,my=0;
+  function build(){
+    track.innerHTML='';dwrap.innerHTML='';cards=[];dots=[];N=PRODUCTS.length;
+    PRODUCTS.forEach((p,i)=>{
+      const c=document.createElement('div');c.className='sp-card';c.innerHTML=cardInner(p);
+      c.addEventListener('click',()=>{if(i!==idx&&!moved)go(i);});
+      track.appendChild(c);cards.push(c);
+      const d=document.createElement('button');d.className='dot';d.onclick=()=>go(i);dwrap.appendChild(d);dots.push(d);
+    });
+    render();
+  }
+  function go(i){idx=(i+N)%N;render();}
+  function render(){
+    cards.forEach((c,i)=>{
+      let off=i-idx;if(off>N/2)off-=N;if(off<-N/2)off+=N;
+      const a=Math.abs(off);
+      c.classList.remove('is-hidden');
+      if(a>2){c.classList.add('is-hidden');c.style.transform='translateY(-40px) translateZ(-600px) scale(.5)';return;}
+      if(off===0){
+        c.style.transform='translate('+(mx*10)+'px,'+(my*8)+'px) rotateY('+(mx*6)+'deg) rotateX('+(-my*6)+'deg) translateZ(0) scale(1)';
+        c.style.opacity='1';c.style.filter='none';c.style.zIndex=20;
+      }else{
+        const dir=off>0?1:-1;
+        c.style.transform='translate('+(dir*a*54)+'px,'+(-a*22)+'px) translateZ(-'+(a*180)+'px) scale('+(1-a*.12)+')';
+        c.style.opacity=(0.5-(a-1)*0.22).toFixed(2);
+        c.style.filter='blur('+(a*2.2)+'px)';
+        c.style.zIndex=20-a;
+      }
+    });
+    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  }
+  document.getElementById('sp-prev').onclick=()=>go(idx-1);
+  document.getElementById('sp-next').onclick=()=>go(idx+1);
+  let sx=0,moved=false,down=false;
+  stage.addEventListener('pointerdown',e=>{if(e.target.closest('.arrow'))return;down=true;moved=false;sx=e.clientX;});
+  stage.addEventListener('pointermove',e=>{
+    const r=stage.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-.5)*2;my=((e.clientY-r.top)/r.height-.5)*2;
+    if(down&&Math.abs(e.clientX-sx)>8)moved=true;
+    if(!down)render();
+  });
+  stage.addEventListener('pointerup',e=>{if(!down)return;down=false;const dx=e.clientX-sx;if(dx>40)go(idx-1);else if(dx<-40)go(idx+1);});
+  stage.addEventListener('pointerleave',()=>{down=false;mx=0;my=0;render();});
+  let t=setInterval(()=>go(idx+1),4600);
+  stage.addEventListener('pointerdown',()=>clearInterval(t));
+  return {build};
+})();
+
+/* načítanie dát */
+fetch('data/cola.json?v='+Date.now())
+  .then(r=>{if(!r.ok)throw 0;return r.json();})
+  .then(d=>{PRODUCTS=(d.products||[]).filter(p=>p.visible!==false);if(!PRODUCTS.length)PRODUCTS=FALLBACK;boot();})
+  .catch(()=>{PRODUCTS=FALLBACK;boot();});
+function boot(){CF.build();RG.build();SP.build();}
+</script>
+</body>
+</html>
